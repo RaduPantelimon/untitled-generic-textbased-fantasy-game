@@ -68,5 +68,23 @@ namespace RPGUtilities.Properties {
                 return ResourceManager.GetString("Fighter_DefaultStrength", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string SpellCaster_DefaultMana {
+            get {
+                return ResourceManager.GetString("SpellCaster_DefaultMana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string SpellCaster_UnnarmedDamage {
+            get {
+                return ResourceManager.GetString("SpellCaster_UnnarmedDamage", resourceCulture);
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@ using RPGUtilities.Properties;
 
 namespace RPGUtilities.Creatures
 {
-    public class Fighter:Humanoid
+    public class Fighter : Humanoid
     {
         public uint Strength { get; protected set; }
 
@@ -19,7 +19,5 @@ namespace RPGUtilities.Creatures
         {
             Strength = Convert.ToUInt32(Mechanics.Fighter_DefaultStrength);
         }
-
-
     }
 }

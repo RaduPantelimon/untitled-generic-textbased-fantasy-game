@@ -120,4 +120,10 @@
   <data name="Fighter_DefaultStrength" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="SpellCaster_DefaultMana" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="SpellCaster_UnnarmedDamage" xml:space="preserve">
+    <value>2</value>
+  </data>
 </root>
