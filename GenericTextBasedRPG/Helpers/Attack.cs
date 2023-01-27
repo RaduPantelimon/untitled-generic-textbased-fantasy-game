@@ -8,8 +8,8 @@ namespace RPGUtilities
 {
     public class Attack
     {
-        public DamageTypes DamageType { get; init; }
-        public double Damage { get; }
+        public DamageTypes DamageType { get; internal set; }
+        public double Damage { get; internal set; }
 
         internal Attack(double damage)
         {
