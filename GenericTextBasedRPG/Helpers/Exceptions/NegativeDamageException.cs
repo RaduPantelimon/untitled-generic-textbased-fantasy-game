@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RPGUtilities.Properties;
 using ExceptionResources = RPGUtilities.Properties.Exceptions;
 
-namespace RPGUtilities.Helpers.Exceptions
+namespace RPGUtilities
 {
     internal class NegativeDamageException: ArgumentOutOfRangeException
     {

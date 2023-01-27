@@ -61,6 +61,96 @@ namespace RPGUtilities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1.2.
+        /// </summary>
+        internal static string DefaultEnemies_BossMultiplier {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_BossMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        internal static string DefaultEnemies_Fighter_Strength {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Fighter_Strength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string DefaultEnemies_HitPoints_LowerLimit {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_HitPoints_LowerLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 60.
+        /// </summary>
+        internal static string DefaultEnemies_HitPoints_UpperLimit {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_HitPoints_UpperLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.2.
+        /// </summary>
+        internal static string DefaultEnemies_Mail_ArmorReduction {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Mail_ArmorReduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string DefaultEnemies_SpellCaster_Mana {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_SpellCaster_Mana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string DefaultEnemies_Staff_LowerAttack {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Staff_LowerAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4.
+        /// </summary>
+        internal static string DefaultEnemies_Staff_UpperAttack {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Staff_UpperAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        internal static string DefaultEnemies_Sword_LowerAttack {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Sword_LowerAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7.
+        /// </summary>
+        internal static string DefaultEnemies_Sword_UpperAttack {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Sword_UpperAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 5.
         /// </summary>
         internal static string Fighter_DefaultStrength {

@@ -21,7 +21,8 @@ namespace RPGUtilities
             Random = new Random();
         }
 
-        public int ThrowDice() => Random.Next(1,7);
+        public int ThrowDice() => Random.Next(1, 7);
+        public int Next (int min, int max) => Random.Next(min,max);
         public double RandomPercentage() => Random.NextDouble();
     }
 }

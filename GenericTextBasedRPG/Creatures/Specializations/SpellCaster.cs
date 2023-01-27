@@ -14,13 +14,13 @@ namespace RPGUtilities.Creatures.Specializations
 
         public override double UnnarmedDamage => Convert.ToDouble(Mechanics.SpellCaster_UnnarmedDamage);
 
-        internal SpellCaster(string name, double hitpoints, double mana) : base(hitpoints)
+        internal SpellCaster(double hitpoints, double mana) : base(hitpoints)
         {
             if (mana < 0) throw new ArgumentOutOfRangeException(nameof(mana));
             MaxMana = Mana = mana;
         }
 
-        internal SpellCaster(string name, double hitpoints) : base(hitpoints)
+        internal SpellCaster(double hitpoints) : base(hitpoints)
         {
             MaxMana = Mana = Convert.ToDouble(Mechanics.SpellCaster_DefaultMana);
         }
