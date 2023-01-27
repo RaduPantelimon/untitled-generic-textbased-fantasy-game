@@ -9,8 +9,8 @@ namespace RPGUtilities.Creatures.Specializations
 {
     internal class SpellCaster: Humanoid
     {
-        public double Mana { get; protected set; }
-        public double MaxMana { get; protected set; }
+        public double Mana { get; internal set; }
+        public double MaxMana { get; internal set; }
 
         public override double UnnarmedDamage => Convert.ToDouble(Mechanics.SpellCaster_UnnarmedDamage);
 

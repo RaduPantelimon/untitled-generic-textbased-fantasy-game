@@ -9,8 +9,8 @@ namespace RPGUtilities.Creatures
 {
     public abstract class Creature: IAttackable, IAttacker
     {
-        public double HitPoints { get; protected set; }
-        public double MaxHitPoints { get; protected set; }
+        public double HitPoints { get; internal set; }
+        public double MaxHitPoints { get; internal set; }
         public virtual bool Alive => HitPoints > 0;
 
         internal Creature(double hitpoints)

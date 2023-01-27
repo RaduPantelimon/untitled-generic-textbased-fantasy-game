@@ -10,19 +10,19 @@ namespace RPGUtilities.Creatures
 {
     public abstract class Humanoid : Creature
     {
-        public string Name { get; init; }
+        public string Name { get; }
         
         public abstract double UnnarmedDamage { get; }
 
-        public IWieldable? Weapon { get; protected set; }
-        public IWearable? Armor { get; protected set; }
+        public IWieldable? Weapon { get; internal set; }
+        public IWearable? Armor { get; internal set; }
 
         internal Humanoid(string name, double hitpoints) : base(hitpoints)
         {
             Name = name;
         }
 
-        //basic do damage - either weapon attack or unnarmed if weapon missing
+        //basic inflict damage - either weapon attack or unnarmed if weapon missing
         public override void DoDamage(IAttackable target)=> target.TakeDamage(Weapon?.GetDamage()??UnnarmedDamage);
 
         //basic take damage - mitigate with armor or take full on if armor missing

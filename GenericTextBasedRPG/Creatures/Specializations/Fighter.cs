@@ -9,7 +9,7 @@ namespace RPGUtilities.Creatures
 {
     public class Fighter : Humanoid
     {
-        public uint Strength { get; protected set; }
+        public uint Strength { get; internal set; }
 
         public override double UnnarmedDamage => Strength;
 
