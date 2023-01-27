@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace RPGUtilities.Equipment
 {
-    internal class Item //: IOwneable
+    public abstract class Item //: IOwneable
     {
+        //Stuff like name; ID; 3D Model, etc. would normally be here
 
     }
 }
