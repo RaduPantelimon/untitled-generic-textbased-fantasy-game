@@ -1,14 +1,17 @@
-﻿using RPGUtilities.Helpers.Exceptions;
+﻿using RPGUtilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace RPGUtilities.Creatures
 {
     public abstract class Creature: IAttackable, IAttacker
     {
+        public string? Name { get; init; }
+
         public double HitPoints { get; internal set; }
         public double MaxHitPoints { get; internal set; }
         public virtual bool Alive => HitPoints > 0;
@@ -26,5 +29,7 @@ namespace RPGUtilities.Creatures
         }
        
         public abstract void DoDamage(IAttackable target);
+
+        public override string? ToString() => Name ?? base.ToString();
     }
 }

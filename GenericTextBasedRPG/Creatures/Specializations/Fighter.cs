@@ -13,9 +13,9 @@ namespace RPGUtilities.Creatures
 
         public override double UnnarmedDamage => Strength;
 
-        internal Fighter(string name, double hitpoints, uint strength): base(name, hitpoints) => Strength = strength;
+        internal Fighter(double hitpoints, uint strength): base(hitpoints) => Strength = strength;
 
-        internal Fighter(string name, double hitpoints) : base(name, hitpoints)
+        internal Fighter(double hitpoints) : base(hitpoints)
         {
             Strength = Convert.ToUInt32(Mechanics.Fighter_DefaultStrength);
         }
