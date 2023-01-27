@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace RPGUtilities.Equipment
 {
     public interface IWearable
     {
-        //default implementation!!!
-        public double MitigateAttack(double damage) => damage;
+        //good armor might convert a slashing attack into a blunt one
+        public Attack MitigateAttack(Attack attack);
     }
 }

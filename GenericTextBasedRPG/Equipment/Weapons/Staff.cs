@@ -9,7 +9,7 @@ namespace RPGUtilities.Equipment.Weapons
     public class Staff: Weapon
     {
         internal Staff(int minDamage, int maxDamage)
-            : base(minDamage, maxDamage, PhysicalDamageTypes.Bludgeoning)
+            : base(minDamage, maxDamage, DamageTypes.Blunt)
         {
 
         }

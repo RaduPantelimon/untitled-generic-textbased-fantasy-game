@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Engine
+namespace RPGUtilities
 {
     //Singleton in current thread
     public class Randomizer

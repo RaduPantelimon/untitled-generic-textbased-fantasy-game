@@ -19,12 +19,12 @@ namespace RPGUtilities.Creatures
             MaxHitPoints = HitPoints = hitpoints; 
         }
 
-        public virtual void TakeDamage(double damage)
+        public virtual void TakeDamage(Attack attack)
         {
-            if (damage <= 0) throw new NegativeDamageException();
-            HitPoints -= damage;
+            if (attack.Damage <= 0) throw new NegativeDamageException();
+            HitPoints -= attack.Damage;
         }
-
+       
         public abstract void DoDamage(IAttackable target);
     }
 }

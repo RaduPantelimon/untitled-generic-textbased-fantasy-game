@@ -10,25 +10,25 @@ namespace RPGUtilities.Equipment.Weapons
     public abstract class Weapon: Item, IWieldable
     {
         //for simplicity's sake, we will consider that a weapon cannot change it's attack once forged
-        public double MinAttack { get; }
-        public double MaxAttack { get; }
+        public double MinDamage { get; }
+        public double MaxDamage { get; }
 
-        public PhysicalDamageTypes DamageType { get; }
+        public DamageTypes DamageType { get; }
 
-        internal Weapon(double minAttack, double maxAttack, PhysicalDamageTypes damageType) 
+        internal Weapon(double minDamage, double maxDamage, DamageTypes damageType) 
         {
-            if (minAttack < 0) throw new ArgumentException(nameof(MinAttack));
-            if (maxAttack > minAttack) throw new ArgumentOutOfRangeException(Exceptions.Exception_LowerLimitLargerThanUpperLimit);
+            if (minDamage < 0) throw new ArgumentException(nameof(MinDamage));
+            if (maxDamage > minDamage) throw new ArgumentOutOfRangeException(Exceptions.Exception_LowerLimitLargerThanUpperLimit);
             
-            MinAttack = minAttack;
-            MaxAttack = maxAttack;
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
             DamageType = damageType;
         }
 
         //basic weapon damage calculation
-        public virtual double GetDamage()
+        public virtual Attack GetAttack()
         {
-            return (MaxAttack - MinAttack) / 2;
+            return  new Attack((MaxDamage - MinDamage) / 2);
         }
     }
 }

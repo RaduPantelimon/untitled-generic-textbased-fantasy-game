@@ -61,6 +61,15 @@ namespace RPGUtilities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lower limit cannot be larger than upper limit.
+        /// </summary>
+        internal static string Exception_LowerLimitLargerThanUpperLimit {
+            get {
+                return ResourceManager.GetString("Exception_LowerLimitLargerThanUpperLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Impossible to deal negative damage to a creature.
         /// </summary>
         internal static string Exception_NegativeDamage {

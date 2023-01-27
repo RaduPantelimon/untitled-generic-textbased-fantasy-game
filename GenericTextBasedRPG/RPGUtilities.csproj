@@ -8,9 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Creatures\Interfaces\" />
-    <Folder Include="Creatures\Species\" />
-    <Folder Include="Equipment\Armor\" />
-    <Folder Include="Equipment\Weapons\" />
+    <Folder Include="Creatures\Factories\" />
     <Folder Include="Quests\" />
   </ItemGroup>
 

@@ -23,11 +23,12 @@ namespace RPGUtilities.Creatures
         }
 
         //basic inflict damage - either weapon attack or unnarmed if weapon missing
-        public override void DoDamage(IAttackable target)=> target.TakeDamage(Weapon?.GetDamage()??UnnarmedDamage);
+        public override void DoDamage(IAttackable target)=> target.TakeDamage(Weapon?.GetAttack()?? 
+                                                new Attack(UnnarmedDamage){ DamageType = DamageTypes.Blunt});
 
         //basic take damage - mitigate with armor or take full on if armor missing
-        public override void TakeDamage(double damage)=> base.TakeDamage(Armor?.MitigateAttack(damage)??damage);
-
+        public override void TakeDamage(Attack attack)=> base.TakeDamage(Armor?.MitigateAttack(attack) ?? attack);
+        
         public override string ToString() => Name;
     }
 }

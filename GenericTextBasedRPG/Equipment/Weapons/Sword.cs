@@ -11,7 +11,7 @@ namespace RPGUtilities.Equipment.Weapons
         //stuff like edge type, blade length, etc. should be here 
 
         internal Sword(int minDamage, int maxDamage)
-            : base(minDamage, maxDamage, PhysicalDamageTypes.Slashing | PhysicalDamageTypes.Piercing)
+            : base(minDamage, maxDamage, DamageTypes.Slashing | DamageTypes.Piercing)
         {
 
         }

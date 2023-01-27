@@ -8,13 +8,17 @@ namespace RPGUtilities.Equipment
 {
     public interface IWieldable
     {
-        public double MinAttack { get; protected set; }
-        public double MaxAttack { get; protected set; }
+        public double MinDamage { get; }
+        public double MaxDamage { get; }
+
+        public DamageTypes DamageType { get; }
 
         //default implementation!!!
-        public double GetDamage()
+        //If I Hold a Spoon, I might not want my GetDamage to be implemented in the class,
+        //and I might just want to see the method only when it is cast to IWieldable
+        public Attack GetAttack()
         {
-            return (MaxAttack - MinAttack) / 2;
+            return new Attack((MaxDamage - MinDamage) / 2);
         }
     }
 }

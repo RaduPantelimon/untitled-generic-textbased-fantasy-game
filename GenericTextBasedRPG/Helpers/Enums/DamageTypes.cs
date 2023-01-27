@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace RPGUtilities
 {
     [Flags]
-    public enum PhysicalDamageTypes
+    public enum DamageTypes
     {
         Piercing = 1,
         Slashing = 2,
-        Bludgeoning = 4,
+        Blunt = 4,
     }
 }

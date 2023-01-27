@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities
+namespace RPGUtilities.Equipment.Armor
 {
-    public interface IAttackable
+    internal class Armor
     {
-        public void TakeDamage(Attack attack);
     }
 }
