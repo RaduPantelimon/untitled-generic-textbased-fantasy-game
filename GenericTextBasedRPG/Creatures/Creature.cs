@@ -1,6 +1,8 @@
 ﻿using RPGUtilities;
+using RPGUtilities.Core.Combat;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,21 @@ namespace RPGUtilities.Creatures
     {
         public string? Name { get; init; }
 
-        public double HitPoints { get; internal set; }
+        private double hitpoints;
+        public double HitPoints { 
+            get => hitpoints; 
+            private protected set {
+
+
+                if (hitpoints > 0 && hitpoints <= value) 
+                {
+                    hitpoints = 0;
+                    OnDeath(new CreatureDeathEventArgs());
+                    return;
+                }
+                hitpoints -= value;
+            } 
+        }
         public double MaxHitPoints { get; internal set; }
         public virtual bool Alive => HitPoints > 0;
 
@@ -31,5 +47,13 @@ namespace RPGUtilities.Creatures
         public abstract void DoDamage(IAttackable target);
 
         public override string? ToString() => Name ?? base.ToString();
+
+        private void OnDeath(CreatureDeathEventArgs args)
+        {
+            Died?.Invoke(this, args);
+        }
+
+        //we might want to be able to subscribe to the death event of a creature
+        public event EventHandler<CreatureDeathEventArgs>? Died;
     }
 }
