@@ -117,14 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Exception_InvalidInputCommand" xml:space="preserve">
-    <value>The given input is invalid or the command cannot be executed</value>
-  </data>
-  <data name="Exception_LowerLimitLargerThanUpperLimit" xml:space="preserve">
-    <value>Lower limit cannot be larger than upper limit</value>
-  </data>
-  <data name="Exception_NegativeDamage" xml:space="preserve">
-    <value>Impossible to deal negative damage to a creature</value>
-    <comment>Raw damage should never be negative, use custom logic if attack should restore health</comment>
+  <data name="Command_InvalidCommand" xml:space="preserve">
+    <value>Command Selection Error: {0}</value>
   </data>
 </root>

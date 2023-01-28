@@ -22,14 +22,14 @@ namespace RPGUtilities.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Exceptions {
+    internal class Messages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Exceptions() {
+        internal Messages() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace RPGUtilities.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RPGUtilities.Properties.Exceptions", typeof(Exceptions).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RPGUtilities.Properties.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,11 @@ namespace RPGUtilities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The given input is invalid or the command cannot be executed.
+        ///   Looks up a localized string similar to Command Selection Error: {0}.
         /// </summary>
-        internal static string Exception_InvalidInputCommand {
+        internal static string Command_InvalidCommand {
             get {
-                return ResourceManager.GetString("Exception_InvalidInputCommand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Lower limit cannot be larger than upper limit.
-        /// </summary>
-        internal static string Exception_LowerLimitLargerThanUpperLimit {
-            get {
-                return ResourceManager.GetString("Exception_LowerLimitLargerThanUpperLimit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Impossible to deal negative damage to a creature.
-        /// </summary>
-        internal static string Exception_NegativeDamage {
-            get {
-                return ResourceManager.GetString("Exception_NegativeDamage", resourceCulture);
+                return ResourceManager.GetString("Command_InvalidCommand", resourceCulture);
             }
         }
     }
