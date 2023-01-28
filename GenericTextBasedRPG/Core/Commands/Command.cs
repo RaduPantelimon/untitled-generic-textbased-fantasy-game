@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace RPGUtilities.Core
 {
-    internal class Command
+    internal abstract class Command
     {
+
+        public Command()
+        {
+
+        }
+
+        public abstract void Execute();
     }
 }
