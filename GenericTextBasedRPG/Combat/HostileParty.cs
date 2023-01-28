@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Helpers
+namespace RPGUtilities
 {
     public class HostileParty<T> : Collection<T> where T: Creature
     {
