@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGUtilities.Core
 {
-    internal abstract class Command
+    internal abstract class Command: IShallowCloneable<Command>
     {
 
         public Command()
@@ -15,5 +15,10 @@ namespace RPGUtilities.Core
         }
 
         public abstract void Execute();
+
+        //check if command is valid for a current stage of the game
+        public abstract bool IsValid(Engine levelEngine);
+
+        public abstract Command Clone();
     }
 }
