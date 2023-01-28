@@ -8,12 +8,12 @@ using ExceptionResources = RPGUtilities.Properties.Exceptions;
 
 namespace RPGUtilities
 {
-    internal class NegativeDamageException: ArgumentOutOfRangeException
+    public class NegativeDamageException: ArgumentOutOfRangeException
     {
-        public NegativeDamageException() : base(ExceptionResources.Exception_NegativeDamage)
+        internal NegativeDamageException() : base(ExceptionResources.Exception_NegativeDamage)
         {
         }
-        public NegativeDamageException(string message): base(message)
+        internal NegativeDamageException(string message): base(message)
         {
         }
     }
