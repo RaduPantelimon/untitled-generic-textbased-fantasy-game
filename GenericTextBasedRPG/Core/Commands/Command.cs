@@ -14,10 +14,10 @@ namespace RPGUtilities.Core
 
         }
 
-        public abstract void Execute();
+        public abstract void Execute(Engine engine);
 
         //check if command is valid for a current stage of the game
-        public abstract bool IsValid(Engine levelEngine);
+        public abstract bool IsValid(Engine engine);
 
         public abstract Command Clone();
     }

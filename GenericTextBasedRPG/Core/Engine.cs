@@ -43,7 +43,7 @@ namespace RPGUtilities.Core
                 try
                 {
                     command = GetCommand();
-                    command.Execute();
+                    command.Execute(this);
                 }
                 catch(InvalidCommandException ex)
                 {
@@ -71,7 +71,7 @@ namespace RPGUtilities.Core
             //retrieve response and interpret characters
             try
             {
-                return eligibleCommands[int.Parse(Reader.ReadLine()!)];
+                return eligibleCommands[int.Parse(Reader.ReadLine()!)].Clone();
             }
             catch(Exception ex)
             {

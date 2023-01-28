@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RPGUtilities.Core
 {
-    public class TutorialLevel: Engine
+    public class TutorialLevel: Level
     {
 
         HostileParty<Creature> Enemies { get;}
