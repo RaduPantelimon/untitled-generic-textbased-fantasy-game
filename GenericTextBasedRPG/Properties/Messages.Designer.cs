@@ -68,5 +68,14 @@ namespace RPGUtilities.Properties {
                 return ResourceManager.GetString("Command_InvalidCommand", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select One of the following commands by replying with the corresponding number:.
+        /// </summary>
+        internal static string Menu_EligibleCommands {
+            get {
+                return ResourceManager.GetString("Menu_EligibleCommands", resourceCulture);
+            }
+        }
     }
 }

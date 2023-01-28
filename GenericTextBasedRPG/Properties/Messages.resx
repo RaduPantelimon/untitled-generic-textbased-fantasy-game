@@ -120,4 +120,7 @@
   <data name="Command_InvalidCommand" xml:space="preserve">
     <value>Command Selection Error: {0}</value>
   </data>
+  <data name="Menu_EligibleCommands" xml:space="preserve">
+    <value>Please Select One of the following commands by replying with the corresponding number:</value>
+  </data>
 </root>
