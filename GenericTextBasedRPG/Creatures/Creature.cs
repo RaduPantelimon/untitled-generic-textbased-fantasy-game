@@ -1,5 +1,4 @@
 ﻿using RPGUtilities;
-using RPGUtilities.Core.Combat;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,7 +29,7 @@ namespace RPGUtilities.Creatures
             } 
         }
         public double MaxHitPoints { get; internal set; }
-        public virtual bool Alive => HitPoints > 0;
+        public virtual bool IsAlive => HitPoints > 0;
 
         internal Creature(double hitpoints)
         {
@@ -50,10 +49,10 @@ namespace RPGUtilities.Creatures
 
         private void OnDeath(CreatureDeathEventArgs args)
         {
-            Died?.Invoke(this, args);
+            CreatureDied?.Invoke(this, args);
         }
 
         //we might want to be able to subscribe to the death event of a creature
-        public event EventHandler<CreatureDeathEventArgs>? Died;
+        public event EventHandler<CreatureDeathEventArgs> CreatureDied;
     }
 }

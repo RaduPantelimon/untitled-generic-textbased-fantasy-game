@@ -11,5 +11,11 @@ namespace RPGUtilities
 {
     public class HostileParty<T> : Collection<T> where T: Creature
     {
+        protected override void InsertItem(int index, T enemy)
+        {
+            //Automatically remove from list when it dies
+            enemy.CreatureDied += (object? sender, CreatureDeathEventArgs e) => this.Remove((T)sender!);
+            base.InsertItem(index,enemy);
+        }
     }
 }
