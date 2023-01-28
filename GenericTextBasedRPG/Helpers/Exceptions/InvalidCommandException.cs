@@ -10,10 +10,17 @@ namespace RPGUtilities
 
     public class InvalidCommandException : InvalidOperationException
     {
-        internal InvalidCommandException() : base(ExceptionResources.Exception_InvalidInputCommand)
+        internal InvalidCommandException()
         {
         }
-        internal InvalidCommandException(string message) : base(message)
+
+        internal InvalidCommandException(string message)
+            : base(message)
+        {
+        }
+
+        internal InvalidCommandException(string message, Exception inner)
+            : base(message, inner)
         {
         }
     }

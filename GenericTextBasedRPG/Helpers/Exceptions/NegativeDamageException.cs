@@ -10,10 +10,17 @@ namespace RPGUtilities
 {
     public class NegativeDamageException: ArgumentOutOfRangeException
     {
-        internal NegativeDamageException() : base(ExceptionResources.Exception_NegativeDamage)
+        internal NegativeDamageException()
         {
         }
-        internal NegativeDamageException(string message): base(message)
+
+        internal NegativeDamageException(string message)
+            : base(message)
+        {
+        }
+
+        internal NegativeDamageException(string message, Exception inner)
+            : base(message, inner)
         {
         }
     }
