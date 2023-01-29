@@ -1,11 +1,11 @@
-﻿using RPGUtilities.Properties;
+﻿using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Equipment.Armor
+namespace GenericRPG.Equipment.Armor
 {
     public abstract class Armor: IWearable
     {

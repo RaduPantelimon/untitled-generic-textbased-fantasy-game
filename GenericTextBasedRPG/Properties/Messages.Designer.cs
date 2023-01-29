@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GenericRPGCore.Properties {
+namespace GenericRPG.Properties {
     using System;
     
     

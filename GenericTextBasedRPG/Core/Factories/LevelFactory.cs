@@ -1,12 +1,12 @@
-﻿using RPGUtilities.Combat.Enums;
-using RPGUtilities.Creatures;
+﻿using GenericRPG.Combat.Enums;
+using GenericRPG.Creatures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Core
+namespace GenericRPG.Core
 {
     //this is just a very simple base class for level
     //in the future, it should be made abstract
@@ -21,7 +21,7 @@ namespace RPGUtilities.Core
             EnemiesFactory = enemiesFactory;
         }
 
-        public abstract Level GetLevel();
+        public abstract Level GetLevel(Game game);
 
         //very basic default implementation
         public virtual HostileParty<Creature> GetEnemiesGroup(PartySize size) => size switch

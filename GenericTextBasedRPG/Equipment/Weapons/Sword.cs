@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Equipment.Weapons
+namespace GenericRPG.Equipment.Weapons
 {
     public class Sword:Weapon
     {

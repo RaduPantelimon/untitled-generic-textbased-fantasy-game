@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ExceptionResources = RPGUtilities.Properties.Exceptions;
+using ExceptionResources = GenericRPG.Properties.Exceptions;
 
-namespace RPGUtilities
+namespace GenericRPG
 {
 
     public class InvalidCommandException : InvalidOperationException

@@ -1,15 +1,15 @@
-﻿using RPGUtilities.Creatures;
-using RPGUtilities.Creatures.Specializations;
-using RPGUtilities.Equipment.Armor;
-using RPGUtilities.Equipment.Weapons;
-using RPGUtilities.Properties;
+﻿using GenericRPG.Creatures;
+using GenericRPG.Creatures.Specializations;
+using GenericRPG.Equipment.Armor;
+using GenericRPG.Equipment.Weapons;
+using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Core
+namespace GenericRPG.Core
 {
     //in some cases, a subclass that uses prototypes could be a very good addition
     internal class EnemiesFactory

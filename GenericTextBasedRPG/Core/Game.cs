@@ -1,11 +1,12 @@
-﻿using System;
+﻿using GenericRPG.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Core
+namespace GenericRPG
 {
     public class Game
     {
@@ -18,5 +19,8 @@ namespace RPGUtilities.Core
             InputStream = input;
             OutputStream = output; 
         }
+
+        //DUMMY IMPLEMENTATION
+        public Level GetNextLevel() => TutorialFactory.Instance.GetLevel(this);
     }
 }

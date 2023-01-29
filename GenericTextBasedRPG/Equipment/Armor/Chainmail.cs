@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Equipment.Armor
+namespace GenericRPG.Equipment.Armor
 {
     public class Chainmail:Armor
     {

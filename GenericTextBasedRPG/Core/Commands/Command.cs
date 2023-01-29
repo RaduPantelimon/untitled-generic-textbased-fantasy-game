@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Core
+namespace GenericRPG.Core
 {
     internal abstract class Command: IShallowCloneable<Command>
     {

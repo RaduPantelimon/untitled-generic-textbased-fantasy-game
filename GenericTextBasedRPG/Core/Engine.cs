@@ -1,5 +1,5 @@
-﻿using RPGUtilities.Core;
-using RPGUtilities.Properties;
+﻿using GenericRPG.Core;
+using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Core
+namespace GenericRPG.Core
 {
     public abstract class Engine:IDisposable
     {

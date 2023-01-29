@@ -1,12 +1,12 @@
-﻿using RPGUtilities.Equipment;
-using RPGUtilities.Equipment.Interfaces;
+﻿using GenericRPG.Equipment;
+using GenericRPG.Equipment.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Creatures
+namespace GenericRPG.Creatures
 {
     public abstract class Humanoid : Creature
     {

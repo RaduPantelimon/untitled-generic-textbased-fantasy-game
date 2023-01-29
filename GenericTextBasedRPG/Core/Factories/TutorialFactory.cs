@@ -4,24 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Core
+namespace GenericRPG.Core
 {
     public class TutorialFactory: LevelFactory
     {
         static List<Command> AvailableCommands { get; } = new List<Command>();  
         
-        public Game GameInstance { get; private protected set; }
-
-        internal TutorialFactory(Game game) : base(new EnemiesFactory())
+        internal TutorialFactory() : base(new EnemiesFactory())
         {
-            GameInstance = game;
         }
 
         //create the tutorial level
-        public override Level GetLevel() => 
-            new TutorialLevel(GameInstance.InputStream, 
-                              GameInstance.OutputStream,
+        public override Level GetLevel(Game game) => 
+            new TutorialLevel(game.InputStream,
+                              game.OutputStream,
                               AvailableCommands, 
                               GetEnemiesGroup(Combat.Enums.PartySize.Small));
+
+        private static TutorialFactory instance;
+        public static TutorialFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new TutorialFactory();
+                }
+                return instance;
+            }
+        }
     }
 }

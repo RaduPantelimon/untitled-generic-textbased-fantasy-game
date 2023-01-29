@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RPGUtilities.Properties;
+using GenericRPG.Properties;
 
-namespace RPGUtilities.Creatures
+namespace GenericRPG.Creatures
 {
     public class Fighter : Humanoid
     {

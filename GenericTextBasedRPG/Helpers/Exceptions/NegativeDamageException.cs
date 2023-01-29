@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RPGUtilities.Properties;
-using ExceptionResources = RPGUtilities.Properties.Exceptions;
+using GenericRPG.Properties;
+using ExceptionResources = GenericRPG.Properties.Exceptions;
 
-namespace RPGUtilities
+namespace GenericRPG
 {
     public class NegativeDamageException: ArgumentOutOfRangeException
     {

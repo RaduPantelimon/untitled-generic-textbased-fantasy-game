@@ -1,4 +1,4 @@
-﻿using RPGUtilities;
+﻿using GenericRPG;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace RPGUtilities.Creatures
+namespace GenericRPG.Creatures
 {
     public abstract class Creature: IAttackable, IAttacker
     {

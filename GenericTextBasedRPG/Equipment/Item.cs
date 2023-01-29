@@ -1,11 +1,11 @@
-﻿using RPGUtilities.Equipment.Interfaces;
+﻿using GenericRPG.Equipment.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtilities.Equipment
+namespace GenericRPG.Equipment
 {
     public abstract class Item //: IOwneable
     {
