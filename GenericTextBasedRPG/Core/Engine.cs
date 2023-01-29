@@ -12,8 +12,8 @@ namespace RPGUtilities.Core
     public abstract class Engine:IDisposable
     {
 
-        TextReader Reader { get; }
-        TextWriter Writer { get; }
+        private protected TextReader Reader { get; }
+        private protected TextWriter Writer { get; }
 
         public Player? Player { get; internal set; }
 

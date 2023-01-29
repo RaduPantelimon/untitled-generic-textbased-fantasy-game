@@ -26,8 +26,6 @@ namespace RPGUtilities.Core
         //very basic default implementation
         public virtual HostileParty<Creature> GetEnemiesGroup(PartySize size) => size switch
         {
-            PartySize.Single => new HostileParty<Creature> { EnemiesFactory.GenerateMeleeEnemy()},
-                
             PartySize.Small => new HostileParty<Creature> { EnemiesFactory.GenerateMeleeEnemy(),
                                                             EnemiesFactory.GenerateRangedEnemy() },
 
@@ -39,7 +37,9 @@ namespace RPGUtilities.Core
                                                             EnemiesFactory.GenerateMeleeEnemy(),
                                                             EnemiesFactory.GenerateRangedEnemy(),
                                                             EnemiesFactory.GenerateRangedEnemy(),
-                                                            EnemiesFactory.GenerateBoss()}
+                                                            EnemiesFactory.GenerateBoss()},
+
+            _ => new HostileParty<Creature> { EnemiesFactory.GenerateMeleeEnemy() },
         };
     }
 }
