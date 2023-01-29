@@ -23,23 +23,6 @@ namespace GenericRPG.Core
 
         public abstract Level GetLevel(Game game);
 
-        //very basic default implementation
-        public virtual HostileParty<Creature> GetEnemiesGroup(PartySize size) => size switch
-        {
-            PartySize.Small => new HostileParty<Creature> { EnemiesFactory.GenerateMeleeEnemy(),
-                                                            EnemiesFactory.GenerateRangedEnemy() },
-
-            PartySize.Medium => new HostileParty<Creature> { EnemiesFactory.GenerateMeleeEnemy(),
-                                                            EnemiesFactory.GenerateMeleeEnemy(),
-                                                            EnemiesFactory.GenerateRangedEnemy() },
-
-            PartySize.Large => new HostileParty<Creature> { EnemiesFactory.GenerateMeleeEnemy(),
-                                                            EnemiesFactory.GenerateMeleeEnemy(),
-                                                            EnemiesFactory.GenerateRangedEnemy(),
-                                                            EnemiesFactory.GenerateRangedEnemy(),
-                                                            EnemiesFactory.GenerateBoss()},
-
-            _ => new HostileParty<Creature> { EnemiesFactory.GenerateMeleeEnemy() },
-        };
+       
     }
 }

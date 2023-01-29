@@ -13,13 +13,13 @@ namespace GenericRPG.Core
 
         HostileParty<Creature> Enemies { get;}
 
-        internal TutorialLevel(Stream input, Stream output, List<Command> commands, HostileParty<Creature> enemies) 
-            : base(input, output, commands)
+        internal TutorialLevel(Game currentGame, EnemiesFactory enemiesFactory, List<Command> commands) 
+            : base(currentGame, commands)
         {
-            Enemies = enemies;
+            Enemies = enemiesFactory.GetEnemiesGroup(Combat.Enums.PartySize.Medium);
         }
 
         public override bool PlayerWon => Enemies.Count == 0 && Started;
-        public override bool IsOver => Quit || !(Player?.Hero?.IsAlive! ?? true) || PlayerWon;
+        public override bool IsOver => PlayerQuit || !(CurrentGame.Player?.Hero?.IsAlive! ?? true) || PlayerWon;
     }
 }

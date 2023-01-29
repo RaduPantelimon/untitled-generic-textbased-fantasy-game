@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GenericTextBasedRPG\GenericRPGCore.csproj" />
+    <ProjectReference Include="..\GenericTextBasedRPG\GenericRPG.csproj" />
   </ItemGroup>
 
 </Project>

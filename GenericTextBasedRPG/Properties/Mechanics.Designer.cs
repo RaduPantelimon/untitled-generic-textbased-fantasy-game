@@ -39,7 +39,7 @@ namespace GenericRPG.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GenericRPGCore.Properties.Mechanics", typeof(Mechanics).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GenericRPG.Properties.Mechanics", typeof(Mechanics).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

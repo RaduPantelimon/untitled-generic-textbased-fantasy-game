@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericRPGCore", "GenericTextBasedRPG\GenericRPGCore.csproj", "{383C09CB-499C-4357-A9FC-4C9BC467E5C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericRPG", "GenericTextBasedRPG\GenericRPG.csproj", "{383C09CB-499C-4357-A9FC-4C9BC467E5C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericRPGClient", "GenericRPGClient\GenericRPGClient.csproj", "{4F4BB2E9-C6CA-4B8E-8CB2-99286E71C218}"
 EndProject

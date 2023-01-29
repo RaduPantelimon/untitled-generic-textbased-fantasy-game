@@ -1,4 +1,5 @@
-﻿using GenericRPG.Creatures;
+﻿using GenericRPG.Combat.Enums;
+using GenericRPG.Creatures;
 using GenericRPG.Creatures.Specializations;
 using GenericRPG.Equipment.Armor;
 using GenericRPG.Equipment.Weapons;
@@ -35,6 +36,24 @@ namespace GenericRPG.Core
                 Armor = new Chainmail(MailArmorReduction * BossMultiplier)
             };
 
+        //very basic default implementation
+        public virtual HostileParty<Creature> GetEnemiesGroup(PartySize size) => size switch
+        {
+            PartySize.Small => new HostileParty<Creature> { GenerateMeleeEnemy(),
+                                                            GenerateRangedEnemy() },
+
+            PartySize.Medium => new HostileParty<Creature> { GenerateMeleeEnemy(),
+                                                            GenerateMeleeEnemy(),
+                                                            GenerateRangedEnemy() },
+
+            PartySize.Large => new HostileParty<Creature> { GenerateMeleeEnemy(),
+                                                            GenerateMeleeEnemy(),
+                                                            GenerateRangedEnemy(),
+                                                            GenerateRangedEnemy(),
+                                                            GenerateBoss()},
+
+            _ => new HostileParty<Creature> { GenerateMeleeEnemy() },
+        };
 
         protected static int CasterMana { get; }
         protected static uint FigtherStrength { get; }
@@ -69,4 +88,6 @@ namespace GenericRPG.Core
             BossMultiplier = Convert.ToDouble(Mechanics.DefaultEnemies_BossMultiplier);
         }
     }
+
+
 }
