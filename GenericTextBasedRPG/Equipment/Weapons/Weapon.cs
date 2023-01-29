@@ -18,7 +18,7 @@ namespace GenericRPG.Equipment.Weapons
         internal Weapon(double minDamage, double maxDamage, DamageTypes damageType) 
         {
             if (minDamage < 0) throw new ArgumentException(nameof(MinDamage));
-            if (maxDamage > minDamage) throw new ArgumentOutOfRangeException(Exceptions.Exception_LowerLimitLargerThanUpperLimit);
+            if (maxDamage < minDamage) throw new ArgumentOutOfRangeException(Exceptions.Exception_LowerLimitLargerThanUpperLimit);
             
             MinDamage = minDamage;
             MaxDamage = maxDamage;

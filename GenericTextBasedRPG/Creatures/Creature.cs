@@ -13,20 +13,9 @@ namespace GenericRPG.Creatures
     {
         public string? Name { get; init; }
 
-        private double hitpoints;
-        public double HitPoints { 
-            get => hitpoints; 
-            private protected set {
-
-
-                if (hitpoints > 0 && hitpoints <= value) 
-                {
-                    hitpoints = 0;
-                    OnDeath(new CreatureDeathEventArgs());
-                    return;
-                }
-                hitpoints -= value;
-            } 
+        public double HitPoints {
+            get;
+            private protected set;
         }
         public double MaxHitPoints { get; internal set; }
         public virtual bool IsAlive => HitPoints > 0;
@@ -40,6 +29,13 @@ namespace GenericRPG.Creatures
         public virtual void TakeDamage(Attack attack)
         {
             if (attack.Damage <= 0) throw new NegativeDamageException();
+
+            if (HitPoints > 0 && HitPoints <= attack.Damage)
+            {
+                HitPoints = 0;
+                OnDeath(new CreatureDeathEventArgs());
+                return;
+            }
             HitPoints -= attack.Damage;
         }
        

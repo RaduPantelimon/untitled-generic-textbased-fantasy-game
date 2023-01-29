@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenericRPG.Core.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,11 @@ namespace GenericRPG.Core
 {
     public class TutorialFactory: LevelFactory
     {
-        static List<Command> AvailableCommands { get; } = new List<Command>();  
+        static List<Command> AvailableCommands { get; } = new List<Command>()
+        {
+            new Start(),
+            new Quit()
+        };  
         
         internal TutorialFactory() : base(new EnemiesFactory())
         {

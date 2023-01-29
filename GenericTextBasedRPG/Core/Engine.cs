@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace GenericRPG.Core
 {
+
+    //TO DO REPLACE STARTED AND QUIT WITH STATE ENUM
     public abstract class Engine : IDisposable
     {
-
+        //TO DO MOVE THESE IN THE GAME CLASS
         private protected TextReader Reader { get; }
         private protected TextWriter Writer { get; }
 
@@ -31,7 +33,9 @@ namespace GenericRPG.Core
             CurrentGame = game;
             Commands = commands;
             Reader = new StreamReader(game.InputStream); //,leaveOpen: true);
-            Writer = new StreamWriter(game.OutputStream);//,leaveOpen: true);
+            var writer = new StreamWriter(game.OutputStream);//,leaveOpen: true);
+            writer.AutoFlush = true;
+            Writer = writer;
         }
         public void Play()
         {
@@ -63,9 +67,16 @@ namespace GenericRPG.Core
 
             //display valid commands:
             Writer.WriteLine(Messages.Menu_EligibleCommands);
-            foreach (var batch in eligibleCommands.Select((x, i) => i + ". " + x).Chunk(3)) //TO DO REMOVE HARDCODED PARAMS;
-                Console.WriteLine(String.Format("{0, 15} | {1, 15} | {2, 15}", batch.ToArray()));
-
+            foreach (var batch in eligibleCommands.Select((x, i) => i + ". " + x.ToString()).Chunk(3)) //TO DO REMOVE HARDCODED PARAMS;
+            {
+                StringBuilder lineBuilder = new StringBuilder();
+                for(int i=0;i<batch.Length;i++)
+                {
+                    lineBuilder.Append(String.Format("{0, 15}", batch[i]));
+                    if(i<batch.Length-1) lineBuilder.Append(" | ");
+                }
+                Writer.WriteLine(lineBuilder.ToString());
+            }
 
             //retrieve response and interpret characters
             try
