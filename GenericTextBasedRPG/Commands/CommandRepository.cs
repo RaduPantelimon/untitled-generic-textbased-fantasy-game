@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Core.Commands
+namespace GenericRPG.Commands
 {
     //LIST OF Command PROTOTYPES - this will give the total collection of commands accessible in a level
     internal class CommandRepository

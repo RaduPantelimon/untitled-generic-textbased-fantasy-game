@@ -61,6 +61,42 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quit Game.
+        /// </summary>
+        internal static string Command_QuitGame {
+            get {
+                return ResourceManager.GetString("Command_QuitGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit Level.
+        /// </summary>
+        internal static string Command_QuitLevel {
+            get {
+                return ResourceManager.GetString("Command_QuitLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Game.
+        /// </summary>
+        internal static string Command_StartGame {
+            get {
+                return ResourceManager.GetString("Command_StartGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Next Level.
+        /// </summary>
+        internal static string Command_StartLevel {
+            get {
+                return ResourceManager.GetString("Command_StartLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1.2.
         /// </summary>
         internal static string DefaultEnemies_BossMultiplier {
@@ -171,9 +207,9 @@ namespace GenericRPG.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 2.
         /// </summary>
-        internal static string SpellCaster_UnnarmedDamage {
+        internal static string SpellCaster_DefaultUnnarmedDamage {
             get {
-                return ResourceManager.GetString("SpellCaster_UnnarmedDamage", resourceCulture);
+                return ResourceManager.GetString("SpellCaster_DefaultUnnarmedDamage", resourceCulture);
             }
         }
     }

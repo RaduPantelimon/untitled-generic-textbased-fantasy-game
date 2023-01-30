@@ -1,13 +1,16 @@
-﻿using System;
+﻿using GenericRPG.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Core
+namespace GenericRPG.Commands
 {
-    internal abstract class Command: IShallowCloneable<Command>
+    internal abstract class Command : IShallowCloneable<Command>
     {
+
+        public abstract string Name { get; }
 
         public Command()
         {
@@ -20,5 +23,8 @@ namespace GenericRPG.Core
         public abstract bool IsValid(Engine engine);
 
         public abstract Command Clone();
+
+        public override string ToString() => Name;
+
     }
 }

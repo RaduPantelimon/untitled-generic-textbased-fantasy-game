@@ -41,6 +41,8 @@ namespace GenericRPG.Core
                 {
                     command = GetCommand();
                     command.Execute(this);
+                    //redefine logic depending on specific of the subclass
+                    PostCommandLogic();
                 }
                 catch (InvalidCommandException ex)
                 {
@@ -81,6 +83,11 @@ namespace GenericRPG.Core
             {
                 throw new InvalidCommandException(Exceptions.Exception_InvalidInputCommand, ex);
             }
+        }
+
+        public virtual void PostCommandLogic()
+        {
+            //default empty method
         }
 
         public virtual void Start()

@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Command_QuitGame" xml:space="preserve">
+    <value>Quit Game</value>
+  </data>
+  <data name="Command_QuitLevel" xml:space="preserve">
+    <value>Quit Level</value>
+  </data>
+  <data name="Command_StartGame" xml:space="preserve">
+    <value>Start Game</value>
+  </data>
+  <data name="Command_StartLevel" xml:space="preserve">
+    <value>Start Next Level</value>
+  </data>
   <data name="DefaultEnemies_BossMultiplier" xml:space="preserve">
     <value>1.2</value>
   </data>
@@ -153,7 +165,7 @@
   <data name="SpellCaster_DefaultMana" xml:space="preserve">
     <value>30</value>
   </data>
-  <data name="SpellCaster_UnnarmedDamage" xml:space="preserve">
+  <data name="SpellCaster_DefaultUnnarmedDamage" xml:space="preserve">
     <value>2</value>
   </data>
 </root>

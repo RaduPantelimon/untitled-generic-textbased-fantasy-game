@@ -12,7 +12,7 @@ namespace GenericRPG.Creatures.Specializations
         public double Mana { get; internal set; }
         public double MaxMana { get; internal set; }
 
-        public override double UnnarmedDamage => Convert.ToDouble(Mechanics.SpellCaster_UnnarmedDamage);
+        public override double UnnarmedDamage => Convert.ToDouble(Mechanics.SpellCaster_DefaultUnnarmedDamage);
 
         internal SpellCaster(double hitpoints, double mana) : base(hitpoints)
         {

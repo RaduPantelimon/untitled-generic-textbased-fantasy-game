@@ -11,8 +11,8 @@ namespace GenericRPG.Core
     {
         static List<Command> AvailableCommands { get; } = new List<Command>()
         {
-            new Start(),
-            new Quit()
+            new StartGame(),
+            new QuitGame()
         };  
         
         internal TutorialFactory() : base(new EnemiesFactory())
