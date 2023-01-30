@@ -120,6 +120,9 @@
   <data name="Exception_InvalidInputCommand" xml:space="preserve">
     <value>The given input is invalid or the command cannot be executed</value>
   </data>
+  <data name="Exception_LevelAlreadyInProgress" xml:space="preserve">
+    <value>Another Level is already in progress</value>
+  </data>
   <data name="Exception_LowerLimitLargerThanUpperLimit" xml:space="preserve">
     <value>Lower limit cannot be larger than upper limit</value>
   </data>

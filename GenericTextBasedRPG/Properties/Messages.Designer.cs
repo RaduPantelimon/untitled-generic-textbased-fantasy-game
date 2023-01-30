@@ -61,11 +61,65 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attack!.
+        /// </summary>
+        internal static string Command_Attack {
+            get {
+                return ResourceManager.GetString("Command_Attack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command Selection Error: {0}.
         /// </summary>
         internal static string Command_InvalidCommand {
             get {
                 return ResourceManager.GetString("Command_InvalidCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit Game.
+        /// </summary>
+        internal static string Command_QuitGame {
+            get {
+                return ResourceManager.GetString("Command_QuitGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit Level.
+        /// </summary>
+        internal static string Command_QuitLevel {
+            get {
+                return ResourceManager.GetString("Command_QuitLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Battle!.
+        /// </summary>
+        internal static string Command_StartFight {
+            get {
+                return ResourceManager.GetString("Command_StartFight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Game.
+        /// </summary>
+        internal static string Command_StartGame {
+            get {
+                return ResourceManager.GetString("Command_StartGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Next Level.
+        /// </summary>
+        internal static string Command_StartLevel {
+            get {
+                return ResourceManager.GetString("Command_StartLevel", resourceCulture);
             }
         }
         

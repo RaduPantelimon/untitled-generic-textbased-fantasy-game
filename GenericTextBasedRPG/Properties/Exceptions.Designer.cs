@@ -70,6 +70,15 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Another Level is already in progress.
+        /// </summary>
+        internal static string Exception_LevelAlreadyInProgress {
+            get {
+                return ResourceManager.GetString("Exception_LevelAlreadyInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lower limit cannot be larger than upper limit.
         /// </summary>
         internal static string Exception_LowerLimitLargerThanUpperLimit {

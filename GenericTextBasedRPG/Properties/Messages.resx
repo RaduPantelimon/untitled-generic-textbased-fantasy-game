@@ -117,8 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Command_Attack" xml:space="preserve">
+    <value>Attack!</value>
+  </data>
   <data name="Command_InvalidCommand" xml:space="preserve">
     <value>Command Selection Error: {0}</value>
+  </data>
+  <data name="Command_QuitGame" xml:space="preserve">
+    <value>Quit Game</value>
+  </data>
+  <data name="Command_QuitLevel" xml:space="preserve">
+    <value>Quit Level</value>
+  </data>
+  <data name="Command_StartFight" xml:space="preserve">
+    <value>To Battle!</value>
+  </data>
+  <data name="Command_StartGame" xml:space="preserve">
+    <value>Start Game</value>
+  </data>
+  <data name="Command_StartLevel" xml:space="preserve">
+    <value>Start Next Level</value>
   </data>
   <data name="Menu_EligibleCommands" xml:space="preserve">
     <value>Please Select One of the following commands by replying with the corresponding number:</value>
