@@ -12,8 +12,12 @@ using System.Threading.Tasks;
 namespace GenericRPG
 {
     //TO DO - USE ENGINE CLASS TO ALSO BUILD A MENU
-    public class Game
+    public class Game : IDisposable
     {
+        //TO DO MOVE THESE IN THE GAME CLASS
+        protected internal TextReader Reader { get; }
+        protected internal TextWriter Writer { get; }
+
         public Stream InputStream { get; }
         public Stream OutputStream { get; }
 
@@ -33,5 +37,11 @@ namespace GenericRPG
 
         //DUMMY IMPLEMENTATION
         public Level GetNextLevel() => TutorialFactory.Instance.GetLevel(this);
+
+        public void Dispose()
+        {
+            Reader.Dispose();
+            Writer.Dispose();
+        }
     }
 }

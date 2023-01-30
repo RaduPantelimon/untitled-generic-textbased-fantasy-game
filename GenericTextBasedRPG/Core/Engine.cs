@@ -11,11 +11,9 @@ namespace GenericRPG.Core
 {
 
     //TO DO REPLACE STARTED AND QUIT WITH STATE ENUM
-    public abstract class Engine : IDisposable
+    public abstract class Engine
     {
-        //TO DO MOVE THESE IN THE GAME CLASS
-        private protected TextReader Reader { get; }
-        private protected TextWriter Writer { get; }
+        
 
         public Game CurrentGame { get; }
 
@@ -32,10 +30,6 @@ namespace GenericRPG.Core
         {
             CurrentGame = game;
             Commands = commands;
-            Reader = new StreamReader(game.InputStream); //,leaveOpen: true);
-            var writer = new StreamWriter(game.OutputStream);//,leaveOpen: true);
-            writer.AutoFlush = true;
-            Writer = writer;
         }
         public void Play()
         {
@@ -51,7 +45,7 @@ namespace GenericRPG.Core
                 catch (InvalidCommandException ex)
                 {
                     //log problem to user
-                    Writer.WriteLine(Messages.Command_InvalidCommand, ex.Message);
+                    CurrentGame.Writer.WriteLine(Messages.Command_InvalidCommand, ex.Message);
                 }
                 catch { throw; }
 
@@ -66,7 +60,7 @@ namespace GenericRPG.Core
             Command[] eligibleCommands = Commands.Where(x => x.IsValid(this)).ToArray();
 
             //display valid commands:
-            Writer.WriteLine(Messages.Menu_EligibleCommands);
+            CurrentGame.Writer.WriteLine(Messages.Menu_EligibleCommands);
             foreach (var batch in eligibleCommands.Select((x, i) => i + ". " + x.ToString()).Chunk(3)) //TO DO REMOVE HARDCODED PARAMS;
             {
                 StringBuilder lineBuilder = new StringBuilder();
@@ -75,13 +69,13 @@ namespace GenericRPG.Core
                     lineBuilder.Append(String.Format("{0, 15}", batch[i]));
                     if(i<batch.Length-1) lineBuilder.Append(" | ");
                 }
-                Writer.WriteLine(lineBuilder.ToString());
+                CurrentGame.Writer.WriteLine(lineBuilder.ToString());
             }
 
             //retrieve response and interpret characters
             try
             {
-                return eligibleCommands[int.Parse(Reader.ReadLine()!)].Clone();
+                return eligibleCommands[int.Parse(CurrentGame.Reader.ReadLine()!)].Clone();
             }
             catch (Exception ex)
             {
@@ -101,10 +95,6 @@ namespace GenericRPG.Core
             PlayerQuit = true;
         }
 
-        public void Dispose()
-        {
-            Reader.Dispose();
-            Writer.Dispose();
-        }
+       
     }
 }
