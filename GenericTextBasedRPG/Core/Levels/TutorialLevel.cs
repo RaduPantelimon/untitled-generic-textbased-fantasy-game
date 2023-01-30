@@ -1,4 +1,5 @@
-﻿using GenericRPG.Creatures;
+﻿using GenericRPG.Commands;
+using GenericRPG.Creatures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,14 @@ namespace GenericRPG.Core
 {
     public class TutorialLevel: Level
     {
-
-        HostileParty<Creature> Enemies { get;}
-
-        internal TutorialLevel(Game currentGame, EnemiesFactory enemiesFactory, List<Command> commands) 
-            : base(currentGame, commands)
+        internal TutorialLevel(Game currentGame, EnemiesFactory enemiesFactory)
+            : base(currentGame,
+                    new Stack<HostileParty<Creature>>(
+                        new HostileParty<Creature>[] { enemiesFactory.GetEnemiesGroup(Combat.Enums.PartySize.Medium) }))
         {
-            Enemies = enemiesFactory.GetEnemiesGroup(Combat.Enums.PartySize.Medium);
         }
 
-        public override bool PlayerWon => Enemies.Count == 0 && Started;
+        public override bool PlayerWon => EnemyEncounters.Count == 0 && Started;
         public override bool IsOver => PlayerQuit || !(CurrentGame.Player?.Hero?.IsAlive! ?? true) || PlayerWon;
     }
 }

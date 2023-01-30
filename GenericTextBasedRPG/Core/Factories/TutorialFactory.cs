@@ -1,4 +1,4 @@
-﻿using GenericRPG.Core.Commands;
+﻿using GenericRPG.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,22 +8,13 @@ using System.Threading.Tasks;
 namespace GenericRPG.Core
 {
     public class TutorialFactory: LevelFactory
-    {
-        static List<Command> AvailableCommands { get; } = new List<Command>()
-        {
-            new StartGame(),
-            new QuitGame()
-        };  
-        
+    {        
         internal TutorialFactory() : base(new EnemiesFactory())
         {
         }
 
         //create the tutorial level
-        public override Level GetLevel(Game currentGame) => 
-            new TutorialLevel(currentGame,
-                              EnemiesFactory,
-                              AvailableCommands);
+        public override Level GetLevel(Game currentGame) =>  new TutorialLevel(currentGame, EnemiesFactory);
 
         private static TutorialFactory? instance;
         public static TutorialFactory Instance

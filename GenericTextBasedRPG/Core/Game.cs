@@ -1,7 +1,9 @@
-﻿using GenericRPG.Core;
+﻿using GenericRPG.Commands;
+using GenericRPG.Core;
 using GenericRPG.Creatures;
 using GenericRPG.Equipment.Armor;
 using GenericRPG.Equipment.Weapons;
+using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +14,16 @@ using System.Threading.Tasks;
 namespace GenericRPG
 {
     //TO DO - USE ENGINE CLASS TO ALSO BUILD A MENU
-    public class Game : IDisposable
+    public class Game : Engine,IDisposable
     {
         //TO DO MOVE THESE IN THE GAME CLASS
-        protected internal TextReader Reader { get; }
-        protected internal TextWriter Writer { get; }
+        TextReader Reader { get; }
+        TextWriter Writer { get; }
 
-        public Stream InputStream { get; }
-        public Stream OutputStream { get; }
-
-        public Player Player { get;}
-
-        public Game(Stream input, Stream output)
+        public Game(Stream input, Stream output) : base(CommandRepository.AvailableCommands)
         {
-            InputStream = input;
-            OutputStream = output; 
+            Reader = new StreamReader(input,leaveOpen:true);
+            Writer = new StreamWriter(input, leaveOpen: true);
 
             //TO DO - MOVE PLAYER CREATION AND CHARACTER CUSTOMIZATION OUTSIDE OF CONSTRUCTOR
             Player = new Player();
@@ -36,12 +33,22 @@ namespace GenericRPG
         }
 
         //DUMMY IMPLEMENTATION
-        public Level GetNextLevel() => TutorialFactory.Instance.GetLevel(this);
+        public Level GetNextLevel()
+        {
+            if (CurrentLevel is {IsOver: true }) throw new InvalidOperationException(Exceptions.Exception_LevelAlreadyInProgress);
+         
+            return TutorialFactory.Instance.GetLevel(this);
+        }
 
-        public void Dispose()
+        public override void Dispose()
         {
             Reader.Dispose();
             Writer.Dispose();
+
+            base.Dispose();
         }
+
+        protected internal override string GetUserInput() => Reader.ReadLine()!;
+        protected internal override void SendUserMessage(string message) => Writer.WriteLine(message);
     }
 }

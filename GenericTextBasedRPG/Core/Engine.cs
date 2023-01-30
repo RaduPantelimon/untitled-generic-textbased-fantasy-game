@@ -1,9 +1,11 @@
-﻿using GenericRPG.Core;
+﻿using GenericRPG.Commands;
+using GenericRPG.Core;
 using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,26 +13,28 @@ namespace GenericRPG.Core
 {
 
     //TO DO REPLACE STARTED AND QUIT WITH STATE ENUM
-    public abstract class Engine
+    public abstract class Engine:IDisposable
     {
-        
 
-        public Game CurrentGame { get; }
-
-        private protected IReadOnlyList<Command> Commands { get; init; }
-
+        private protected IReadOnlyList<Command> Commands { get; } 
         public bool Started { get; private protected set; }
         public bool PlayerQuit { get; private protected set; }
 
-        public abstract bool PlayerWon { get; }
-        public virtual bool IsOver => PlayerQuit;
+        public Player? Player { get; private protected set;}
 
+        public Level CurrentLevel { get; private protected set; }
+        
+        public virtual bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
+        public virtual bool IsOver => PlayerQuit || PlayerLost;
 
-        internal Engine(Game game, List<Command> commands)
+        protected internal abstract string GetUserInput();
+        protected internal abstract void   SendUserMessage(string message);
+
+        internal Engine( List<Command> commands)
         {
-            CurrentGame = game;
             Commands = commands;
         }
+
         public void Play()
         {
             Command? command = null;
@@ -47,7 +51,7 @@ namespace GenericRPG.Core
                 catch (InvalidCommandException ex)
                 {
                     //log problem to user
-                    CurrentGame.Writer.WriteLine(Messages.Command_InvalidCommand, ex.Message);
+                    SendUserMessage(String.Format(Messages.Command_InvalidCommand, ex.Message));
                 }
                 catch { throw; }
 
@@ -62,7 +66,7 @@ namespace GenericRPG.Core
             Command[] eligibleCommands = Commands.Where(x => x.IsValid(this)).ToArray();
 
             //display valid commands:
-            CurrentGame.Writer.WriteLine(Messages.Menu_EligibleCommands);
+            SendUserMessage(Messages.Menu_EligibleCommands);
             foreach (var batch in eligibleCommands.Select((x, i) => i + ". " + x.ToString()).Chunk(3)) //TO DO REMOVE HARDCODED PARAMS;
             {
                 StringBuilder lineBuilder = new StringBuilder();
@@ -71,13 +75,13 @@ namespace GenericRPG.Core
                     lineBuilder.Append(String.Format("{0, 15}", batch[i]));
                     if(i<batch.Length-1) lineBuilder.Append(" | ");
                 }
-                CurrentGame.Writer.WriteLine(lineBuilder.ToString());
+                SendUserMessage(lineBuilder.ToString()); //not ok to send partial output - TO DO: FIX THIS
             }
 
             //retrieve response and interpret characters
             try
             {
-                return eligibleCommands[int.Parse(CurrentGame.Reader.ReadLine()!)].Clone();
+                return eligibleCommands[int.Parse(GetUserInput())].Clone();
             }
             catch (Exception ex)
             {
@@ -102,6 +106,6 @@ namespace GenericRPG.Core
             PlayerQuit = true;
         }
 
-       
+        public virtual void Dispose() { }
     }
 }
