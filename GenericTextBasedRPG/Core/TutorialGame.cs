@@ -14,13 +14,12 @@ using System.Threading.Tasks;
 namespace GenericRPG
 {
     //TO DO - USE ENGINE CLASS TO ALSO BUILD A MENU
-    public class Game : Engine,IDisposable
+    public class TutorialGame : GameEngine,IDisposable
     {
-        //TO DO MOVE THESE IN THE GAME CLASS
         TextReader Reader { get; }
         TextWriter Writer { get; }
 
-        public Game(Stream input, Stream output) : base(CommandRepository.AvailableCommands)
+        public TutorialGame(Stream input, Stream output) : base(CommandRepository.AvailableCommands)
         {
             Reader = new StreamReader(input,leaveOpen:true);
             Writer = new StreamWriter(input, leaveOpen: true);
@@ -32,20 +31,20 @@ namespace GenericRPG
                                           Armor = new Chainmail(0.3) };
         }
 
+
         //DUMMY IMPLEMENTATION
-        public Level GetNextLevel()
+        internal override Level StartNextLevel()
         {
-            if (CurrentLevel is {IsOver: true }) throw new InvalidOperationException(Exceptions.Exception_LevelAlreadyInProgress);
+            if (CurrentLevel is {IsOver: false }) 
+                throw new InvalidOperationException(Exceptions.Exception_LevelAlreadyInProgress);
          
-            return TutorialFactory.Instance.GetLevel(this);
+            return TutorialFactory.Instance.GetLevel(this); //TO DO MAKE THIS 
         }
 
         public override void Dispose()
         {
             Reader.Dispose();
             Writer.Dispose();
-
-            base.Dispose();
         }
 
         protected internal override string GetUserInput() => Reader.ReadLine()!;

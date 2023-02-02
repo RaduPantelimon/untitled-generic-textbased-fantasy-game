@@ -120,6 +120,9 @@
   <data name="Command_Attack" xml:space="preserve">
     <value>Attack!</value>
   </data>
+  <data name="Command_Flee" xml:space="preserve">
+    <value>Flee! (shameful display)</value>
+  </data>
   <data name="Command_InvalidCommand" xml:space="preserve">
     <value>Command Selection Error: {0}</value>
   </data>
@@ -138,7 +141,13 @@
   <data name="Command_StartLevel" xml:space="preserve">
     <value>Start Next Level</value>
   </data>
+  <data name="Menu_ChooseMobToAttack" xml:space="preserve">
+    <value>Chose the enemy you would like to attack:</value>
+  </data>
   <data name="Menu_EligibleCommands" xml:space="preserve">
     <value>Please Select One of the following commands by replying with the corresponding number:</value>
+  </data>
+  <data name="Menu_MobDisplayTemplate" xml:space="preserve">
+    <value>{0}. {1}(HP: {2})</value>
   </data>
 </root>

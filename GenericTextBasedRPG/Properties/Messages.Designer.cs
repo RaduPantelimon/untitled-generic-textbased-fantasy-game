@@ -70,6 +70,15 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flee! (shameful display).
+        /// </summary>
+        internal static string Command_Flee {
+            get {
+                return ResourceManager.GetString("Command_Flee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command Selection Error: {0}.
         /// </summary>
         internal static string Command_InvalidCommand {
@@ -124,11 +133,29 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chose the enemy you would like to attack:.
+        /// </summary>
+        internal static string Menu_ChooseMobToAttack {
+            get {
+                return ResourceManager.GetString("Menu_ChooseMobToAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please Select One of the following commands by replying with the corresponding number:.
         /// </summary>
         internal static string Menu_EligibleCommands {
             get {
                 return ResourceManager.GetString("Menu_EligibleCommands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}. {1}(HP: {2}).
+        /// </summary>
+        internal static string Menu_MobDisplayTemplate {
+            get {
+                return ResourceManager.GetString("Menu_MobDisplayTemplate", resourceCulture);
             }
         }
     }

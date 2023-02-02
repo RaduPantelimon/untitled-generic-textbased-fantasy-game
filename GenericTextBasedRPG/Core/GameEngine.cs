@@ -13,7 +13,7 @@ namespace GenericRPG.Core
 {
 
     //TO DO REPLACE STARTED AND QUIT WITH STATE ENUM
-    public abstract class Engine:IDisposable
+    public abstract class GameEngine: IDisposable
     {
 
         private protected IReadOnlyList<Command> Commands { get; } 
@@ -22,7 +22,7 @@ namespace GenericRPG.Core
 
         public Player? Player { get; private protected set;}
 
-        public Level CurrentLevel { get; private protected set; }
+        public Level? CurrentLevel { get; private protected set; }
         
         public virtual bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
         public virtual bool IsOver => PlayerQuit || PlayerLost;
@@ -30,7 +30,10 @@ namespace GenericRPG.Core
         protected internal abstract string GetUserInput();
         protected internal abstract void   SendUserMessage(string message);
 
-        internal Engine( List<Command> commands)
+        internal abstract Level StartNextLevel();
+
+        //TO DO BUILD AN INTERFACE FOR COMMANDS
+        internal GameEngine( List<Command> commands)
         {
             Commands = commands;
         }
@@ -91,7 +94,12 @@ namespace GenericRPG.Core
 
         public virtual void PostCommandLogic()
         {
-            //default empty method
+            //if in combat, attack Player after each action
+            if (CurrentLevel?.CurrentEncounter?.Count == 0 ) return;
+
+            foreach(var enemy in CurrentLevel!.CurrentEncounter!)
+                enemy.DoDamage(Player!.Hero!);
+
         }
 
         public virtual void Start()
@@ -106,6 +114,10 @@ namespace GenericRPG.Core
             PlayerQuit = true;
         }
 
-        public virtual void Dispose() { }
+        public virtual void Dispose()
+        {
+            ///BASIC EMPTY IMPLEMENTATION
+        }
+
     }
 }

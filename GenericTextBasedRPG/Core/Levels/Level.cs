@@ -13,11 +13,11 @@ namespace GenericRPG.Core
     public abstract class Level
     {
 
-        public Game CurrentGame { get; }
+        public TutorialGame CurrentGame { get; }
 
         public Stack<HostileParty<Creature>> EnemyEncounters { get;}
 
-        public HostileParty<Creature> CurrentEncounter { get; private protected set; }
+        public HostileParty<Creature>? CurrentEncounter { get; internal set; }
 
         public virtual bool InCombat => CurrentEncounter?.Count > 0;
 
@@ -25,10 +25,10 @@ namespace GenericRPG.Core
         public bool PlayerQuit { get; private protected set; }
 
         public abstract bool PlayerWon { get; }
-        public virtual bool PlayerLost => !(CurrentGame.Player.Hero?.IsAlive ?? true);
+        public virtual bool PlayerLost => !(CurrentGame.Player?.Hero?.IsAlive ?? true);
         public virtual bool IsOver => PlayerQuit || PlayerLost;
 
-        internal Level(Game currentGame, Stack<HostileParty<Creature>> enemyEncounters) 
+        internal Level(TutorialGame currentGame, Stack<HostileParty<Creature>> enemyEncounters) 
             => (CurrentGame,EnemyEncounters) = (currentGame, enemyEncounters);
 
     }
