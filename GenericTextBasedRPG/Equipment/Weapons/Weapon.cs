@@ -10,12 +10,12 @@ namespace GenericRPG.Equipment.Weapons
     public abstract class Weapon: Item, IWieldable
     {
         //for simplicity's sake, we will consider that a weapon cannot change it's attack once forged
-        public double MinDamage { get; }
-        public double MaxDamage { get; }
+        public int MinDamage { get; }
+        public int MaxDamage { get; }
 
         public DamageTypes DamageType { get; }
 
-        internal Weapon(double minDamage, double maxDamage, DamageTypes damageType) 
+        internal Weapon(int minDamage, int maxDamage, DamageTypes damageType) 
         {
             if (minDamage < 0) throw new ArgumentException(nameof(MinDamage));
             if (maxDamage < minDamage) throw new ArgumentOutOfRangeException(Exceptions.Exception_LowerLimitLargerThanUpperLimit);
@@ -28,7 +28,7 @@ namespace GenericRPG.Equipment.Weapons
         //basic weapon damage calculation
         public virtual Attack GetAttack(IAttacker attacker)
         {
-            return  new Attack(attacker,(MaxDamage - MinDamage) / 2);
+            return  new Attack(attacker, Randomizer.Instance.Random.Next(MinDamage, MaxDamage));
         }
     }
 }

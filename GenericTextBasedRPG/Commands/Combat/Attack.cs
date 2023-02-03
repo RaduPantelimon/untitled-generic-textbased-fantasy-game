@@ -21,7 +21,7 @@ namespace GenericRPG.Commands
 
             StringBuilder sb = new StringBuilder();
             for(int i=0;i< hostileParty.Count;i++)
-                sb.Append(String.Format(Messages.Menu_MobDisplayTemplate,i+1, hostileParty[i].ToString(), hostileParty[i].HitPoints));
+                sb.Append(String.Format(Messages.Menu_MobDisplayTemplate,i+1, hostileParty[i].ToString(), hostileParty[i].DisplayStats()));
             
             //get user instruction
             engine.SendUserMessage(sb.ToString());

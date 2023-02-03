@@ -25,7 +25,7 @@ namespace GenericRPG
 
         internal Attack(IAttacker attacker, double damage)
         {
-            if (Damage <= 0) throw new NegativeDamageException();
+            if (damage <= 0) throw new NegativeDamageException();
             Damage = damage;
             Attacker = attacker;
         }

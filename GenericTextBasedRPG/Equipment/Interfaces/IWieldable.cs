@@ -8,8 +8,8 @@ namespace GenericRPG.Equipment
 {
     public interface IWieldable
     {
-        public double MinDamage { get; }
-        public double MaxDamage { get; }
+        public int MinDamage { get; }
+        public int MaxDamage { get; }
 
         public DamageTypes DamageType { get; }
 
