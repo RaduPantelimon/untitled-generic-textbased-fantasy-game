@@ -212,5 +212,41 @@ namespace GenericRPG.Properties {
                 return ResourceManager.GetString("SpellCaster_DefaultUnnarmedDamage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evil Thug.
+        /// </summary>
+        internal static string Tutorial_BasicEnemyName {
+            get {
+                return ResourceManager.GetString("Tutorial_BasicEnemyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Onan Barbaru.
+        /// </summary>
+        internal static string Tutorial_BossName {
+            get {
+                return ResourceManager.GetString("Tutorial_BossName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evil Caster.
+        /// </summary>
+        internal static string Tutorial_CasterEnemyName {
+            get {
+                return ResourceManager.GetString("Tutorial_CasterEnemyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evil Fighter.
+        /// </summary>
+        internal static string Tutorial_MeleeEnemyName {
+            get {
+                return ResourceManager.GetString("Tutorial_MeleeEnemyName", resourceCulture);
+            }
+        }
     }
 }
