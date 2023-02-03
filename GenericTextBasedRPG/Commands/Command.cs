@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GenericRPG.Commands
 {
-    internal abstract class Command : IShallowCloneable<Command>
+    internal abstract class Command : IShallowCloneable<Command>, INameable
     {
 
         public abstract string Name { get; }

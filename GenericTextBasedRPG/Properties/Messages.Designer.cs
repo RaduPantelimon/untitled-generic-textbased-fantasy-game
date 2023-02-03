@@ -151,6 +151,24 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} was attacked by {1} for {2:0.##} {3} damage!.
+        /// </summary>
+        internal static string Menu_AttackedByTemplate {
+            get {
+                return ResourceManager.GetString("Menu_AttackedByTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} attacked {1} for {2:0.##} {3} damage!.
+        /// </summary>
+        internal static string Menu_AttackedTemplate {
+            get {
+                return ResourceManager.GetString("Menu_AttackedTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chose the enemy you would like to attack:.
         /// </summary>
         internal static string Menu_ChooseMobToAttack {
@@ -169,6 +187,24 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to YOUR HERO: {0}.
+        /// </summary>
+        internal static string Menu_HeroStatus {
+            get {
+                return ResourceManager.GetString("Menu_HeroStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currently in combat with the following enemies:.
+        /// </summary>
+        internal static string Menu_InCombat {
+            get {
+                return ResourceManager.GetString("Menu_InCombat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}.{1}.
         /// </summary>
         internal static string Menu_ListDisplayTemplate {
@@ -183,6 +219,24 @@ namespace GenericRPG.Properties {
         internal static string Menu_MobDisplayTemplate {
             get {
                 return ResourceManager.GetString("Menu_MobDisplayTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oh no! Your hero is slain! With the death of this character the thread of prophecy is severed!!!!.
+        /// </summary>
+        internal static string Menu_PlayerLost {
+            get {
+                return ResourceManager.GetString("Menu_PlayerLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We&apos;re sorry to see you go! We hope you enjoyed our game!.
+        /// </summary>
+        internal static string Menu_PlayerQuit {
+            get {
+                return ResourceManager.GetString("Menu_PlayerQuit", resourceCulture);
             }
         }
         

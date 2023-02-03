@@ -16,9 +16,9 @@ namespace GenericRPG.Commands
         public override void Execute(GameEngine engine)
         {
             HostileParty<Creature> hostileParty = engine.CurrentLevel!.CurrentEncounter!;
+
             //give user instruction
             engine.SendUserMessage(Messages.Menu_ChooseMobToAttack);
-            engine.SendUserMessage(engine.FormattingService.MobStatusList(hostileParty)); 
 
             //retrieve response and interpret characters
             try

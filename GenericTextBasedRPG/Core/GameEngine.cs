@@ -16,6 +16,8 @@ namespace GenericRPG.Core
     //TO DO REPLACE STARTED AND QUIT WITH STATE ENUM
     public abstract class GameEngine: IDisposable
     {
+        //maybe move this to resx
+        static readonly int CommandsOnTheSameLine = 3;
 
         private protected IReadOnlyList<Command> Commands { get; } 
         internal FormattingService FormattingService { get; set; }
@@ -51,6 +53,12 @@ namespace GenericRPG.Core
             {
                 try
                 {
+                    if(InCombat)
+                    {
+                        SendUserMessage(Messages.Menu_InCombat);
+                        SendUserMessage(FormattingService.EntitiesList(CurrentLevel!.CurrentEncounter!,1));
+                        SendUserMessage(string.Empty);
+                    }
                     command = GetCommand();
                     command.Execute(this);
                     //redefine logic depending on specific of the subclass
@@ -67,25 +75,23 @@ namespace GenericRPG.Core
                     SendUserMessage(string.Empty);
                 }
             }
+
+            DisplayEndGameResults();
         }
 
         //USED PRIVATE PROTECTED HERE
         private protected virtual Command GetCommand()
         {
-
             Command[] eligibleCommands = Commands.Where(x => x.IsValid(this)).ToArray();
 
             //display valid commands:
             SendUserMessage(Messages.Menu_EligibleCommands);
-            foreach (var batch in eligibleCommands.Select((x, i) => i+1 + ". " + x.ToString()).Chunk(3)) //TO DO REMOVE HARDCODED PARAMS;
+            int commandIndex = 1;
+            foreach (var batch in eligibleCommands.Chunk(CommandsOnTheSameLine)) //TO DO REMOVE HARDCODED PARAMS;
             {
                 StringBuilder lineBuilder = new StringBuilder();
-                for(int i=0;i<batch.Length;i++)
-                {
-                    lineBuilder.Append(String.Format("{0, 15}", batch[i]));
-                    lineBuilder.Append(Messages.Command_Separator);
-                }
-                SendUserMessage(lineBuilder.ToString());
+                SendUserMessage(FormattingService.NameableItemsList(batch, commandIndex));
+                commandIndex+=CommandsOnTheSameLine;
             }
 
             //retrieve response and interpret characters
@@ -110,6 +116,20 @@ namespace GenericRPG.Core
                 AttackResult result = enemy.DoDamage(Player!.Hero!);
                 SendUserMessage(FormattingService.AttackedByMessage(result));
             }
+            //after attacks, display hero status
+            SendUserMessage(string.Empty);
+            SendUserMessage(String.Format(Messages.Menu_HeroStatus, FormattingService.EntityStatusMessage(Player!.Hero!)));
+        }
+
+        //this could be extended to show score or other features, depending on game mode. levels and other stuff
+        private protected virtual void DisplayEndGameResults()
+        {
+            if (PlayerLost) 
+                SendUserMessage(Messages.Menu_PlayerLost);
+            else if (PlayerWon)
+                SendUserMessage(Messages.Menu_PlayerWon);
+            else if (PlayerQuit)
+                SendUserMessage(Messages.Menu_PlayerQuit);
         }
 
         internal virtual void Start()

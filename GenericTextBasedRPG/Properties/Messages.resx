@@ -147,17 +147,35 @@
   <data name="Event_Flee" xml:space="preserve">
     <value>You ran away and left the group of enemies behind! You can rest before you engage them again. </value>
   </data>
+  <data name="Menu_AttackedByTemplate" xml:space="preserve">
+    <value>{0} was attacked by {1} for {2:0.##} {3} damage!</value>
+  </data>
+  <data name="Menu_AttackedTemplate" xml:space="preserve">
+    <value>{0} attacked {1} for {2:0.##} {3} damage!</value>
+  </data>
   <data name="Menu_ChooseMobToAttack" xml:space="preserve">
     <value>Chose the enemy you would like to attack:</value>
   </data>
   <data name="Menu_EligibleCommands" xml:space="preserve">
     <value>Please Select One of the following commands by replying with the corresponding number:</value>
   </data>
+  <data name="Menu_HeroStatus" xml:space="preserve">
+    <value>YOUR HERO: {0}</value>
+  </data>
+  <data name="Menu_InCombat" xml:space="preserve">
+    <value>Currently in combat with the following enemies:</value>
+  </data>
   <data name="Menu_ListDisplayTemplate" xml:space="preserve">
     <value>{0}.{1}</value>
   </data>
   <data name="Menu_MobDisplayTemplate" xml:space="preserve">
     <value>{0}({1})</value>
+  </data>
+  <data name="Menu_PlayerLost" xml:space="preserve">
+    <value>Oh no! Your hero is slain! With the death of this character the thread of prophecy is severed!!!!</value>
+  </data>
+  <data name="Menu_PlayerQuit" xml:space="preserve">
+    <value>We're sorry to see you go! We hope you enjoyed our game!</value>
   </data>
   <data name="Menu_PlayerWon" xml:space="preserve">
     <value>Congratulations! No more Levels! You won the game!</value>

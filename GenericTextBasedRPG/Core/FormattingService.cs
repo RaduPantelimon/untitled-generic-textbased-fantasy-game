@@ -1,5 +1,6 @@
 ﻿using GenericRPG.Combat;
 using GenericRPG.Creatures;
+using GenericRPG.Helpers.Interfaces;
 using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
@@ -24,37 +25,39 @@ namespace GenericRPG.Core
            => String.Format(Messages.Menu_ListDisplayTemplate, index, item);
 
         //generate a formatted list string starting from a collection of items and a formatter delegate
-        public virtual string StatusList<T>(IEnumerable<T> items, Func<T,string> formatter)
+        public virtual string StatusList<T>(IEnumerable<T> items, Func<T,string> formatter, int startIndex = 0)
         {
             StringBuilder sb = new StringBuilder();
-            int i = 1;
             foreach (var item in items)
             {
-                sb.Append(ListItemMessage(formatter(item), i));
+                sb.Append(ListItemMessage(formatter(item), startIndex));
                 sb.Append(Messages.Command_Separator);
-                i++;
+                startIndex++;
             }
             return sb.ToString();
         }
 
         public virtual string AttackedByMessage(AttackResult attackResult)
-           => String.Format("{0} was attacked by {1} for {2:0.##} {3} damage!",
-               attackResult.Target,
-               attackResult.Attack.Attacker,
+           => String.Format(Messages.Menu_AttackedByTemplate,
+               attackResult.Target.Name,
+               attackResult.Attack.Attacker.Name,
                attackResult.Attack.Damage,
                attackResult.Attack.DamageType.ToString().ToLower());
 
         public virtual string AttackMessage(AttackResult attackResult)
-            => String.Format("{0} attacked {1} for {2:0.##} {3} damage!",
-                attackResult.Attack.Attacker,
-                attackResult.Target,
+            => String.Format(Messages.Menu_AttackedTemplate,
+                attackResult.Attack.Attacker.Name,
+                attackResult.Target.Name,
                 attackResult.Attack.Damage,
                 attackResult.Attack.DamageType.ToString().ToLower());
 
-        public virtual string MobStatusMessage(Creature creature)
-            => String.Format(Messages.Menu_MobDisplayTemplate, creature.ToString(), creature.DisplayStats());
+        public virtual string EntityStatusMessage(IEntity entity)
+            => String.Format(Messages.Menu_MobDisplayTemplate, entity.Name, entity.DisplayStats());
 
-        public virtual string MobStatusList(IEnumerable<Creature> creatures)
-            => StatusList(creatures, MobStatusMessage);
+        public virtual string EntitiesList(IEnumerable<IEntity> entities, int startIndex = 0)
+            => StatusList(entities, EntityStatusMessage, startIndex);
+
+        public virtual string NameableItemsList(IEnumerable<INameable> entities, int startIndex = 0)
+            => StatusList(entities, x => x.Name!, startIndex);
     }
 }

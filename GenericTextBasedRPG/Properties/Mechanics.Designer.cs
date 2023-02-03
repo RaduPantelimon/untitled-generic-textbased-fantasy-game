@@ -223,7 +223,7 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Onan Barbaru.
+        ///   Looks up a localized string similar to Gigi Muschi.
         /// </summary>
         internal static string Tutorial_BossName {
             get {
@@ -241,7 +241,7 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gigi Muschi.
+        ///   Looks up a localized string similar to Greuceanu.
         /// </summary>
         internal static string Tutorial_HeroName {
             get {
