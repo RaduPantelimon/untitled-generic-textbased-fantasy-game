@@ -19,10 +19,9 @@ namespace GenericRPG.Equipment.Armor
             ProtectionPercentage = protectionPercentage;
         }
 
-        public virtual Attack MitigateAttack(Attack attack)
+        public virtual Attack MitigateAttack(Attack originalAttack)
         {
-            attack.Damage *= ProtectionPercentage;
-            return attack;
+            return new Attack(originalAttack.Attacker, originalAttack.Damage * ProtectionPercentage, originalAttack);
         }
     }
 }

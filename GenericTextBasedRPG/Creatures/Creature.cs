@@ -1,4 +1,6 @@
 ﻿using GenericRPG;
+using GenericRPG.Combat;
+using GenericRPG.Equipment.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,35 +22,60 @@ namespace GenericRPG.Creatures
         public double MaxHitPoints { get; internal set; }
         public virtual bool IsAlive => HitPoints > 0;
 
+        //mitigate or absorb damage - mitigate with armor / natural defense or take it full on if armor missing
+        protected private abstract Attack MitigateAttack(Attack attack);
+
+        //generate attack
+        protected private abstract Attack GenerateAttack(IAttackable target);
+
         internal Creature(double hitpoints)
         {
             if(hitpoints < 0 ) throw new ArgumentOutOfRangeException(nameof(hitpoints));
             MaxHitPoints = HitPoints = hitpoints; 
         }
 
-        public virtual void TakeDamage(Attack attack)
+        //template method
+        public AttackResult TakeDamage(Attack attack)
         {
-            if (attack.Damage <= 0) throw new NegativeDamageException();
-
-            if (HitPoints > 0 && HitPoints <= attack.Damage)
+            bool isFatal = false;
+            var mitigatedAttack = MitigateAttack(attack);
+            
+            //take damage
+            if (HitPoints > 0 && HitPoints <= mitigatedAttack.Damage)
             {
                 HitPoints = 0;
-                OnDeath(new CreatureDeathEventArgs());
-                return;
+                isFatal = true;
             }
-            HitPoints -= attack.Damage;
+            else
+                HitPoints -= mitigatedAttack.Damage;
+
+            AttackResult attackResult =  new AttackResult(this, attack, isFatal);
+            //propagate events (first Attack, then Death)
+            OnHit(new AttackEventArgs(attack, attackResult));
+            if(isFatal) OnDeath(new DeathEventArgs(this));
+            return attackResult;
         }
-       
-        public abstract void DoDamage(IAttackable target);
+
+        //template method
+        public AttackResult DoDamage(IAttackable target)
+        {
+            Attack attack = GenerateAttack(target);
+
+            AttackResult result =  target.TakeDamage(attack);
+            OnAttack(new AttackEventArgs(attack, result));
+            return result;
+        }
 
         public override string? ToString() => Name ?? base.ToString();
 
-        private void OnDeath(CreatureDeathEventArgs args)
-        {
-            CreatureDied?.Invoke(this, args);
-        }
+        //EVENTS
+        private void OnDeath(DeathEventArgs args)=> CreatureDied?.Invoke(this, args);
+        private void OnHit(AttackEventArgs args) => CreatureHit?.Invoke(this, args);
+        private void OnAttack(AttackEventArgs args) => CreatureAttacks?.Invoke(this, args);
 
-        //we might want to be able to subscribe to the death event of a creature
-        public event EventHandler<CreatureDeathEventArgs> CreatureDied;
+        //we might want to be able to subscribe to certain events in the life of a creature
+        public event EventHandler<DeathEventArgs>? CreatureDied;
+        public event EventHandler<AttackEventArgs>? CreatureHit;
+        public event EventHandler<AttackEventArgs>? CreatureAttacks;
     }
 }

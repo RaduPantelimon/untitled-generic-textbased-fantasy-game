@@ -1,4 +1,6 @@
-﻿using GenericRPG.Equipment;
+﻿using GenericRPG.Combat;
+using GenericRPG.Commands;
+using GenericRPG.Equipment;
 using GenericRPG.Equipment.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,11 +21,11 @@ namespace GenericRPG.Creatures
         internal Humanoid(double hitpoints) : base(hitpoints) { }
 
         //basic inflict damage - either weapon attack or unnarmed if weapon missing
-        public override void DoDamage(IAttackable target)=> target.TakeDamage(Weapon?.GetAttack()?? 
-                                                new Attack(UnnarmedDamage){ DamageType = DamageTypes.Blunt});
-
-        //basic take damage - mitigate with armor or take full on if armor missing
-        public override void TakeDamage(Attack attack)=> base.TakeDamage(Armor?.MitigateAttack(attack) ?? attack);
+        protected private override Attack GenerateAttack(IAttackable target)
+                => Weapon?.GetAttack(this) ?? new Attack(this, UnnarmedDamage) { DamageType = DamageTypes.Blunt };
+            
+        //humanoids use armor to mitigate attack
+        protected private override Attack MitigateAttack(Attack attack)=> Armor?.MitigateAttack(attack) ?? attack;
 
     }
 }

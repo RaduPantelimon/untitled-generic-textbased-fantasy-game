@@ -14,7 +14,7 @@ namespace GenericRPG
         protected override void InsertItem(int index, T enemy)
         {
             //Automatically remove from list when it dies
-            enemy.CreatureDied += (object? sender, CreatureDeathEventArgs e) => this.Remove((T)sender!);
+            enemy.CreatureDied += (object? sender, DeathEventArgs e) => this.Remove((T)sender!);
             base.InsertItem(index,enemy);
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenericRPG.Combat;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace GenericRPG
 {
     public interface IAttackable
     {
-        public void TakeDamage(Attack attack);
+        public bool IsAlive { get; }
+
+        public AttackResult TakeDamage(Attack attack);
     }
 }

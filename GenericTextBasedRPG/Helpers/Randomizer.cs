@@ -11,7 +11,7 @@ namespace GenericRPG
     {
         private static ThreadLocal<Randomizer> instances = new ThreadLocal<Randomizer>(() => new Randomizer());
 
-        public static Randomizer Instance => instances.Value;
+        public static Randomizer Instance => instances.Value!;
 
         public Random Random { get; }
 

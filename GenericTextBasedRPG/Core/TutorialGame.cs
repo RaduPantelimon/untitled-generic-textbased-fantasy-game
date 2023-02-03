@@ -24,7 +24,7 @@ namespace GenericRPG
             Reader = new StreamReader(input,leaveOpen:true);
             Writer = new StreamWriter(output, leaveOpen: true);
 
-            //TO DO - MOVE PLAYER CREATION AND CHARACTER CUSTOMIZATION OUTSIDE OF CONSTRUCTOR
+            //In the tutorial, the player can only fight using a generic, hardcoded character
             Player = new Player();
             Player.Hero = new Fighter(Randomizer.Instance.Next(250, 300), 20)
                                         { Weapon = new Sword(15, 20), 
@@ -45,7 +45,7 @@ namespace GenericRPG
                 return;
             }
 
-            CurrentLevel = TutorialFactory.Instance.GetLevel(this); //TO DO MAKE THIS 
+            CurrentLevel = TutorialLevelFactory.Instance.GetLevel(this); //TO DO MAKE THIS 
         }
 
         public override void Dispose()

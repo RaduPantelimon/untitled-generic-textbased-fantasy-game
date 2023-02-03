@@ -26,9 +26,9 @@ namespace GenericRPG.Equipment.Weapons
         }
 
         //basic weapon damage calculation
-        public virtual Attack GetAttack()
+        public virtual Attack GetAttack(IAttacker attacker)
         {
-            return  new Attack((MaxDamage - MinDamage) / 2);
+            return  new Attack(attacker,(MaxDamage - MinDamage) / 2);
         }
     }
 }
