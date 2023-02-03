@@ -17,21 +17,29 @@ namespace GenericRPG.Core
     {
         
         internal virtual Creature GenerateBasicEnemy() =>
-            new Fighter(Randomizer.Instance.Next(HealthLowerLimit, HealthUpperLimit),FigtherStrength);
+            new Fighter(Randomizer.Instance.Next(HealthLowerLimit, HealthUpperLimit), FigtherStrength) 
+                { Name =  Mechanics.Tutorial_BasicEnemyName };
 
 
         internal virtual Creature GenerateMeleeEnemy() =>
             new Fighter( Randomizer.Instance.Next(HealthLowerLimit, HealthUpperLimit), FigtherStrength)
-                {Weapon = new Sword(SwordLowerAttack, SwordUpperAttack)};
+            { 
+                Name = Mechanics.Tutorial_MeleeEnemyName, 
+                Weapon = new Sword(SwordLowerAttack, SwordUpperAttack)
+            };
 
         internal virtual Creature GenerateRangedEnemy() =>
             new SpellCaster(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit),FigtherStrength)
-                {Weapon = new Staff(StaffLowerAttack, StaffUpperAttack)};
+            { 
+                Name = Mechanics.Tutorial_CasterEnemyName,
+                Weapon = new Staff(StaffLowerAttack, StaffUpperAttack)
+            };
 
         internal virtual Creature GenerateBoss() =>
             new Fighter((int)(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit) * BossMultiplier), 
                 (uint)(FigtherStrength * BossMultiplier))
             {
+                Name = Mechanics.Tutorial_BossName,
                 Weapon = new Sword((int)(StaffLowerAttack * BossMultiplier), (int)(StaffUpperAttack * BossMultiplier) ),
                 Armor = new Chainmail(MailArmorReduction * BossMultiplier)
             };

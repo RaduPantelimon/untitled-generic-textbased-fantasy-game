@@ -67,6 +67,7 @@ namespace GenericRPG.Creatures
         }
 
         public override string? ToString() => Name ?? base.ToString();
+        public virtual string DisplayStats() => "HP: " + HitPoints;
 
         //EVENTS
         private void OnDeath(DeathEventArgs args)=> CreatureDied?.Invoke(this, args);

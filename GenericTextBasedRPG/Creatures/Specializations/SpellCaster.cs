@@ -25,5 +25,6 @@ namespace GenericRPG.Creatures.Specializations
             MaxMana = Mana = Convert.ToDouble(Mechanics.SpellCaster_DefaultMana);
         }
 
+        public override string DisplayStats() => base.DisplayStats() +"; MP: " + Mana;
     }
 }
