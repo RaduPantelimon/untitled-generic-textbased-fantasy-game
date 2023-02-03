@@ -17,11 +17,13 @@ namespace GenericRPG.Commands
             //move encounter back in the queue
             engine.CurrentLevel?.EnemyEncounters.Push(engine.CurrentLevel.CurrentEncounter!);
             engine.CurrentLevel!.CurrentEncounter = null;
+
+            engine.SendUserMessage(Messages.Event_Flee);
         }
 
         public override bool IsValid(GameEngine engine) => engine.CurrentLevel?.CurrentEncounter?.Count > 0;
 
 
-        public override Command Clone() => new Attack();
+        public override Command Clone() => new Flee();
     }
 }
