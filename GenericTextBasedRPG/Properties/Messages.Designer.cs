@@ -151,7 +151,16 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} was attacked by {1} for {2:0.##} {3} damage!.
+        ///   Looks up a localized string similar to 0.##.
+        /// </summary>
+        internal static string Formatting_StatsNumberFormatting {
+            get {
+                return ResourceManager.GetString("Formatting_StatsNumberFormatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} was attacked by {1} for {2} {3} damage!.
         /// </summary>
         internal static string Menu_AttackedByTemplate {
             get {
@@ -160,7 +169,7 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} attacked {1} for {2:0.##} {3} damage!.
+        ///   Looks up a localized string similar to {0} attacked {1} for {2} {3} damage!.
         /// </summary>
         internal static string Menu_AttackedTemplate {
             get {
@@ -214,7 +223,7 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}({1}).
+        ///   Looks up a localized string similar to {0} ({1}).
         /// </summary>
         internal static string Menu_MobDisplayTemplate {
             get {

@@ -22,7 +22,6 @@ namespace GenericRPG.Core
         private protected IReadOnlyList<Command> Commands { get; } 
         internal FormattingService FormattingService { get; set; }
         
-        public bool Started { get; private protected set; }
         public bool PlayerQuit { get; private protected set; }
         public bool PlayerWon { get; private protected set; }
         public virtual bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
@@ -132,15 +131,8 @@ namespace GenericRPG.Core
                 SendUserMessage(Messages.Menu_PlayerQuit);
         }
 
-        internal virtual void Start()
-        {
-            if (Started || IsOver) throw new InvalidOperationException();
-            Started = true;
-        }
-
         internal virtual void Quit()
         {
-            if (!Started) throw new InvalidOperationException();
             PlayerQuit = true;
         }
 

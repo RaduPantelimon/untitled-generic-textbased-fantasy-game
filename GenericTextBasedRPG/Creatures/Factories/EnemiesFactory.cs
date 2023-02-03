@@ -25,10 +25,10 @@ namespace GenericRPG.Core
             new Fighter( Randomizer.Instance.Next(HealthLowerLimit, HealthUpperLimit), FigtherStrength)
             { 
                 Name = Mechanics.Tutorial_MeleeEnemyName, 
-                Weapon = new Sword(SwordLowerAttack, SwordUpperAttack)
+                Weapon = new Dagger(SwordLowerAttack, SwordUpperAttack)
             };
 
-        internal virtual Creature GenerateRangedEnemy() =>
+        internal virtual Creature GenerateCasterEnemy() =>
             new SpellCaster(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit),FigtherStrength)
             { 
                 Name = Mechanics.Tutorial_CasterEnemyName,
@@ -40,24 +40,24 @@ namespace GenericRPG.Core
                 (uint)(FigtherStrength * BossMultiplier))
             {
                 Name = Mechanics.Tutorial_BossName,
-                Weapon = new Sword((int)(StaffLowerAttack * BossMultiplier), (int)(StaffUpperAttack * BossMultiplier) ),
+                Weapon = new Sword((int)(SwordLowerAttack * BossMultiplier), (int)(SwordUpperAttack * BossMultiplier) ),
                 Armor = new Chainmail(MailArmorReduction * BossMultiplier)
             };
 
         //very basic default implementation
         public virtual HostileParty<Creature> GetEnemiesGroup(PartySize size) => size switch
         {
-            PartySize.Small => new HostileParty<Creature> { GenerateMeleeEnemy(),
-                                                            GenerateRangedEnemy() },
+            PartySize.Small => new HostileParty<Creature> { GenerateBasicEnemy(),
+                                                            GenerateMeleeEnemy() },
 
-            PartySize.Medium => new HostileParty<Creature> { GenerateMeleeEnemy(),
+            PartySize.Medium => new HostileParty<Creature> { GenerateBasicEnemy(),
                                                             GenerateMeleeEnemy(),
-                                                            GenerateRangedEnemy() },
+                                                            GenerateMeleeEnemy() },
 
-            PartySize.Large => new HostileParty<Creature> { GenerateMeleeEnemy(),
+            PartySize.Large => new HostileParty<Creature> { GenerateBasicEnemy(),
                                                             GenerateMeleeEnemy(),
-                                                            GenerateRangedEnemy(),
-                                                            GenerateRangedEnemy(),
+                                                            GenerateMeleeEnemy(),
+                                                            GenerateCasterEnemy(),
                                                             GenerateBoss()},
 
             _ => new HostileParty<Creature> { GenerateMeleeEnemy() },
@@ -65,7 +65,9 @@ namespace GenericRPG.Core
 
         protected static int CasterMana { get; }
         protected static uint FigtherStrength { get; }
-        
+
+        protected static int DaggerLowerAttack { get; }
+        protected static int DaggerUpperAttack { get; }
         protected static int SwordLowerAttack { get; }
         protected static int SwordUpperAttack { get; }
         protected static int StaffLowerAttack { get; }
@@ -83,6 +85,8 @@ namespace GenericRPG.Core
             FigtherStrength = Convert.ToUInt32(Mechanics.DefaultEnemies_Fighter_Strength);
             CasterMana = Convert.ToInt32(Mechanics.DefaultEnemies_SpellCaster_Mana);
 
+            DaggerLowerAttack = Convert.ToInt32(Mechanics.DefaultEnemies_Dagger_LowerAttack);
+            DaggerUpperAttack = Convert.ToInt32(Mechanics.DefaultEnemies_Dagger_UpperAttack);
             SwordLowerAttack = Convert.ToInt32(Mechanics.DefaultEnemies_Sword_LowerAttack);
             SwordUpperAttack = Convert.ToInt32(Mechanics.DefaultEnemies_Sword_UpperAttack);
             StaffLowerAttack = Convert.ToInt32(Mechanics.DefaultEnemies_Staff_LowerAttack);

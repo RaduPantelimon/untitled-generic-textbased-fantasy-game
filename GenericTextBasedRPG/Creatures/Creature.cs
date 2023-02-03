@@ -1,9 +1,11 @@
 ﻿using GenericRPG;
 using GenericRPG.Combat;
 using GenericRPG.Equipment.Weapons;
+using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,7 +69,7 @@ namespace GenericRPG.Creatures
         }
 
         public override string? ToString() => Name ?? base.ToString();
-        public virtual string DisplayStats() => "HP: " + HitPoints;
+        public virtual string DisplayStats() => "HP: " + HitPoints.ToString(Messages.Formatting_StatsNumberFormatting);
 
         //EVENTS
         private void OnDeath(DeathEventArgs args)=> CreatureDied?.Invoke(this, args);

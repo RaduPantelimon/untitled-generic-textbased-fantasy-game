@@ -9,6 +9,7 @@ namespace GenericRPG
     [Flags]
     public enum DamageTypes
     {
+        Normal = 0,
         Piercing = 1,
         Slashing = 2,
         Blunt = 4,

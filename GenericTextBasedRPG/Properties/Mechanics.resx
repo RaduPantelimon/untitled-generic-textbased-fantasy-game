@@ -130,7 +130,13 @@
     <value>Start Next Level</value>
   </data>
   <data name="DefaultEnemies_BossMultiplier" xml:space="preserve">
-    <value>1.2</value>
+    <value>1.5</value>
+  </data>
+  <data name="DefaultEnemies_Dagger_LowerAttack" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="DefaultEnemies_Dagger_UpperAttack" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="DefaultEnemies_Fighter_Strength" xml:space="preserve">
     <value>3</value>

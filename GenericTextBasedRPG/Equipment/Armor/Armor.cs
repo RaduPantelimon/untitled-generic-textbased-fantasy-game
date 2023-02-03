@@ -21,7 +21,7 @@ namespace GenericRPG.Equipment.Armor
 
         public virtual Attack MitigateAttack(Attack originalAttack)
         {
-            return new Attack(originalAttack.Attacker, originalAttack.Damage * ProtectionPercentage, originalAttack);
+            return new Attack(originalAttack.Attacker, originalAttack.Damage * (1 - ProtectionPercentage), originalAttack);
         }
     }
 }

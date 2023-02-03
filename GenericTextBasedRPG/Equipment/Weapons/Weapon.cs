@@ -28,7 +28,7 @@ namespace GenericRPG.Equipment.Weapons
         //basic weapon damage calculation
         public virtual Attack GetAttack(IAttacker attacker)
         {
-            return  new Attack(attacker, Randomizer.Instance.Random.Next(MinDamage, MaxDamage));
+            return  new Attack(attacker, Randomizer.Instance.Random.Next(MinDamage, MaxDamage)) {  DamageType = DamageType };
         }
     }
 }

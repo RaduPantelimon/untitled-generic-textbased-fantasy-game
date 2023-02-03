@@ -17,22 +17,8 @@ namespace GenericRPG.Commands
 
 
         public override bool IsValid(GameEngine engine) 
-            => engine is { 
-                            CurrentLevel: { CurrentEncounter: { Count: 0 } or null } or 
-                                          { EnemyEncounters: { Count: > 0 } } };
-
+            => !engine.InCombat && engine is { CurrentLevel: { EnemyEncounters: { Count: > 0 } } };
 
         public override StartFight Clone() => new StartFight();
-
     }
 }
-
-
-/*
-
-                                                        || engine ;
-
-            engine ?.CurrentLevel?.CurrentEncounter?.Count == 0 
-                                                        && engine?.CurrentLevel?.EnemyEncounters.Count > 0 ; 
- 
-*/

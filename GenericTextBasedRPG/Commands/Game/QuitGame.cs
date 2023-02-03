@@ -14,7 +14,7 @@ namespace GenericRPG.Commands
 
         public override void Execute(GameEngine engine) => engine.Quit();
 
-        public override bool IsValid(GameEngine engine) => engine.Started && !engine.IsOver;
+        public override bool IsValid(GameEngine engine) => !engine.IsOver;
 
 
         public override Command Clone() => new QuitGame();

@@ -97,11 +97,29 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.2.
+        ///   Looks up a localized string similar to 1.5.
         /// </summary>
         internal static string DefaultEnemies_BossMultiplier {
             get {
                 return ResourceManager.GetString("DefaultEnemies_BossMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string DefaultEnemies_Dagger_LowerAttack {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Dagger_LowerAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6.
+        /// </summary>
+        internal static string DefaultEnemies_Dagger_UpperAttack {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Dagger_UpperAttack", resourceCulture);
             }
         }
         
