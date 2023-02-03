@@ -22,7 +22,7 @@ namespace GenericRPG
         public TutorialGame(Stream input, Stream output) : base(CommandRepository.AvailableCommands)
         {
             Reader = new StreamReader(input,leaveOpen:true);
-            Writer = new StreamWriter(input, leaveOpen: true);
+            Writer = new StreamWriter(output, leaveOpen: true);
 
             //TO DO - MOVE PLAYER CREATION AND CHARACTER CUSTOMIZATION OUTSIDE OF CONSTRUCTOR
             Player = new Player();
@@ -33,12 +33,19 @@ namespace GenericRPG
 
 
         //DUMMY IMPLEMENTATION
-        internal override Level StartNextLevel()
+        internal override void StartNextLevel()
         {
             if (CurrentLevel is {IsOver: false }) 
                 throw new InvalidOperationException(Exceptions.Exception_LevelAlreadyInProgress);
-         
-            return TutorialFactory.Instance.GetLevel(this); //TO DO MAKE THIS 
+
+            if (CurrentLevel is { IsOver: true })
+            {
+                PlayerWon = true;
+                SendUserMessage(Messages.Menu_PlayerWon);
+                return;
+            }
+
+            CurrentLevel = TutorialFactory.Instance.GetLevel(this); //TO DO MAKE THIS 
         }
 
         public override void Dispose()
@@ -48,6 +55,10 @@ namespace GenericRPG
         }
 
         protected internal override string GetUserInput() => Reader.ReadLine()!;
-        protected internal override void SendUserMessage(string message) => Writer.WriteLine(message);
+        protected internal override void SendUserMessage(string message, bool flushToStream = true)
+        {
+            Writer.WriteLine(message);
+            Writer.Flush();
+        }
     }
 }

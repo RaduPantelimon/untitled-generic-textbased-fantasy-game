@@ -14,6 +14,9 @@ namespace GenericRPG.Commands
         public static List<Command> AvailableCommands { get; } = new List<Command>()
         {
             new StartLevel(),
+            new StartFight(),
+            new Attack(),
+            new Flee(),
             new QuitGame()
         };
 

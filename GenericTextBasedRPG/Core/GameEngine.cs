@@ -19,18 +19,19 @@ namespace GenericRPG.Core
         private protected IReadOnlyList<Command> Commands { get; } 
         public bool Started { get; private protected set; }
         public bool PlayerQuit { get; private protected set; }
+        public bool PlayerWon { get; private protected set; }
 
         public Player? Player { get; private protected set;}
 
         public Level? CurrentLevel { get; private protected set; }
         
         public virtual bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
-        public virtual bool IsOver => PlayerQuit || PlayerLost;
+        public virtual bool IsOver => PlayerQuit || PlayerLost || PlayerWon;
 
         protected internal abstract string GetUserInput();
-        protected internal abstract void   SendUserMessage(string message);
+        protected internal abstract void SendUserMessage(string message, bool flushToStream = true);
 
-        internal abstract Level StartNextLevel();
+        internal abstract void StartNextLevel();
 
         //TO DO BUILD AN INTERFACE FOR COMMANDS
         internal GameEngine( List<Command> commands)
@@ -70,21 +71,21 @@ namespace GenericRPG.Core
 
             //display valid commands:
             SendUserMessage(Messages.Menu_EligibleCommands);
-            foreach (var batch in eligibleCommands.Select((x, i) => i + ". " + x.ToString()).Chunk(3)) //TO DO REMOVE HARDCODED PARAMS;
+            foreach (var batch in eligibleCommands.Select((x, i) => i+1 + ". " + x.ToString()).Chunk(3)) //TO DO REMOVE HARDCODED PARAMS;
             {
                 StringBuilder lineBuilder = new StringBuilder();
                 for(int i=0;i<batch.Length;i++)
                 {
                     lineBuilder.Append(String.Format("{0, 15}", batch[i]));
-                    if(i<batch.Length-1) lineBuilder.Append(" | ");
+                    lineBuilder.Append(Messages.Command_Separator);
                 }
-                SendUserMessage(lineBuilder.ToString()); //not ok to send partial output - TO DO: FIX THIS
+                SendUserMessage(lineBuilder.ToString());
             }
 
             //retrieve response and interpret characters
             try
             {
-                return eligibleCommands[int.Parse(GetUserInput())].Clone();
+                return eligibleCommands[int.Parse(GetUserInput())-1].Clone();
             }
             catch (Exception ex)
             {
@@ -95,7 +96,7 @@ namespace GenericRPG.Core
         public virtual void PostCommandLogic()
         {
             //if in combat, attack Player after each action
-            if (CurrentLevel?.CurrentEncounter?.Count == 0 ) return;
+            if (CurrentLevel is not { CurrentEncounter: { Count: >0 } }) return;
 
             foreach(var enemy in CurrentLevel!.CurrentEncounter!)
                 enemy.DoDamage(Player!.Hero!);

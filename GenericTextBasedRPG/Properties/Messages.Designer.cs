@@ -106,7 +106,16 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To Battle!.
+        ///   Looks up a localized string similar to         .
+        /// </summary>
+        internal static string Command_Separator {
+            get {
+                return ResourceManager.GetString("Command_Separator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fight the next group of enemies!.
         /// </summary>
         internal static string Command_StartFight {
             get {
@@ -156,6 +165,15 @@ namespace GenericRPG.Properties {
         internal static string Menu_MobDisplayTemplate {
             get {
                 return ResourceManager.GetString("Menu_MobDisplayTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Congratulations! No more Levels! You won the game!.
+        /// </summary>
+        internal static string Menu_PlayerWon {
+            get {
+                return ResourceManager.GetString("Menu_PlayerWon", resourceCulture);
             }
         }
     }

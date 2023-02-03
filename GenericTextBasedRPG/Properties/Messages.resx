@@ -132,8 +132,11 @@
   <data name="Command_QuitLevel" xml:space="preserve">
     <value>Quit Level</value>
   </data>
+  <data name="Command_Separator" xml:space="preserve">
+    <value>        </value>
+  </data>
   <data name="Command_StartFight" xml:space="preserve">
-    <value>To Battle!</value>
+    <value>Fight the next group of enemies!</value>
   </data>
   <data name="Command_StartGame" xml:space="preserve">
     <value>Start Game</value>
@@ -149,5 +152,8 @@
   </data>
   <data name="Menu_MobDisplayTemplate" xml:space="preserve">
     <value>{0}. {1}(HP: {2})</value>
+  </data>
+  <data name="Menu_PlayerWon" xml:space="preserve">
+    <value>Congratulations! No more Levels! You won the game!</value>
   </data>
 </root>

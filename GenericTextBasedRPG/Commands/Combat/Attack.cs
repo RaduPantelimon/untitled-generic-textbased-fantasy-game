@@ -11,7 +11,7 @@ namespace GenericRPG.Commands
 {
     internal class Attack:Command
     {
-        public override string Name { get; } = Messages.Command_StartLevel;
+        public override string Name { get; } = Messages.Command_Attack;
 
         public override void Execute(GameEngine engine)
         {

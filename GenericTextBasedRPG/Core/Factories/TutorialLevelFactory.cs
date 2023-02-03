@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace GenericRPG.Core
 {
-    public class TutorialFactory: LevelFactory
+    public class TutorialLevelFactory: LevelFactory
     {        
-        internal TutorialFactory() : base(new EnemiesFactory())
+        internal TutorialLevelFactory() : base(new EnemiesFactory())
         {
         }
 
         //create the tutorial level
         public override Level GetLevel(TutorialGame currentGame) =>  new TutorialLevel(currentGame, EnemiesFactory);
 
-        private static TutorialFactory? instance;
-        public static TutorialFactory Instance
+        private static TutorialLevelFactory? instance;
+        public static TutorialLevelFactory Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new TutorialFactory();
+                    instance = new TutorialLevelFactory();
                 }
                 return instance;
             }
