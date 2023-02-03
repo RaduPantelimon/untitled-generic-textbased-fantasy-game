@@ -1,4 +1,5 @@
-﻿using GenericRPG.Commands;
+﻿using GenericRPG.Combat;
+using GenericRPG.Commands;
 using GenericRPG.Core;
 using GenericRPG.Properties;
 using System;
@@ -27,6 +28,8 @@ namespace GenericRPG.Core
         
         public virtual bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
         public virtual bool IsOver => PlayerQuit || PlayerLost || PlayerWon;
+        public virtual bool InCombat => CurrentLevel is { CurrentEncounter: { Count: > 0 } };
+
 
         protected internal abstract string GetUserInput();
         protected internal abstract void SendUserMessage(string message, bool flushToStream = true);
@@ -50,6 +53,7 @@ namespace GenericRPG.Core
                     command = GetCommand();
                     command.Execute(this);
                     //redefine logic depending on specific of the subclass
+                    SendUserMessage(Environment.NewLine);
                     PostCommandLogic();
                 }
                 catch (InvalidCommandException ex)
@@ -58,8 +62,6 @@ namespace GenericRPG.Core
                     SendUserMessage(String.Format(Messages.Command_InvalidCommand, ex.Message));
                 }
                 catch { throw; }
-
-
             }
         }
 
@@ -93,23 +95,24 @@ namespace GenericRPG.Core
             }
         }
 
-        public virtual void PostCommandLogic()
+        private protected virtual void PostCommandLogic()
         {
-            //if in combat, attack Player after each action
-            if (CurrentLevel is not { CurrentEncounter: { Count: >0 } }) return;
+            //if in combat, mobs attack Player after each action
+            if (!InCombat) return;
 
             foreach(var enemy in CurrentLevel!.CurrentEncounter!)
-                enemy.DoDamage(Player!.Hero!);
-
+            {
+                AttackResult result = enemy.DoDamage(Player!.Hero!);
+            }
         }
 
-        public virtual void Start()
+        internal virtual void Start()
         {
             if (Started || IsOver) throw new InvalidOperationException();
             Started = true;
         }
 
-        public virtual void Quit()
+        internal virtual void Quit()
         {
             if (!Started) throw new InvalidOperationException();
             PlayerQuit = true;
