@@ -142,6 +142,15 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You ran away and left the group of enemies behind! You can rest before you engage them again. .
+        /// </summary>
+        internal static string Event_Flee {
+            get {
+                return ResourceManager.GetString("Event_Flee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chose the enemy you would like to attack:.
         /// </summary>
         internal static string Menu_ChooseMobToAttack {
@@ -160,7 +169,16 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}. {1}({2}).
+        ///   Looks up a localized string similar to {0}.{1}.
+        /// </summary>
+        internal static string Menu_ListDisplayTemplate {
+            get {
+                return ResourceManager.GetString("Menu_ListDisplayTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}({1}).
         /// </summary>
         internal static string Menu_MobDisplayTemplate {
             get {

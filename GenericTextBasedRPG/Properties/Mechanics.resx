@@ -177,6 +177,9 @@
   <data name="Tutorial_CasterEnemyName" xml:space="preserve">
     <value>Evil Caster</value>
   </data>
+  <data name="Tutorial_HeroName" xml:space="preserve">
+    <value>Gigi Muschi</value>
+  </data>
   <data name="Tutorial_MeleeEnemyName" xml:space="preserve">
     <value>Evil Fighter</value>
   </data>

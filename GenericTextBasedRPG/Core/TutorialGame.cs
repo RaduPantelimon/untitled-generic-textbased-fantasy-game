@@ -19,7 +19,7 @@ namespace GenericRPG
         TextReader Reader { get; }
         TextWriter Writer { get; }
 
-        public TutorialGame(Stream input, Stream output) : base(CommandRepository.AvailableCommands)
+        public TutorialGame(Stream input, Stream output) : base(CommandRepository.AvailableCommands, FormattingService.Instance)
         {
             Reader = new StreamReader(input,leaveOpen:true);
             Writer = new StreamWriter(output, leaveOpen: true);
@@ -27,8 +27,11 @@ namespace GenericRPG
             //In the tutorial, the player can only fight using a generic, hardcoded character
             Player = new Player();
             Player.Hero = new Fighter(Randomizer.Instance.Next(250, 300), 20)
-                                        { Weapon = new Sword(15, 20), 
-                                          Armor = new Chainmail(0.3) };
+            {
+                Name = Mechanics.Tutorial_HeroName,
+                Weapon = new Sword(15, 20), 
+                Armor = new Chainmail(0.3)
+            };
         }
 
 

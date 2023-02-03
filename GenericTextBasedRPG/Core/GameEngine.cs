@@ -18,17 +18,17 @@ namespace GenericRPG.Core
     {
 
         private protected IReadOnlyList<Command> Commands { get; } 
+        internal FormattingService FormattingService { get; set; }
+        
         public bool Started { get; private protected set; }
         public bool PlayerQuit { get; private protected set; }
         public bool PlayerWon { get; private protected set; }
-
-        public Player? Player { get; private protected set;}
-
-        public Level? CurrentLevel { get; private protected set; }
-        
         public virtual bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
         public virtual bool IsOver => PlayerQuit || PlayerLost || PlayerWon;
         public virtual bool InCombat => CurrentLevel is { CurrentEncounter: { Count: > 0 } };
+
+        public Player? Player { get; private protected set; }
+        public Level? CurrentLevel { get; private protected set; }
 
 
         protected internal abstract string GetUserInput();
@@ -37,9 +37,10 @@ namespace GenericRPG.Core
         internal abstract void StartNextLevel();
 
         //TO DO BUILD AN INTERFACE FOR COMMANDS
-        internal GameEngine( List<Command> commands)
+        internal GameEngine( List<Command> commands, FormattingService formattingService)
         {
             Commands = commands;
+            FormattingService = formattingService;
         }
 
         public void Play()
@@ -53,7 +54,6 @@ namespace GenericRPG.Core
                     command = GetCommand();
                     command.Execute(this);
                     //redefine logic depending on specific of the subclass
-                    SendUserMessage(Environment.NewLine);
                     PostCommandLogic();
                 }
                 catch (InvalidCommandException ex)
@@ -62,6 +62,10 @@ namespace GenericRPG.Core
                     SendUserMessage(String.Format(Messages.Command_InvalidCommand, ex.Message));
                 }
                 catch { throw; }
+                finally
+                {
+                    SendUserMessage(string.Empty);
+                }
             }
         }
 
@@ -87,7 +91,8 @@ namespace GenericRPG.Core
             //retrieve response and interpret characters
             try
             {
-                return eligibleCommands[int.Parse(GetUserInput())-1].Clone();
+                string userInput = GetUserInput();
+                return eligibleCommands[int.Parse(userInput) -1].Clone();
             }
             catch (Exception ex)
             {
@@ -99,10 +104,11 @@ namespace GenericRPG.Core
         {
             //if in combat, mobs attack Player after each action
             if (!InCombat) return;
-
-            foreach(var enemy in CurrentLevel!.CurrentEncounter!)
+            SendUserMessage(string.Empty);
+            foreach (var enemy in CurrentLevel!.CurrentEncounter!)
             {
                 AttackResult result = enemy.DoDamage(Player!.Hero!);
+                SendUserMessage(FormattingService.AttackedByMessage(result));
             }
         }
 

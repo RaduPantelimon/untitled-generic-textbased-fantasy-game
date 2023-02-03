@@ -241,6 +241,15 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gigi Muschi.
+        /// </summary>
+        internal static string Tutorial_HeroName {
+            get {
+                return ResourceManager.GetString("Tutorial_HeroName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Evil Fighter.
         /// </summary>
         internal static string Tutorial_MeleeEnemyName {
