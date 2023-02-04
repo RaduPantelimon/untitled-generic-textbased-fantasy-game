@@ -10,7 +10,7 @@ namespace GenericRPG.Combat
     {
         public bool IsFatal { get; }
         public Attack Attack { get; }
-        public IAttackable Target {get; }
+        internal IAttackable Target {get; }
 
         internal AttackResult(IAttackable target, Attack attack, bool isFatal)
         {

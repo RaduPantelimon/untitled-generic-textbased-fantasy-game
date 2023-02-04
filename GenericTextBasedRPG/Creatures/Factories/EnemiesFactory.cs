@@ -28,7 +28,7 @@ namespace GenericRPG.Core
             };
 
         internal virtual Creature GenerateCasterEnemy() =>
-            new SpellCaster(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit),FigtherStrength)
+            new SpellCaster(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit),CasterMana)
             { 
                 Name = Mechanics.Tutorial_CasterEnemyName,
                 Weapon = new Staff(StaffLowerAttack, StaffUpperAttack)
@@ -44,7 +44,7 @@ namespace GenericRPG.Core
             };
 
         //very basic default implementation
-        public virtual HostileParty<Creature> GetEnemiesGroup(PartySize size) => size switch
+        internal virtual HostileParty<Creature> GetEnemiesGroup(PartySize size) => size switch
         {
             PartySize.Small => new HostileParty<Creature> { GenerateBasicEnemy(),
                                                             GenerateMeleeEnemy() },
@@ -62,22 +62,21 @@ namespace GenericRPG.Core
             _ => new HostileParty<Creature> { GenerateMeleeEnemy() },
         };
 
-        protected static int CasterMana { get; }
-        protected static uint FigtherStrength { get; }
+        private protected static int CasterMana { get; }
+        private protected static uint FigtherStrength { get; }
 
-        protected static int DaggerLowerAttack { get; }
-        protected static int DaggerUpperAttack { get; }
-        protected static int SwordLowerAttack { get; }
-        protected static int SwordUpperAttack { get; }
-        protected static int StaffLowerAttack { get; }
-        protected static int StaffUpperAttack { get; }
-        protected static double MailArmorReduction { get; }
+        private protected static int DaggerLowerAttack { get; }
+        private protected static int DaggerUpperAttack { get; }
+        private protected static int SwordLowerAttack { get; }
+        private protected static int SwordUpperAttack { get; }
+        private protected static int StaffLowerAttack { get; }
+        private protected static int StaffUpperAttack { get; }
+        private protected static double MailArmorReduction { get; }
 
-        protected static int HealthUpperLimit { get; }
-        protected static int HealthLowerLimit { get; }
+        private protected static int HealthUpperLimit { get; }
+        private protected static int HealthLowerLimit { get; }
 
-        
-        protected static double BossMultiplier { get; }
+        private protected static double BossMultiplier { get; }
 
         static EnemiesFactory()
         {

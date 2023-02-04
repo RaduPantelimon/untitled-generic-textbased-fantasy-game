@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Creatures\Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Properties\Exceptions.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

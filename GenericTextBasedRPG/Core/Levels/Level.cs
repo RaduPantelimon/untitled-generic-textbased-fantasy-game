@@ -15,9 +15,9 @@ namespace GenericRPG.Core
 
         public Game CurrentGame { get; }
 
-        public Stack<HostileParty<Creature>> EnemyEncounters { get;}
+        internal Stack<HostileParty<Creature>> EnemyEncounters { get;}
 
-        public HostileParty<Creature>? CurrentEncounter { get; internal set; }
+        internal HostileParty<Creature>? CurrentEncounter { get; set; }
 
         public abstract bool PlayerWon { get; }
         public virtual bool PlayerLost => !(CurrentGame.Player?.IsAlive ?? true);

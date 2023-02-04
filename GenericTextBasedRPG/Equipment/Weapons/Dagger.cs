@@ -8,7 +8,7 @@ namespace GenericRPG.Equipment.Weapons
 {
     internal class Dagger : Weapon
     {
-        internal Dagger(int minDamage, int maxDamage)
+        public Dagger(int minDamage, int maxDamage)
             : base(minDamage, maxDamage, DamageTypes.Piercing)
         {
         }

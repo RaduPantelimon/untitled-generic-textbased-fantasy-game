@@ -25,12 +25,12 @@ namespace GenericRPG.Creatures
         public virtual bool IsAlive => HitPoints > 0;
 
         //mitigate or absorb damage - mitigate with armor / natural defense or take it full on if armor missing
-        protected private abstract Attack MitigateAttack(Attack attack);
+        public abstract Attack MitigateAttack(Attack attack);
 
         //generate attack
-        protected private abstract Attack GenerateAttack(IAttackable target);
+        public abstract Attack GenerateAttack(IAttackable target);
 
-        internal Creature(double hitpoints)
+        public Creature(double hitpoints)
         {
             if(hitpoints < 0 ) throw new ArgumentOutOfRangeException(nameof(hitpoints));
             MaxHitPoints = HitPoints = hitpoints; 

@@ -10,7 +10,7 @@ namespace GenericRPG.Equipment.Weapons
     {
         //stuff like edge type, blade length, etc. should be here 
 
-        internal Sword(int minDamage, int maxDamage)
+        public Sword(int minDamage, int maxDamage)
             : base(minDamage, maxDamage, DamageTypes.Slashing | DamageTypes.Piercing)
         {
 

@@ -8,7 +8,7 @@ namespace GenericRPG.Equipment.Weapons
 {
     public class Staff: Weapon
     {
-        internal Staff(int minDamage, int maxDamage)
+        public Staff(int minDamage, int maxDamage)
             : base(minDamage, maxDamage, DamageTypes.Blunt)
         {
 

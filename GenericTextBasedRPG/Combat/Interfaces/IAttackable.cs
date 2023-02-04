@@ -11,8 +11,8 @@ namespace GenericRPG
 {
     public interface IAttackable: IEntity
     {
-        public bool IsAlive { get; }
+        bool IsAlive { get; }
 
-        public AttackResult TakeDamage(Attack attack);
+        AttackResult TakeDamage(Attack attack);
     }
 }

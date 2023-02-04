@@ -36,7 +36,7 @@ namespace GenericRPG
         }
         
         //if the tutorial level is beat, the Tutorial Game is Won!
-        public override bool PlayerWon => CurrentLevel?.PlayerWon??false;
+        private protected override bool WinCondition => CurrentLevel?.PlayerWon??false;
 
         internal override void StartNextLevel()
         {

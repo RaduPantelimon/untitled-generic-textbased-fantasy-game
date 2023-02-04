@@ -13,9 +13,9 @@ namespace GenericRPG.Creatures
 
         public override double UnnarmedDamage => Strength;
 
-        internal Fighter(double hitpoints, uint strength): base(hitpoints) => Strength = strength;
+        public Fighter(double hitpoints, uint strength): base(hitpoints) => Strength = strength;
 
-        internal Fighter(double hitpoints) : base(hitpoints)
+        public Fighter(double hitpoints) : base(hitpoints)
         {
             Strength = Convert.ToUInt32(Mechanics.Fighter_DefaultStrength);
         }

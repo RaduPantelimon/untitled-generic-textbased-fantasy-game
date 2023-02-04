@@ -12,7 +12,7 @@ namespace GenericRPG.Equipment.Armor
         //for simplicity's sake, we will consider that an armor cannot change it's protection once crafted
         public double ProtectionPercentage { get; }
 
-        internal Armor(double protectionPercentage)
+        public Armor(double protectionPercentage)
         {
             if (protectionPercentage < 0 || protectionPercentage >= 1) throw new ArgumentException(nameof(protectionPercentage));
 

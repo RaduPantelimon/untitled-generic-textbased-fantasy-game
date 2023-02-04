@@ -26,12 +26,13 @@ namespace GenericRPG.Core
         public Level? CurrentLevel { get; private protected set; }
 
         public bool PlayerQuit { get; private protected set; }
-        
-        public virtual bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
-        public virtual bool IsOver => PlayerQuit || PlayerLost || PlayerWon;
-        public virtual bool InCombat => CurrentLevel is { CurrentEncounter: { Count: > 0 } };
 
-        public abstract bool PlayerWon { get; }
+        public bool PlayerWon => WinCondition;
+        public bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
+        public bool IsOver => PlayerQuit || PlayerLost || PlayerWon;
+        public bool InCombat => CurrentLevel is { CurrentEncounter: { Count: > 0 } };
+
+        private protected abstract bool WinCondition { get; }
 
         public bool IsDisposed { get; private set; }
 
@@ -82,7 +83,6 @@ namespace GenericRPG.Core
             DisplayEndGameResults();
         }
 
-        //USED PRIVATE PROTECTED HERE
         private protected virtual Command GetCommand()
         {
             Command[] eligibleCommands = Commands.Where(x => x.IsValid(this)).ToArray();
