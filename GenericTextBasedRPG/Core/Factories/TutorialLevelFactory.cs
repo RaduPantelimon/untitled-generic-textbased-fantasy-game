@@ -1,6 +1,7 @@
 ﻿using GenericRPG.Commands;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,12 @@ namespace GenericRPG.Core
         }
 
         //create the tutorial level
-        public override Level GetLevel(GameEngine currentGame) =>  new TutorialLevel(currentGame, EnemiesFactory);
+        public override Level GetLevel(Game currentGame) =>  new TutorialLevel(currentGame, EnemiesFactory);
+        //not available as part of the tutorial
+        public override Level GetLevel(Game game, MappingType mapSize) 
+            => throw new NotImplementedException();
+        public override Level GetLevel(Game game, MappingType mapSize, Difficulty difficulty) 
+            => throw new NotImplementedException();
 
         private static TutorialLevelFactory? instance;
         public static TutorialLevelFactory Instance

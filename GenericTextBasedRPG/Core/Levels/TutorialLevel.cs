@@ -11,7 +11,7 @@ namespace GenericRPG.Core
 {
     public class TutorialLevel: Level
     {
-        internal TutorialLevel(GameEngine currentGame, EnemiesFactory enemiesFactory)
+        internal TutorialLevel(Game currentGame, EnemiesFactory enemiesFactory)
             : base(currentGame,
                     new Stack<HostileParty<Creature>>( new HostileParty<Creature>[] 
                         {

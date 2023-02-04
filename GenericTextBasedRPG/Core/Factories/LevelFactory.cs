@@ -2,6 +2,7 @@
 using GenericRPG.Creatures;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,13 @@ namespace GenericRPG.Core
             EnemiesFactory = enemiesFactory;
         }
 
-        public abstract Level GetLevel(GameEngine game);
+        public abstract Level GetLevel(Game game);
 
-       
+
+        public abstract Level GetLevel(Game game, MappingType mapSize);
+
+
+        public abstract Level GetLevel(Game game, MappingType mapSize, Difficulty difficulty);
+
     }
 }
