@@ -12,7 +12,7 @@ namespace GenericRPG.Commands
     {
         public override string Name { get; } = Messages.Command_Flee;
 
-        public override void Execute(Game engine)
+        internal override void Execute(Game engine)
         {
             //move encounter back in the queue
             engine.CurrentLevel?.EnemyEncounters.Push(engine.CurrentLevel.CurrentEncounter!);

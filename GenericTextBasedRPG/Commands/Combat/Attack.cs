@@ -13,7 +13,7 @@ namespace GenericRPG.Commands
     {
         public override string Name { get; } = Messages.Command_Attack;
 
-        public override void Execute(Game engine)
+        internal override void Execute(Game engine)
         {
             HostileParty<Creature> hostileParty = engine.CurrentLevel!.CurrentEncounter!;
 

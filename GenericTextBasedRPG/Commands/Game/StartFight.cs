@@ -12,7 +12,7 @@ namespace GenericRPG.Commands
     {
         public override string Name { get; } = Messages.Command_StartFight;
 
-        public override void Execute(Game engine)
+        internal override void Execute(Game engine)
          => engine.CurrentLevel!.CurrentEncounter = engine.CurrentLevel.EnemyEncounters.Pop();
 
 
