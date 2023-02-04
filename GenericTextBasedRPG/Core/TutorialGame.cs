@@ -19,10 +19,10 @@ namespace GenericRPG
         TextReader Reader { get; }
         TextWriter Writer { get; }
 
-        public TutorialGame(Stream input, Stream output) : base(CommandRepository.AvailableCommands, FormattingService.Instance)
+        internal TutorialGame(Stream input, Stream output) : base(CommandRepository.AvailableCommands, FormattingService.Instance)
         {
-            Reader = new StreamReader(input,leaveOpen:true);
-            Writer = new StreamWriter(output, leaveOpen: true);
+            Reader = new StreamReader(input);
+            Writer = new StreamWriter(output);
 
             //In the tutorial, the player can only fight using a generic, hardcoded character
             Player = new Player();
