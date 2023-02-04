@@ -21,19 +21,21 @@ namespace GenericRPG.Core
 
         private protected IReadOnlyList<Command> Commands { get; } 
         internal FormattingService FormattingService { get; set; }
-        
-        public bool PlayerQuit { get; private protected set; }
-        public bool PlayerWon { get; private protected set; }
-        public virtual bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
-        public virtual bool IsOver => PlayerQuit || PlayerLost || PlayerWon;
-        public virtual bool InCombat => CurrentLevel is { CurrentEncounter: { Count: > 0 } };
 
         public Player? Player { get; private protected set; }
         public Level? CurrentLevel { get; private protected set; }
 
 
-        protected internal abstract string GetUserInput();
-        protected internal abstract void SendUserMessage(string message, bool flushToStream = true);
+        public bool PlayerQuit { get; private protected set; }
+        
+        public virtual bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
+        public virtual bool IsOver => PlayerQuit || PlayerLost || PlayerWon;
+        public virtual bool InCombat => CurrentLevel is { CurrentEncounter: { Count: > 0 } };
+
+        public abstract bool PlayerWon { get; }
+
+        internal abstract string GetUserInput();
+        internal abstract void SendUserMessage(string message, bool flushToStream = true);
 
         internal abstract void StartNextLevel();
 

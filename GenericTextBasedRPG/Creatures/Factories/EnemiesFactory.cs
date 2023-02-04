@@ -24,7 +24,7 @@ namespace GenericRPG.Core
             new Fighter( Randomizer.Instance.Next(HealthLowerLimit, HealthUpperLimit), FigtherStrength)
             { 
                 Name = Mechanics.Tutorial_MeleeEnemyName, 
-                Weapon = new Dagger(SwordLowerAttack, SwordUpperAttack)
+                Weapon = new Dagger(DaggerLowerAttack, DaggerUpperAttack)
             };
 
         internal virtual Creature GenerateCasterEnemy() =>

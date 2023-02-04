@@ -33,22 +33,16 @@ namespace GenericRPG
                 Armor = new Chainmail(0.3)
             };
         }
+        
+        //if the tutorial level is beat, the Tutorial Game is Won!
+        public override bool PlayerWon => CurrentLevel?.PlayerWon??false;
 
-
-        //DUMMY IMPLEMENTATION
         internal override void StartNextLevel()
         {
             if (CurrentLevel is {IsOver: false }) 
                 throw new InvalidOperationException(Exceptions.Exception_LevelAlreadyInProgress);
 
-            if (CurrentLevel is { IsOver: true })
-            {
-                PlayerWon = true;
-                SendUserMessage(Messages.Menu_PlayerWon);
-                return;
-            }
-
-            CurrentLevel = TutorialLevelFactory.Instance.GetLevel(this); //TO DO MAKE THIS 
+            CurrentLevel = TutorialLevelFactory.Instance.GetLevel(this);
         }
 
         public override void Dispose()
@@ -57,8 +51,8 @@ namespace GenericRPG
             Writer.Dispose();
         }
 
-        protected internal override string GetUserInput() => Reader.ReadLine()!;
-        protected internal override void SendUserMessage(string message, bool flushToStream = true)
+        internal override string GetUserInput() => Reader.ReadLine()!;
+        internal override void SendUserMessage(string message, bool flushToStream = true)
         {
             Writer.WriteLine(message);
             Writer.Flush();

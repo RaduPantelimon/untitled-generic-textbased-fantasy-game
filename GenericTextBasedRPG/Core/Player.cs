@@ -17,6 +17,8 @@ namespace GenericRPG.Core
         {
 
         }
+
+        public bool? IsAlive => Hero?.IsAlive;
         
     }
 }
