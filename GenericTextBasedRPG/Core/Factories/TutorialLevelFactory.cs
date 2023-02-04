@@ -14,7 +14,7 @@ namespace GenericRPG.Core
         }
 
         //create the tutorial level
-        public override Level GetLevel(TutorialGame currentGame) =>  new TutorialLevel(currentGame, EnemiesFactory);
+        public override Level GetLevel(GameEngine currentGame) =>  new TutorialLevel(currentGame, EnemiesFactory);
 
         private static TutorialLevelFactory? instance;
         public static TutorialLevelFactory Instance

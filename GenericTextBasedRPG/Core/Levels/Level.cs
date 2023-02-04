@@ -13,7 +13,7 @@ namespace GenericRPG.Core
     public abstract class Level
     {
 
-        public TutorialGame CurrentGame { get; }
+        public GameEngine CurrentGame { get; }
 
         public Stack<HostileParty<Creature>> EnemyEncounters { get;}
 
@@ -28,7 +28,7 @@ namespace GenericRPG.Core
         public virtual bool PlayerLost => !(CurrentGame.Player?.Hero?.IsAlive ?? true);
         public virtual bool IsOver => PlayerQuit || PlayerLost;
 
-        internal Level(TutorialGame currentGame, Stack<HostileParty<Creature>> enemyEncounters) 
+        internal Level(GameEngine currentGame, Stack<HostileParty<Creature>> enemyEncounters) 
             => (CurrentGame,EnemyEncounters) = (currentGame, enemyEncounters);
 
     }

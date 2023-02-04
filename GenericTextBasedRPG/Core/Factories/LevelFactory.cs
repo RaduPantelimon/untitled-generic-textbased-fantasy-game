@@ -21,7 +21,7 @@ namespace GenericRPG.Core
             EnemiesFactory = enemiesFactory;
         }
 
-        public abstract Level GetLevel(TutorialGame game);
+        public abstract Level GetLevel(GameEngine game);
 
        
     }
