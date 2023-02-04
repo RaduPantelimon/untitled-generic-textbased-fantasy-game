@@ -1,5 +1,6 @@
 ﻿using GenericRPG.Combat;
 using GenericRPG.Creatures;
+using GenericRPG.Helpers;
 using GenericRPG.Helpers.Interfaces;
 using GenericRPG.Properties;
 using System;
@@ -42,14 +43,14 @@ namespace GenericRPG.Core
                attackResult.Target.Name,
                attackResult.Attack.Attacker.Name,
                attackResult.Attack.Damage,
-               attackResult.Attack.DamageType.ToString().ToLower());
+               attackResult.Attack.DamageType.ToFormattedString());
 
         public virtual string AttackMessage(AttackResult attackResult)
             => String.Format(Messages.Menu_AttackedTemplate,
                 attackResult.Attack.Attacker.Name,
                 attackResult.Target.Name,
                 attackResult.Attack.Damage,
-                attackResult.Attack.DamageType.ToString().ToLower());
+                attackResult.Attack.DamageType.ToFormattedString());
 
         public virtual string EntityStatusMessage(IEntity entity)
             => String.Format(Messages.Menu_MobDisplayTemplate, entity.Name, entity.DisplayStats());

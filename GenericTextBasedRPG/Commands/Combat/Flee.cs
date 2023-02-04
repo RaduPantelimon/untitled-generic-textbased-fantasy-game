@@ -12,7 +12,7 @@ namespace GenericRPG.Commands
     {
         public override string Name { get; } = Messages.Command_Flee;
 
-        public override void Execute(GameEngine engine)
+        public override void Execute(Game engine)
         {
             //move encounter back in the queue
             engine.CurrentLevel?.EnemyEncounters.Push(engine.CurrentLevel.CurrentEncounter!);
@@ -21,7 +21,7 @@ namespace GenericRPG.Commands
             engine.SendUserMessage(Messages.Event_Flee);
         }
 
-        public override bool IsValid(GameEngine engine) => engine.CurrentLevel?.CurrentEncounter?.Count > 0;
+        public override bool IsValid(Game engine) => engine.CurrentLevel?.CurrentEncounter?.Count > 0;
 
 
         public override Command Clone() => new Flee();
