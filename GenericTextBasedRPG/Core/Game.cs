@@ -14,7 +14,7 @@ namespace GenericRPG.Core
 {
 
     //TO DO REPLACE STARTED AND QUIT WITH STATE ENUM
-    public abstract class GameEngine: IDisposable
+    public abstract class Game: IDisposable
     {
         //maybe move this to resx
         static readonly int CommandsOnTheSameLine = 3;
@@ -38,7 +38,7 @@ namespace GenericRPG.Core
         internal abstract void StartNextLevel();
 
         //TO DO BUILD AN INTERFACE FOR COMMANDS
-        internal GameEngine( List<Command> commands, FormattingService formattingService)
+        internal Game( List<Command> commands, FormattingService formattingService)
         {
             Commands = commands;
             FormattingService = formattingService;
