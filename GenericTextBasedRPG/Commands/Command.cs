@@ -17,10 +17,10 @@ namespace GenericRPG.Commands
 
         }
 
-        public abstract void Execute(GameEngine engine);
+        public abstract void Execute(Game engine);
 
         //check if command is valid for a current stage of the game
-        public abstract bool IsValid(GameEngine engine);
+        public abstract bool IsValid(Game engine);
 
         public abstract Command Clone();
 

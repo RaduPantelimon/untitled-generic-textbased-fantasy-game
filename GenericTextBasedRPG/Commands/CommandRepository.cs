@@ -28,7 +28,7 @@ namespace GenericRPG.Commands
             Commands = commands;
         }
 
-        public IEnumerable<Command> GetEligibleCommands(GameEngine level) => Commands.Where(x => x.IsValid(level));
+        public IEnumerable<Command> GetEligibleCommands(Game level) => Commands.Where(x => x.IsValid(level));
 
     }
 }

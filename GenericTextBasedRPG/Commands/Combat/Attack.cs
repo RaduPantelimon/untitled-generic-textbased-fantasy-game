@@ -13,7 +13,7 @@ namespace GenericRPG.Commands
     {
         public override string Name { get; } = Messages.Command_Attack;
 
-        public override void Execute(GameEngine engine)
+        public override void Execute(Game engine)
         {
             HostileParty<Creature> hostileParty = engine.CurrentLevel!.CurrentEncounter!;
 
@@ -36,7 +36,7 @@ namespace GenericRPG.Commands
             }
         }
 
-        public override bool IsValid(GameEngine engine) => engine.CurrentLevel?.CurrentEncounter?.Count > 0;
+        public override bool IsValid(Game engine) => engine.CurrentLevel?.CurrentEncounter?.Count > 0;
 
 
         public override Command Clone() => new Attack();

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace GenericRPG
 {
     //TO DO - USE ENGINE CLASS TO ALSO BUILD A MENU
-    public class TutorialGame : GameEngine,IDisposable
+    public class TutorialGame : Game,IDisposable
     {
         TextReader Reader { get; }
         TextWriter Writer { get; }

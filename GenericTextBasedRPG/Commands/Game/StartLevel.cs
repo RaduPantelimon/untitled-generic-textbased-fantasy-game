@@ -12,9 +12,9 @@ namespace GenericRPG.Commands
     {
         public override string Name {get;} = Messages.Command_StartLevel;
 
-        public override void Execute(GameEngine engine) => engine.StartNextLevel();
+        public override void Execute(Game engine) => engine.StartNextLevel();
 
-        public override bool IsValid(GameEngine engine) => engine.CurrentLevel is not { IsOver: false };
+        public override bool IsValid(Game engine) => engine.CurrentLevel is not { IsOver: false };
 
 
         public override Command Clone() => new StartLevel();
