@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace GenericRPG.Core
 {
 
-    //TO DO REPLACE STARTED AND QUIT WITH STATE ENUM
+    //TO DO REPLACE STARTED AND QUIT PROPERTIES WITH STATE ENUM
     public abstract class Game: IDisposable
     {
         //maybe move this to resx
@@ -25,7 +25,6 @@ namespace GenericRPG.Core
         public Player? Player { get; private protected set; }
         public Level? CurrentLevel { get; private protected set; }
 
-
         public bool PlayerQuit { get; private protected set; }
         
         public virtual bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
@@ -34,12 +33,14 @@ namespace GenericRPG.Core
 
         public abstract bool PlayerWon { get; }
 
+        public bool IsDisposed { get; private set; }
+
         internal abstract string GetUserInput();
         internal abstract void SendUserMessage(string message, bool flushToStream = true);
 
         internal abstract void StartNextLevel();
 
-        //TO DO BUILD AN INTERFACE FOR COMMANDS
+        //TO DO BUILD AN INTERFACE FOR COMMANDS?
         internal Game( List<Command> commands, FormattingService formattingService)
         {
             Commands = commands;
@@ -48,6 +49,7 @@ namespace GenericRPG.Core
 
         public void Play()
         {
+            if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
             Command? command = null;
 
             while (!IsOver)
@@ -135,13 +137,25 @@ namespace GenericRPG.Core
 
         internal virtual void Quit()
         {
+            if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
             PlayerQuit = true;
         }
 
-        public virtual void Dispose()
+        public void Dispose()
         {
             ///BASIC EMPTY IMPLEMENTATION
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        
+        protected virtual void Dispose(bool disposing)
+        {
+            IsDisposed = true;
         }
 
+        ~Game()
+        {
+            Dispose(false);
+        }
     }
 }

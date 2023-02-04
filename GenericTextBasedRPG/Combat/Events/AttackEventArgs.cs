@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace GenericRPG.Combat
 {
-    //TO DO POPULATE CLASS
     public class AttackEventArgs : EventArgs
     {
         AttackResult AttackResult { get; }

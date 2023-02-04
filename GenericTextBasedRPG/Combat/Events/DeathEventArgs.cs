@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace GenericRPG
 {
-    //TO DO POPULATE CLASS
     public class DeathEventArgs: EventArgs
     {
         IAttackable Target { get; }

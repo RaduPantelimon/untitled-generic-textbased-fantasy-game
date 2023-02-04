@@ -13,13 +13,14 @@ using System.Threading.Tasks;
 
 namespace GenericRPG
 {
-    //TO DO - USE ENGINE CLASS TO ALSO BUILD A MENU
     public class TutorialGame : Game,IDisposable
     {
         TextReader Reader { get; }
         TextWriter Writer { get; }
 
-        internal TutorialGame(Stream input, Stream output) : base(CommandRepository.AvailableCommands, FormattingService.Instance)
+        public new bool IsDisposed { get; private set; }
+
+        public TutorialGame(Stream input, Stream output) : base(CommandRepository.AvailableCommands, FormattingService.Instance)
         {
             Reader = new StreamReader(input);
             Writer = new StreamWriter(output);
@@ -39,23 +40,38 @@ namespace GenericRPG
 
         internal override void StartNextLevel()
         {
+            if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
+
             if (CurrentLevel is {IsOver: false }) 
                 throw new InvalidOperationException(Exceptions.Exception_LevelAlreadyInProgress);
 
             CurrentLevel = TutorialLevelFactory.Instance.GetLevel(this);
         }
 
-        public override void Dispose()
+        internal override string GetUserInput()
         {
-            Reader.Dispose();
-            Writer.Dispose();
+            if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
+            return Reader.ReadLine()!;
         }
-
-        internal override string GetUserInput() => Reader.ReadLine()!;
         internal override void SendUserMessage(string message, bool flushToStream = true)
         {
+            if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
             Writer.WriteLine(message);
             Writer.Flush();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (!IsDisposed)
+            {
+                if (disposing)
+                {
+                    Reader.Dispose();
+                    Writer.Dispose();
+                }
+                IsDisposed = true;
+            }
+            base.Dispose(disposing);
         }
     }
 }
