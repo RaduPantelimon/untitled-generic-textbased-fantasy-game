@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Combat.Enums
+namespace GenericRPG.Core
 {
     public enum PartySize
     {

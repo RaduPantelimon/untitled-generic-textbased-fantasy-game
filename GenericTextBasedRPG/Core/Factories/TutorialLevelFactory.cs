@@ -16,6 +16,7 @@ namespace GenericRPG.Core
 
         //create the tutorial level
         public override Level GetLevel(Game currentGame) =>  new TutorialLevel(currentGame, EnemiesFactory);
+
         //not available as part of the tutorial
         public override Level GetLevel(Game game, MappingType mapSize) 
             => throw new NotImplementedException();

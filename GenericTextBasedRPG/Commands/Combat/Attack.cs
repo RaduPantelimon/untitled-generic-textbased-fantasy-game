@@ -1,4 +1,5 @@
-﻿using GenericRPG.Core;
+﻿using GenericRPG.Combat;
+using GenericRPG.Core;
 using GenericRPG.Creatures;
 using GenericRPG.Properties;
 using System;
@@ -28,7 +29,9 @@ namespace GenericRPG.Commands
                 if (mobIndex < 0 && mobIndex < hostileParty.Count)
                     throw new InvalidOperationException(Exceptions.Exception_InvalidEnemyIndex);
                 
-                engine.Player!.Hero!.DoDamage(hostileParty[mobIndex]);
+                AttackResult attResult = engine.Player!.Hero!.DoDamage(hostileParty[mobIndex]);
+                engine.SendUserMessage(String.Empty);
+                engine.SendUserMessage(engine.FormattingService.AttackMessage(attResult));
             }
             catch (Exception ex)
             {

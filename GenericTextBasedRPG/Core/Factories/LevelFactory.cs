@@ -1,5 +1,4 @@
-﻿using GenericRPG.Combat.Enums;
-using GenericRPG.Creatures;
+﻿using GenericRPG.Creatures;
 using System;
 using System.Collections.Generic;
 using System.Data;

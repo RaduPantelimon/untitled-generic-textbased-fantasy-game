@@ -1,5 +1,4 @@
-﻿using GenericRPG.Combat.Enums;
-using GenericRPG.Creatures;
+﻿using GenericRPG.Creatures;
 using GenericRPG.Creatures.Specializations;
 using GenericRPG.Equipment.Armor;
 using GenericRPG.Equipment.Weapons;
