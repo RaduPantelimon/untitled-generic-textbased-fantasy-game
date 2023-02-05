@@ -1,4 +1,4 @@
-﻿using GenericRPG.Abilities.Spells;
+﻿using GenericRPG.Abilities;
 using GenericRPG.Combat;
 using GenericRPG.Properties;
 using System;
@@ -16,17 +16,14 @@ namespace GenericRPG.Creatures
 
         public override double UnnarmedDamage => Convert.ToDouble(Mechanics.SpellCaster_DefaultUnnarmedDamage);
 
-        public SpellCaster(double hitpoints, double mana) : base(hitpoints)
+        private protected SpellBook SpellBook { get; }
+
+        public SpellCaster(double hitpoints, double mana, IEnumerable<Spell> spells) : base(hitpoints)
         {
+            SpellBook = new SpellBook(spells);
             if (mana < 0) throw new ArgumentOutOfRangeException(nameof(mana));
             MaxMana = Mana = mana;
         }
-
-        public SpellCaster(double hitpoints) : base(hitpoints)
-        {
-            MaxMana = Mana = Convert.ToDouble(Mechanics.SpellCaster_DefaultMana);
-        }
-
 
         //this could be converted to a template method depending on how we want to implement spells
         //or other resources necessary for casting them
@@ -39,6 +36,24 @@ namespace GenericRPG.Creatures
             Mana-=spell.ManaCost;
 
         }
+
+        //choose a spell to attack with, instead of using a basic attack
+        private protected OffensiveSpell? ChooseOffensiveSpell() 
+            => SpellBook.GetOffensiveSpells().Where(x => x.CanBeCastedBy(this)).FirstOrDefault();
+
+        //basic inflict damage - either weapon attack or unnarmed if weapon missing
+        public override Attack GenerateAttack(IAttackable target)
+        {
+            //choose a valid spell and cast it
+            OffensiveSpell? spell = ChooseOffensiveSpell();
+            if (spell != null) return spell.Cast(this, target);
+
+            //if no spells are available, just do a basic attack
+            return base.GenerateAttack(target);
+        }
+               
+
+        //basic implementation, only good for very basic NPCs
 
         public override string DisplayStats() => base.DisplayStats() +"; MP: " + Mana.ToString(Messages.Formatting_StatsNumberFormatting);
     }

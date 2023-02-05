@@ -1,5 +1,5 @@
-﻿using GenericRPG.Creatures;
-using GenericRPG.Creatures.Specializations;
+﻿using GenericRPG.Abilities;
+using GenericRPG.Creatures;
 using GenericRPG.Equipment.Armor;
 using GenericRPG.Equipment.Weapons;
 using GenericRPG.Properties;
@@ -28,7 +28,8 @@ namespace GenericRPG.Core
             };
 
         internal virtual Creature GenerateCasterEnemy() =>
-            new SpellCaster(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit),CasterMana)
+            new SpellCaster(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit),
+                CasterMana, new Spell[] { new Fireball(FireballLowerAttack, FireballUpperAttack, FireballManaCost)})
             { 
                 Name = Mechanics.Tutorial_CasterEnemyName,
                 Weapon = new Staff(StaffLowerAttack, StaffUpperAttack)
@@ -65,6 +66,9 @@ namespace GenericRPG.Core
         internal static int CasterMana { get; }
         internal static uint FigtherStrength { get; }
 
+        internal static int FireballManaCost { get; }
+        internal static int FireballLowerAttack { get; }
+        internal static int FireballUpperAttack { get; }
         internal static int DaggerLowerAttack { get; }
         internal static int DaggerUpperAttack { get; }
         internal static int SwordLowerAttack { get; }
@@ -83,6 +87,9 @@ namespace GenericRPG.Core
             FigtherStrength = Convert.ToUInt32(Mechanics.DefaultEnemies_Fighter_Strength);
             CasterMana = Convert.ToInt32(Mechanics.DefaultEnemies_SpellCaster_Mana);
 
+            FireballLowerAttack = Convert.ToInt32(Mechanics.DefaultEnemies_Fireball_LowerAttack);
+            FireballUpperAttack = Convert.ToInt32(Mechanics.DefaultEnemies_Fireball_UpperAttack);
+            FireballManaCost = Convert.ToInt32(Mechanics.DefaultEnemies_Fireball_ManaCost);
             DaggerLowerAttack = Convert.ToInt32(Mechanics.DefaultEnemies_Dagger_LowerAttack);
             DaggerUpperAttack = Convert.ToInt32(Mechanics.DefaultEnemies_Dagger_UpperAttack);
             SwordLowerAttack = Convert.ToInt32(Mechanics.DefaultEnemies_Sword_LowerAttack);

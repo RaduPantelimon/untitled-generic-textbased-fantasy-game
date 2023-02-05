@@ -133,6 +133,33 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 10.
+        /// </summary>
+        internal static string DefaultEnemies_Fireball_LowerAttack {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Fireball_LowerAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7.
+        /// </summary>
+        internal static string DefaultEnemies_Fireball_ManaCost {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Fireball_ManaCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 25.
+        /// </summary>
+        internal static string DefaultEnemies_Fireball_UpperAttack {
+            get {
+                return ResourceManager.GetString("DefaultEnemies_Fireball_UpperAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 30.
         /// </summary>
         internal static string DefaultEnemies_HitPoints_LowerLimit {

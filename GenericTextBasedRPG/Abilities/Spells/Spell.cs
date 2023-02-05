@@ -17,6 +17,6 @@ namespace GenericRPG.Abilities
             ManaCost = manaCost;
         }
 
-        public bool CanCast(SpellCaster caster) => caster.Mana >= ManaCost;
+        public bool CanBeCastedBy(SpellCaster caster) => caster.Mana >= ManaCost;
     }
 }
