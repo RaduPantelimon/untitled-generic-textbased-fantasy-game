@@ -62,21 +62,21 @@ namespace GenericRPG.Core
             _ => new HostileParty<Creature> { GenerateMeleeEnemy() },
         };
 
-        private protected static int CasterMana { get; }
-        private protected static uint FigtherStrength { get; }
+        internal static int CasterMana { get; }
+        internal static uint FigtherStrength { get; }
 
-        private protected static int DaggerLowerAttack { get; }
-        private protected static int DaggerUpperAttack { get; }
-        private protected static int SwordLowerAttack { get; }
-        private protected static int SwordUpperAttack { get; }
-        private protected static int StaffLowerAttack { get; }
-        private protected static int StaffUpperAttack { get; }
-        private protected static double MailArmorReduction { get; }
+        internal static int DaggerLowerAttack { get; }
+        internal static int DaggerUpperAttack { get; }
+        internal static int SwordLowerAttack { get; }
+        internal static int SwordUpperAttack { get; }
+        internal static int StaffLowerAttack { get; }
+        internal static int StaffUpperAttack { get; }
+        internal static double MailArmorReduction { get; }
 
-        private protected static int HealthUpperLimit { get; }
-        private protected static int HealthLowerLimit { get; }
+        internal static int HealthUpperLimit { get; }
+        internal static int HealthLowerLimit { get; }
 
-        private protected static double BossMultiplier { get; }
+        internal static double BossMultiplier { get; }
 
         static EnemiesFactory()
         {

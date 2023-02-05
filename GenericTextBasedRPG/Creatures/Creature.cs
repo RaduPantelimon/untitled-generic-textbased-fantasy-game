@@ -17,12 +17,10 @@ namespace GenericRPG.Creatures
     {
         public string? Name { get; init; }
 
-        public double HitPoints {
-            get;
-            private protected set;
+        public double HitPoints {get; private protected set;
         }
-        public double MaxHitPoints { get; internal set; }
-        public virtual bool IsAlive => HitPoints > 0;
+        public double MaxHitPoints { get; private protected set; }
+        public bool IsAlive => HitPoints > 0;
 
         //mitigate or absorb damage - mitigate with armor / natural defense or take it full on if armor missing
         public abstract Attack MitigateAttack(Attack attack);
