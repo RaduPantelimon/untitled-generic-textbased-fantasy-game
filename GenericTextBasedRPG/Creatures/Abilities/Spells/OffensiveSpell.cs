@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Abilities
+namespace GenericRPG.Creatures
 {
     //A BASE CLASS NAMED SPELL COULD ALSO BE CREATED
     public abstract class OffensiveSpell: Spell, IOffensiveAbility

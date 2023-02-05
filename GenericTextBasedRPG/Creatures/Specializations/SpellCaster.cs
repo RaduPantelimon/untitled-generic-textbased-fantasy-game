@@ -1,5 +1,4 @@
-﻿using GenericRPG.Abilities;
-using GenericRPG.Combat;
+﻿using GenericRPG.Combat;
 using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;

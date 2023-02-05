@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Abilities
+namespace GenericRPG.Creatures
 {
     public abstract class Spell:ICastable
     {

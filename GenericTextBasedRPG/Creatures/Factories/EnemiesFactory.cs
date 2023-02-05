@@ -1,5 +1,4 @@
-﻿using GenericRPG.Abilities;
-using GenericRPG.Creatures;
+﻿using GenericRPG.Creatures;
 using GenericRPG.Equipment.Armor;
 using GenericRPG.Equipment.Weapons;
 using GenericRPG.Properties;

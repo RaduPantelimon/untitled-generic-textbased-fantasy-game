@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Abilities
+namespace GenericRPG.Creatures
 {
     //very basic spell
     public class Fireball:OffensiveSpell

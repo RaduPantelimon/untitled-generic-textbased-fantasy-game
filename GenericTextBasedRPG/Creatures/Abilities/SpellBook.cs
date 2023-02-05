@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Abilities
+namespace GenericRPG.Creatures
 {
     //Implement Add Spell Method, etc.
     internal class SpellBook : IEnumerable<Spell>
