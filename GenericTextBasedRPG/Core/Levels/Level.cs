@@ -19,9 +19,10 @@ namespace GenericRPG.Core
 
         internal HostileParty<Creature>? CurrentEncounter { get; set; }
 
-        public abstract bool PlayerWon { get; }
-        public virtual bool PlayerLost => !(CurrentGame.Player?.IsAlive ?? true);
-        public virtual bool IsOver => PlayerWon || PlayerLost;
+        private protected abstract bool WinCondition { get; }
+        public bool PlayerWon => WinCondition;
+        public bool PlayerLost => !(CurrentGame.Player?.IsAlive ?? true);
+        public bool IsOver => PlayerWon || PlayerLost;
 
         internal Level(Game currentGame, Stack<HostileParty<Creature>> enemyEncounters) 
             => (CurrentGame,EnemyEncounters) = (currentGame, enemyEncounters);

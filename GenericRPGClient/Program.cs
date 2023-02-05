@@ -7,7 +7,7 @@ using (var game = new TutorialGame(Console.OpenStandardInput(), Console.OpenStan
     game.Play();
 
 
-using (var game = new ComplexGame())
+using (var game = new LocalLibraryGame())
 {
     game.Play();
 
@@ -15,9 +15,9 @@ using (var game = new ComplexGame())
 }
 
 //game class can be inherited and extended, but the internal workings of the class should not be interfearable
-class ComplexGame :TutorialGame
+class LocalLibraryGame :TutorialGame
 {
-    public ComplexGame(): base(Console.OpenStandardInput(), Console.OpenStandardOutput())
+    public LocalLibraryGame(): base(Console.OpenStandardInput(), Console.OpenStandardOutput())
     {
 
     }

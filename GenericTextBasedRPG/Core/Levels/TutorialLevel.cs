@@ -21,10 +21,9 @@ namespace GenericRPG.Core
                         }))
         {
         }
-        public override bool PlayerWon => CurrentEncounter is not { Count: > 0 } &&
+        private protected override bool WinCondition => CurrentEncounter is not { Count: > 0 } &&
                                         EnemyEncounters.Count == 0 && 
                                         CurrentGame is { Player: { IsAlive: true } };
 
-        public override bool IsOver => CurrentGame is { Player:{IsAlive: false }} || PlayerWon;
     }
 }
