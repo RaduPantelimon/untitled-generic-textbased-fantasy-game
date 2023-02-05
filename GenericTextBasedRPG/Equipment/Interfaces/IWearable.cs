@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace GenericRPG.Equipment
 {
-    public interface IWearable
+    //other stuff specific to clothing and armor should go here
+    public interface IWearable: IDefensiveAbility
     {
-        //good armor might convert a slashing attack into a blunt one
-        //default implementation leaves the attack unchanged
-        //could also be a good approach if we ever implement layered armor (Decorator pattern :P)
-        public Attack MitigateAttack(Attack attack) => attack;
     }
 }
