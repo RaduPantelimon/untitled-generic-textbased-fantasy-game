@@ -9,5 +9,6 @@ namespace GenericRPG.Equipment
     //other stuff specific to wieldable items should go here
     public interface IWieldable:IOffensiveAbility
     {
+        public Attack GetAttack(IAttacker attacker);
     }
 }

@@ -97,6 +97,15 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot cast spell with higher mana cost than the total remaining mana pool of caster..
+        /// </summary>
+        internal static string Exception_ManaCostExceedsManaPool {
+            get {
+                return ResourceManager.GetString("Exception_ManaCostExceedsManaPool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Impossible to deal negative damage to a creature.
         /// </summary>
         internal static string Exception_NegativeDamage {

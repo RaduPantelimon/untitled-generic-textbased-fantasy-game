@@ -129,6 +129,9 @@
   <data name="Exception_LowerLimitLargerThanUpperLimit" xml:space="preserve">
     <value>Lower limit cannot be larger than upper limit</value>
   </data>
+  <data name="Exception_ManaCostExceedsManaPool" xml:space="preserve">
+    <value>Cannot cast spell with higher mana cost than the total remaining mana pool of caster.</value>
+  </data>
   <data name="Exception_NegativeDamage" xml:space="preserve">
     <value>Impossible to deal negative damage to a creature</value>
     <comment>Raw damage should never be negative, use custom logic if attack should restore health</comment>
