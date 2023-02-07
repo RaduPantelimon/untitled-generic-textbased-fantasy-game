@@ -17,8 +17,22 @@ namespace GenericRPG.Creatures
     {
         public string? Name { get; init; }
 
-        public double HitPoints {get; private protected set;
+        private double hitpoints;
+
+        public double HitPoints 
+        {
+            get => hitpoints; 
+            private protected set
+            {
+                if (HitPoints > 0 && HitPoints <= value)
+                {
+                    HitPoints = 0;
+                    OnDeath(new DeathEventArgs(this));
+                }
+                else HitPoints = value;
+            }
         }
+
         public double MaxHitPoints { get; private protected set; }
         public bool IsAlive => HitPoints > 0;
 
@@ -37,22 +51,12 @@ namespace GenericRPG.Creatures
         //template method
         public AttackResult TakeDamage(Attack attack)
         {
-            bool isFatal = false;
             var mitigatedAttack = MitigateAttack(attack);
-            
+         
             //take damage
-            if (HitPoints > 0 && HitPoints <= mitigatedAttack.Damage)
-            {
-                HitPoints = 0;
-                isFatal = true;
-            }
-            else
-                HitPoints -= mitigatedAttack.Damage;
-
-            AttackResult attackResult =  new AttackResult(this, attack, isFatal);
-            //propagate events (first Attack, then Death)
+            HitPoints -= mitigatedAttack.Damage;
+            AttackResult attackResult =  new AttackResult(this, attack);
             OnHit(new AttackEventArgs(attack, attackResult));
-            if(isFatal) OnDeath(new DeathEventArgs(this));
             return attackResult;
         }
 

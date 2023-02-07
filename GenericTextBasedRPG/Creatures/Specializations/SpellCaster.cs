@@ -13,8 +13,6 @@ namespace GenericRPG.Creatures
         public double Mana { get; private protected set; }
         public double MaxMana { get; private protected set; }
 
-        public override double UnnarmedDamage => Convert.ToDouble(Mechanics.SpellCaster_DefaultUnnarmedDamage);
-
         private protected SpellBook SpellBook { get; }
 
         public SpellCaster(double hitpoints, double mana, IEnumerable<Spell> spells) : base(hitpoints)
@@ -40,7 +38,8 @@ namespace GenericRPG.Creatures
         private protected OffensiveSpell? ChooseOffensiveSpell() 
             => SpellBook.GetOffensiveSpells().Where(x => x.CanBeCastedBy(this)).FirstOrDefault();
 
-        //basic inflict damage - either weapon attack or unnarmed if weapon missing
+        //basic inflict damage - either cast spell or do base humanoid attack if not possible
+        //basic implementation, only good for very basic NPCs
         public override Attack GenerateAttack(IAttackable target)
         {
             //choose a valid spell and cast it
@@ -51,9 +50,6 @@ namespace GenericRPG.Creatures
             return base.GenerateAttack(target);
         }
                
-
-        //basic implementation, only good for very basic NPCs
-
         public override string DisplayStats() => base.DisplayStats() +"; MP: " + Mana.ToString(Messages.Formatting_StatsNumberFormatting);
     }
 }

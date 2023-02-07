@@ -97,6 +97,15 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        internal static string Default_Humanoid_FistDamage {
+            get {
+                return ResourceManager.GetString("Default_Humanoid_FistDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1.5.
         /// </summary>
         internal static string DefaultEnemies_BossMultiplier {
