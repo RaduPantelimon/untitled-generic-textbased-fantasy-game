@@ -12,11 +12,11 @@ namespace GenericRPG.Combat
         public Attack Attack { get; }
         internal IAttackable Target {get; }
 
-        internal AttackResult(IAttackable target, Attack attack, bool isFatal)
+        internal AttackResult(IAttackable target, Attack attack)
         {
-            IsFatal = isFatal;
             Attack = attack;
             Target = target;
+            IsFatal = !target.IsAlive;
         }
     }
 }
