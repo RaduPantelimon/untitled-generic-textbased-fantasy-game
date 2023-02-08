@@ -17,7 +17,7 @@ namespace GenericRPG
 
         private Randomizer()
         {
-            //TO DO - add seed
+            //TO DO - add optional seed parameter
             Random = new Random();
         }
 
