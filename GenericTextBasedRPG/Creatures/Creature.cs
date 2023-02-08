@@ -17,19 +17,18 @@ namespace GenericRPG.Creatures
     {
         public string? Name { get; init; }
 
-        private double hitpoints;
-
+        private double hitpoints = 0;
         public double HitPoints 
         {
             get => hitpoints; 
             private protected set
             {
-                if (HitPoints > 0 && HitPoints <= value)
+                if (HitPoints > 0 && value <= 0)
                 {
-                    HitPoints = 0;
+                    hitpoints = 0;
                     OnDeath(new DeathEventArgs(this));
                 }
-                else HitPoints = value;
+                else hitpoints = value;
             }
         }
 
