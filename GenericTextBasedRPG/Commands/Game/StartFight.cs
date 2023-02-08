@@ -12,12 +12,13 @@ namespace GenericRPG.Commands
     {
         public override string Name { get; } = Messages.Command_StartFight;
 
-        internal override void Execute(Game engine)
-         => engine.CurrentLevel!.CurrentEncounter = engine.CurrentLevel.EnemyEncounters.Pop();
+        internal override void Execute(Game game)
+         => game.GameState.CurrentLevel!.CurrentEncounter = game.GameState.CurrentLevel.EnemyEncounters.Pop();
 
 
-        public override bool IsValid(Game engine) 
-            => !engine.InCombat && engine is { CurrentLevel: { EnemyEncounters: { Count: > 0 } } };
+        public override bool IsValid(Game game) 
+            => (game.GameState.Status & PlayerStatus.InCombat) == 0 
+            && game.GameState is { CurrentLevel: { EnemyEncounters: { Count: > 0 } } };
 
         public override StartFight Clone() => new StartFight();
     }

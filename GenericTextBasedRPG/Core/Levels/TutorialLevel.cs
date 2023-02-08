@@ -12,8 +12,7 @@ namespace GenericRPG.Core
     public class TutorialLevel : Level
     {
         internal TutorialLevel(Game currentGame, EnemiesFactory enemiesFactory)
-            : base(currentGame,
-                    new Stack<HostileParty<Creature>>(new HostileParty<Creature>[]
+            : base(new Stack<HostileParty<Creature>>(new HostileParty<Creature>[]
                         {
                             //enemiesFactory.GetEnemiesGroup(PartySize.Single)
                             enemiesFactory.GetEnemiesGroup(PartySize.Large),
@@ -21,9 +20,8 @@ namespace GenericRPG.Core
                         }))
         {
         }
-        private protected override bool WinCondition => CurrentEncounter is not { Count: > 0 } &&
-                                        EnemyEncounters.Count == 0 && 
-                                        CurrentGame is { Player: { IsAlive: true } };
+
+        public override bool LevelFinished => CurrentEncounter is not { Count: > 0 } && EnemyEncounters.Count == 0;
 
     }
 }

@@ -14,27 +14,21 @@ namespace GenericRPG.Core
 {
 
     //TO DO REPLACE STARTED AND QUIT PROPERTIES WITH STATE ENUM
-    public abstract class Game: IDisposable
+    public abstract partial class Game: IDisposable
     {
         //maybe move this to resx
         static readonly int CommandsOnTheSameLine = 3;
 
-        private protected IReadOnlyList<Command> Commands { get; } 
-        internal FormattingService FormattingService { get; set; }
+        private protected IReadOnlyList<Command> Commands { get; }
+        internal GameState GameState { get; }  
 
-        public Player? Player { get; private protected set; }
-        public Level? CurrentLevel { get; private protected set; }
+        internal FormattingService FormattingService { get; set; }
 
         public bool PlayerQuit { get; private protected set; }
 
-        public bool PlayerWon => WinCondition;
-        public bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
-        public bool IsOver => PlayerQuit || PlayerLost || PlayerWon;
-        public bool InCombat => CurrentLevel is { CurrentEncounter: { Count: > 0 } };
+        private protected abstract bool GameWon { get; }
 
-        private protected abstract bool WinCondition { get; }
-
-        public bool IsDisposed { get; private set; }
+        public bool IsDisposed { get; private protected set; }
 
         internal abstract string GetUserInput();
         internal abstract void SendUserMessage(string message, bool flushToStream = true);
@@ -42,8 +36,9 @@ namespace GenericRPG.Core
         internal abstract void StartNextLevel();
 
         //TO DO BUILD AN INTERFACE FOR COMMANDS?
-        internal Game( List<Command> commands, FormattingService formattingService)
+        internal Game(GameState gameState, List<Command> commands, FormattingService formattingService)
         {
+            GameState = gameState;
             Commands = commands;
             FormattingService = formattingService;
         }
@@ -53,14 +48,14 @@ namespace GenericRPG.Core
             if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
             Command? command = null;
 
-            while (!IsOver)
+            while ((PlayerStatus.GameOver & GameState.Status) == 0)
             {
                 try
                 {
-                    if(InCombat)
+                    if((PlayerStatus.InCombat & GameState.Status) != 0)
                     {
                         SendUserMessage(Messages.Menu_InCombat);
-                        SendUserMessage(FormattingService.EntitiesList(CurrentLevel!.CurrentEncounter!,1));
+                        SendUserMessage(FormattingService.EntitiesList(GameState.CurrentLevel!.CurrentEncounter!,1));
                         SendUserMessage(string.Empty);
                     }
                     command = GetCommand();
@@ -112,33 +107,34 @@ namespace GenericRPG.Core
         private protected virtual void PostCommandLogic()
         {
             //if in combat, mobs attack Player after each action
-            if (!InCombat) return;
+            if ((PlayerStatus.InCombat & GameState.Status) == 0) return;
             SendUserMessage(string.Empty);
-            foreach (var enemy in CurrentLevel!.CurrentEncounter!)
+            foreach (var enemy in GameState.CurrentLevel!.CurrentEncounter!)
             {
-                AttackResult result = enemy.DoDamage(Player!.Hero!);
+                AttackResult result = enemy.DoDamage(GameState.Player!.Hero!);
                 SendUserMessage(FormattingService.AttackedByMessage(result));
             }
             //after attacks, display hero status
             SendUserMessage(string.Empty);
-            SendUserMessage(String.Format(Messages.Menu_HeroStatus, FormattingService.EntityStatusMessage(Player!.Hero!)));
+            SendUserMessage(String.Format(Messages.Menu_HeroStatus, FormattingService.EntityStatusMessage(GameState.Player!.Hero!)));
         }
 
         //this could be extended to show score or other features, depending on game mode. levels and other stuff
         private protected virtual void DisplayEndGameResults()
         {
-            if (PlayerLost) 
+            //(PlayerStatus.InCombat & GameState.Status) == 0
+            if ((GameState.Status & PlayerStatus.Defeat) != 0) 
                 SendUserMessage(Messages.Menu_PlayerLost);
-            else if (PlayerWon)
+            else if ((GameState.Status & PlayerStatus.GameWon) != 0)
                 SendUserMessage(Messages.Menu_PlayerWon);
-            else if (PlayerQuit)
+            else if ((GameState.Status & PlayerStatus.Quit) != 0)
                 SendUserMessage(Messages.Menu_PlayerQuit);
         }
 
         internal virtual void Quit()
         {
             if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
-            PlayerQuit = true;
+            GameState.Quit();
         }
 
         public void Dispose()

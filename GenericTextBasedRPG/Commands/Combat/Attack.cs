@@ -14,24 +14,24 @@ namespace GenericRPG.Commands
     {
         public override string Name { get; } = Messages.Command_Attack;
 
-        internal override void Execute(Game engine)
+        internal override void Execute(Game game)
         {
-            HostileParty<Creature> hostileParty = engine.CurrentLevel!.CurrentEncounter!;
+            HostileParty<Creature> hostileParty = game.GameState.CurrentLevel!.CurrentEncounter!;
 
             //give user instruction
-            engine.SendUserMessage(Messages.Menu_ChooseMobToAttack);
+            game.SendUserMessage(Messages.Menu_ChooseMobToAttack);
 
             //retrieve response and interpret characters
             try
             {
-                int mobIndex = int.Parse(engine.GetUserInput()) - 1;
+                int mobIndex = int.Parse(game.GetUserInput()) - 1;
 
                 if (mobIndex < 0 && mobIndex < hostileParty.Count)
                     throw new InvalidOperationException(Exceptions.Exception_InvalidEnemyIndex);
                 
-                AttackResult attResult = engine.Player!.Hero!.DoDamage(hostileParty[mobIndex]);
-                engine.SendUserMessage(String.Empty);
-                engine.SendUserMessage(engine.FormattingService.AttackMessage(attResult));
+                AttackResult attResult = game.GameState.Player!.Hero!.DoDamage(hostileParty[mobIndex]);
+                game.SendUserMessage(String.Empty);
+                game.SendUserMessage(game.FormattingService.AttackMessage(attResult));
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace GenericRPG.Commands
             }
         }
 
-        public override bool IsValid(Game engine) => engine.CurrentLevel?.CurrentEncounter?.Count > 0;
+        public override bool IsValid(Game game) => game.GameState.CurrentLevel?.CurrentEncounter?.Count > 0;
 
 
         public override Command Clone() => new Attack();

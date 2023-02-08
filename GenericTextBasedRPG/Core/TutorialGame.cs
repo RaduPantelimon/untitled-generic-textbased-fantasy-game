@@ -18,16 +18,17 @@ namespace GenericRPG
         TextReader Reader { get; }
         TextWriter Writer { get; }
 
-        public new bool IsDisposed { get; private set; }
-
-        public TutorialGame(Stream input, Stream output) : base(CommandRepository.AvailableCommands, FormattingService.Instance)
+        public TutorialGame(Stream input, Stream output) 
+            : base(
+                new GameState(new Player()), //Tutorial Games always start with a new player 
+                CommandRepository.AvailableCommands, 
+                FormattingService.Instance)
         {
             Reader = new StreamReader(input);
             Writer = new StreamWriter(output);
 
             //In the tutorial, the player can only fight using a generic, hardcoded character
-            Player = new Player();
-            Player.Hero = new Fighter(Randomizer.Instance.Next(250, 300), 20)
+            GameState.Player.Hero = new Fighter(Randomizer.Instance.Next(250, 300), 20)
             {
                 Name = Mechanics.Tutorial_HeroName,
                 Weapon = new Sword(15, 20), 
@@ -36,16 +37,16 @@ namespace GenericRPG
         }
         
         //if the tutorial level is beat, the Tutorial Game is Won!
-        private protected override bool WinCondition => CurrentLevel?.PlayerWon??false;
+        private protected override bool GameWon => GameState.Status == PlayerStatus.LevelWon;
 
         internal override void StartNextLevel()
         {
             if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
 
-            if (CurrentLevel is {IsOver: false }) 
+            if ((GameState.Status & PlayerStatus.GameOver) != 0) 
                 throw new InvalidOperationException(Exceptions.Exception_LevelAlreadyInProgress);
 
-            CurrentLevel = TutorialLevelFactory.Instance.GetLevel(this);
+            GameState.CurrentLevel = TutorialLevelFactory.Instance.GetLevel(this);
         }
 
         internal override string GetUserInput()

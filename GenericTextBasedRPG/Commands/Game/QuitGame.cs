@@ -12,10 +12,9 @@ namespace GenericRPG.Commands
     {
         public override string Name { get; } = Mechanics.Command_QuitGame;
 
-        internal override void Execute(Game engine) => engine.Quit();
+        internal override void Execute(Game game) => game.Quit();
 
-        public override bool IsValid(Game engine) => !engine.IsOver;
-
+        public override bool IsValid(Game game) => (game.GameState.Status & PlayerStatus.Quit) == 0;
 
         public override Command Clone() => new QuitGame();
 
