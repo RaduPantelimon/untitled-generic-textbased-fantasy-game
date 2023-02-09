@@ -61,7 +61,7 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select a number between 1 and the number of enemies in the party.
+        ///   Looks up a localized string similar to Enemy Index must be a number between 1 and the number of enemies in the party.
         /// </summary>
         internal static string Exception_InvalidEnemyIndex {
             get {
@@ -111,6 +111,15 @@ namespace GenericRPG.Properties {
         internal static string Exception_NegativeDamage {
             get {
                 return ResourceManager.GetString("Exception_NegativeDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Status for the current CommandResult is not recognized..
+        /// </summary>
+        internal static string Exception_NotRecognizedCommandStatus {
+            get {
+                return ResourceManager.GetString("Exception_NotRecognizedCommandStatus", resourceCulture);
             }
         }
     }

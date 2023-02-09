@@ -36,7 +36,7 @@ namespace GenericRPG
             };
         }
         
-        //if the tutorial level is beat, the Tutorial Game is Won!
+        //if the first level is beat, the Tutorial Game is Won!
         private protected override bool GameWon => GameState.Status == PlayerStatus.LevelWon;
 
         internal override void StartNextLevel()

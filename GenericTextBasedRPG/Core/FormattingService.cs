@@ -1,4 +1,5 @@
 ﻿using GenericRPG.Combat;
+using GenericRPG.Commands;
 using GenericRPG.Creatures;
 using GenericRPG.Helpers;
 using GenericRPG.Helpers.Interfaces;
@@ -51,6 +52,18 @@ namespace GenericRPG.Core
                 attackResult.Target.Name,
                 attackResult.Attack.Damage,
                 attackResult.Attack.DamageType.ToFormattedString());
+
+        public virtual string CommandResultMessage(CommandResult commandResult)
+        {
+            string messageBase = commandResult.Status switch
+            {
+                CommandStatus.Failed => Messages.Command_GenericFailureMessage,
+                CommandStatus.Successful => Messages.Command_GenericSuccessMessage,
+                _ => throw new ArgumentException(Exceptions.Exception_NotRecognizedCommandStatus)
+            };
+
+            return String.Format(messageBase, commandResult.Command.Name, commandResult.Description);
+        }
 
         public virtual string EntityStatusMessage(IEntity entity)
             => String.Format(Messages.Menu_MobDisplayTemplate, entity.Name, entity.DisplayStats());

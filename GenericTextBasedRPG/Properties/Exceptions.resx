@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Exception_InvalidEnemyIndex" xml:space="preserve">
-    <value>Please select a number between 1 and the number of enemies in the party</value>
+    <value>Enemy Index must be a number between 1 and the number of enemies in the party</value>
   </data>
   <data name="Exception_InvalidInputCommand" xml:space="preserve">
     <value>The given input is invalid or the command cannot be executed</value>
@@ -135,5 +135,8 @@
   <data name="Exception_NegativeDamage" xml:space="preserve">
     <value>Impossible to deal negative damage to a creature</value>
     <comment>Raw damage should never be negative, use custom logic if attack should restore health</comment>
+  </data>
+  <data name="Exception_NotRecognizedCommandStatus" xml:space="preserve">
+    <value>The Status for the current CommandResult is not recognized.</value>
   </data>
 </root>

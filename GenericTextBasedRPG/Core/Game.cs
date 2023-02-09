@@ -21,13 +21,9 @@ namespace GenericRPG.Core
 
         private protected IReadOnlyList<Command> Commands { get; }
         internal GameState GameState { get; }  
-
         internal FormattingService FormattingService { get; set; }
 
-        public bool PlayerQuit { get; private protected set; }
-
         private protected abstract bool GameWon { get; }
-
         public bool IsDisposed { get; private protected set; }
 
         internal abstract string GetUserInput();
@@ -52,23 +48,15 @@ namespace GenericRPG.Core
             {
                 try
                 {
-                    if((PlayerStatus.InCombat & GameState.Status) != 0)
-                    {
-                        SendUserMessage(Messages.Menu_InCombat);
-                        SendUserMessage(FormattingService.EntitiesList(GameState.CurrentLevel!.CurrentEncounter!,1));
-                        SendUserMessage(string.Empty);
-                    }
+                    PreCommandLogic(); //redefine logic depending on specific of the subclass
                     command = GetCommand();
-                    command.Execute(this);
-                    //redefine logic depending on specific of the subclass
-                    PostCommandLogic();
+                    CommandResult result = command.Execute(this);
+                    PostCommandLogic(result); //redefine logic depending on specific of the subclass
                 }
                 catch (InvalidCommandException ex)
                 {
-                    //log problem to user
-                    SendUserMessage(String.Format(Messages.Command_InvalidCommand, ex.Message));
+                    SendUserMessage(String.Format(Messages.Command_InvalidCommand, ex.Message));//log problem to user
                 }
-                catch { throw; }
                 finally
                 {
                     SendUserMessage(string.Empty);
@@ -104,10 +92,58 @@ namespace GenericRPG.Core
             }
         }
 
-        private protected virtual void PostCommandLogic()
+        //more logic can be added here, depending on the
+        private void PreCommandLogic()
         {
+            //This is a tad convoluted, but I just wanted to build a switch for a Flags Enum
+            //WARNING: the order of the States might matter when we add more features
+            foreach (PlayerStatus possibleState in Enum.GetValues(typeof(PlayerStatus))) 
+                if (GameState.Status.HasFlag(possibleState))
+                    switch (possibleState)
+                    {
+                        case PlayerStatus.InCombat:
+                            PreCommand_InCombat();
+                            break;
+                        case PlayerStatus.Idle:
+                            PreCommand_Idle();
+                            break;
+                        //ADD MORE STATES HERE, IF NEEDED AS NEW FEATURES/BEHAVIOURS ARE ADDED
+                    }
+        }
+
+        private protected virtual void PreCommand_Idle() { }
+        private protected virtual void PreCommand_InCombat()
+        {
+            SendUserMessage(Messages.Menu_InCombat);
+            SendUserMessage(FormattingService.EntitiesList(GameState.CurrentLevel!.CurrentEncounter!, 1));
+            SendUserMessage(string.Empty);
+        }
+
+        private void PostCommandLogic(CommandResult commandResult)
+        {
+            if (commandResult.Status == CommandStatus.Failed)
+                SendUserMessage(FormattingService.CommandResultMessage(commandResult));
+
             //if in combat, mobs attack Player after each action
-            if ((PlayerStatus.InCombat & GameState.Status) == 0) return;
+            foreach (PlayerStatus possibleState in Enum.GetValues(typeof(PlayerStatus)))
+                if (GameState.Status.HasFlag(possibleState))
+                    switch (possibleState)
+                    {
+                        case PlayerStatus.InCombat:
+                            PostCommand_InCombat(commandResult);
+                            break;
+                        case PlayerStatus.Idle:
+                            PreCommand_Idle();
+                            break;
+                        //ADD MORE STATES HERE, AS NEW FEATURES/BEHAVIOURS ARE ADDED
+                    }
+        }
+
+        private protected virtual void PreCommand_Idle(CommandResult commandResult) { }
+        private protected virtual void PostCommand_InCombat(CommandResult commandResult)
+        {
+            if (commandResult.Status == CommandStatus.Failed) return; //we do not attack if 
+
             SendUserMessage(string.Empty);
             foreach (var enemy in GameState.CurrentLevel!.CurrentEncounter!)
             {
@@ -131,7 +167,7 @@ namespace GenericRPG.Core
                 SendUserMessage(Messages.Menu_PlayerQuit);
         }
 
-        internal virtual void Quit()
+        internal void Quit()
         {
             if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
             GameState.Quit();

@@ -79,6 +79,24 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} could not be executed due to the following reason: {1}. Please try again!.
+        /// </summary>
+        internal static string Command_GenericFailureMessage {
+            get {
+                return ResourceManager.GetString("Command_GenericFailureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} was executed successfully. Result {1}.
+        /// </summary>
+        internal static string Command_GenericSuccessMessage {
+            get {
+                return ResourceManager.GetString("Command_GenericSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command Selection Error: {0}.
         /// </summary>
         internal static string Command_InvalidCommand {
