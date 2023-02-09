@@ -142,6 +142,60 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enemy Attacked Successfully..
+        /// </summary>
+        internal static string Command_SuccessResult_Attack {
+            get {
+                return ResourceManager.GetString("Command_SuccessResult_Attack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flee Operation was successful..
+        /// </summary>
+        internal static string Command_SuccessResult_Flee {
+            get {
+                return ResourceManager.GetString("Command_SuccessResult_Flee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Quit..
+        /// </summary>
+        internal static string Command_SuccessResult_Quit {
+            get {
+                return ResourceManager.GetString("Command_SuccessResult_Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level Quit..
+        /// </summary>
+        internal static string Command_SuccessResult_QuitLevel {
+            get {
+                return ResourceManager.GetString("Command_SuccessResult_QuitLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next Enemy Party was engaged..
+        /// </summary>
+        internal static string Command_SuccessResult_StartFight {
+            get {
+                return ResourceManager.GetString("Command_SuccessResult_StartFight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level Started..
+        /// </summary>
+        internal static string Command_SuccessResult_StartLevel {
+            get {
+                return ResourceManager.GetString("Command_SuccessResult_StartLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You ran away and left the group of enemies behind! You can rest before you engage them again. .
         /// </summary>
         internal static string Event_Flee {

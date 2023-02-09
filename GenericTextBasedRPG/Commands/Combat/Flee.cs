@@ -12,7 +12,7 @@ namespace GenericRPG.Commands
     {
         public override string Name { get; } = Messages.Command_Flee;
 
-        internal override void Execute(Game game)
+        internal override CommandResult Execute(Game game)
         {
             //move encounter back in the queue
             Level currentLevel = game.GameState.CurrentLevel!;
@@ -20,6 +20,8 @@ namespace GenericRPG.Commands
             currentLevel!.CurrentEncounter = null;
 
             game.SendUserMessage(Messages.Event_Flee);
+
+            return CommandResult.Success(Messages.Command_SuccessResult_Flee);
         }
 
         public override bool IsValid(Game game) => game.GameState.CurrentLevel?.CurrentEncounter?.Count > 0;

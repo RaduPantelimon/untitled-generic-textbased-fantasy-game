@@ -12,9 +12,13 @@ namespace GenericRPG.Commands
     {
         public override string Name { get; } = Messages.Command_StartFight;
 
-        internal override void Execute(Game game)
-         => game.GameState.CurrentLevel!.CurrentEncounter = game.GameState.CurrentLevel.EnemyEncounters.Pop();
+        internal override CommandResult Execute(Game game)
+        {
+            Level currentLevel = game.GameState.CurrentLevel!;
+            currentLevel.CurrentEncounter = currentLevel.EnemyEncounters.Pop();
 
+            return CommandResult.Success(Messages.Command_SuccessResult_StartFight);
+        }
 
         public override bool IsValid(Game game) 
             => (game.GameState.Status & PlayerStatus.InCombat) == 0 

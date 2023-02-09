@@ -17,7 +17,7 @@ namespace GenericRPG.Commands
 
         }
 
-        internal abstract void Execute(Game engine);
+        internal abstract CommandResult Execute(Game engine);
 
         //check if command is valid for a current stage of the game
         public abstract bool IsValid(Game engine);
