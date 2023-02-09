@@ -15,7 +15,7 @@ namespace GenericRPG.Commands
         internal override CommandResult Execute(Game game)
         {
             game.StartNextLevel();
-            return CommandResult.Success(Messages.Command_SuccessResult_StartLevel);
+            return CommandResult.Success(this, Messages.Command_SuccessResult_StartLevel);
         }
         public override bool IsValid(Game game)
             => ((game.GameState.Status & (PlayerStatus.GameOver | PlayerStatus.LevelInProgress)) == 0);

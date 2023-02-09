@@ -22,17 +22,17 @@ namespace GenericRPG.Commands
             game.SendUserMessage(Messages.Menu_ChooseMobToAttack);
 
             //retrieve response and interpret characters
-            
             bool parsingSuccessful = int.TryParse(game.GetUserInput(),out int mobIndex);
+            mobIndex--;
 
             if (!parsingSuccessful || mobIndex < 0 || mobIndex > hostileParty.Count)
-                return CommandResult.Failure(Exceptions.Exception_InvalidEnemyIndex);
+                return CommandResult.Failure(this, Exceptions.Exception_InvalidEnemyIndex);
                 
             AttackResult attResult = game.GameState.Player!.Hero!.DoDamage(hostileParty[mobIndex]);
             game.SendUserMessage(String.Empty);
             game.SendUserMessage(game.FormattingService.AttackMessage(attResult));
 
-            return CommandResult.Success(Messages.Command_SuccessResult_Attack);
+            return CommandResult.Success(this, Messages.Command_SuccessResult_Attack);
         }
 
         public override bool IsValid(Game game) => game.GameState.CurrentLevel?.CurrentEncounter?.Count > 0;

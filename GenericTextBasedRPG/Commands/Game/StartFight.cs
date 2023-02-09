@@ -17,7 +17,7 @@ namespace GenericRPG.Commands
             Level currentLevel = game.GameState.CurrentLevel!;
             currentLevel.CurrentEncounter = currentLevel.EnemyEncounters.Pop();
 
-            return CommandResult.Success(Messages.Command_SuccessResult_StartFight);
+            return CommandResult.Success(this, Messages.Command_SuccessResult_StartFight);
         }
 
         public override bool IsValid(Game game) 

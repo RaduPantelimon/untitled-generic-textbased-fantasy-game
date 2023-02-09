@@ -15,7 +15,7 @@ namespace GenericRPG.Commands
         internal override CommandResult Execute(Game game)
         {
             game.Quit();
-            return CommandResult.Success(Messages.Command_SuccessResult_Quit);
+            return CommandResult.Success(this, Messages.Command_SuccessResult_Quit);
         }
         public override bool IsValid(Game game) => (game.GameState.Status & PlayerStatus.Quit) == 0;
 

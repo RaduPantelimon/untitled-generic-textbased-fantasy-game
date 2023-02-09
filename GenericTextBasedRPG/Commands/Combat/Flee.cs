@@ -21,7 +21,7 @@ namespace GenericRPG.Commands
 
             game.SendUserMessage(Messages.Event_Flee);
 
-            return CommandResult.Success(Messages.Command_SuccessResult_Flee);
+            return CommandResult.Success(this, Messages.Command_SuccessResult_Flee);
         }
 
         public override bool IsValid(Game game) => game.GameState.CurrentLevel?.CurrentEncounter?.Count > 0;
