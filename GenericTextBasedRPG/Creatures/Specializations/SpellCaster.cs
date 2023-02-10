@@ -35,7 +35,8 @@ namespace GenericRPG.Creatures
         }
 
         //choose a spell to attack with, instead of using a basic attack
-        private protected OffensiveSpell? ChooseOffensiveSpell() 
+        //Depending on implementation, the Strategy Pattern can be used here and the logic can be encapsulated in a set of classes
+        private protected virtual OffensiveSpell? ChooseOffensiveSpell() 
             => SpellBook.OfType<OffensiveSpell>().Where(x => x.CanBeCastedBy(this)).FirstOrDefault();
 
         //basic inflict damage - either cast spell or do base humanoid attack if not possible

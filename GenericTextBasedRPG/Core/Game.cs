@@ -12,18 +12,16 @@ using System.Threading.Tasks;
 
 namespace GenericRPG.Core
 {
-
-    //TO DO REPLACE STARTED AND QUIT PROPERTIES WITH STATE ENUM
     public abstract partial class Game: IDisposable
     {
-        //maybe move this to resx
+        //maybe move this to the resx
         static readonly int CommandsOnTheSameLine = 3;
 
         private protected IReadOnlyList<Command> Commands { get; }
         internal GameState GameState { get; }  
         internal FormattingService FormattingService { get; set; }
 
-        private protected abstract bool GameWon { get; }
+        private protected abstract bool WinCondition { get; }
         public bool IsDisposed { get; private protected set; }
 
         internal abstract string GetUserInput();
@@ -124,6 +122,8 @@ namespace GenericRPG.Core
             if (commandResult.Status == CommandStatus.Failed)
                 SendUserMessage(FormattingService.CommandResultMessage(commandResult));
 
+            
+
             //if in combat, mobs attack Player after each action
             foreach (GameplayStatus possibleState in Enum.GetValues(typeof(GameplayStatus)))
                 if (GameState.Status.HasFlag(possibleState))
@@ -133,13 +133,15 @@ namespace GenericRPG.Core
                             PostCommand_InCombat(commandResult);
                             break;
                         case GameplayStatus.Idle:
-                            PreCommand_Idle();
+                            PostCommand_Idle(commandResult);
                             break;
                         //ADD MORE STATES HERE, AS NEW FEATURES/BEHAVIOURS ARE ADDED
                     }
+
+            if (WinCondition) GameState.PlayerWon(); //after each command, we check the win condition
         }
 
-        private protected virtual void PreCommand_Idle(CommandResult commandResult) { }
+        private protected virtual void PostCommand_Idle(CommandResult commandResult) { }
         private protected virtual void PostCommand_InCombat(CommandResult commandResult)
         {
             if (commandResult.Status == CommandStatus.Failed) return; //we do not attack if 

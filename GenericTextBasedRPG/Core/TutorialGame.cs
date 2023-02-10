@@ -39,7 +39,7 @@ namespace GenericRPG
         }
         
         //if the first level is beat, the Tutorial Game is Won!
-        private protected override bool GameWon => GameState.Status.HasFlag(GameplayStatus.LevelWon);
+        private protected override bool WinCondition => GameState.Status.HasFlag(GameplayStatus.LevelWon);
 
         internal override void StartNextLevel()
         {

@@ -1,5 +1,6 @@
 ﻿
 using GenericRPG.Helpers;
+using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,11 +46,13 @@ namespace GenericRPG.Core
 
         internal virtual void Quit()
         {
+            if (playerWon) throw new InvalidOperationException(Exceptions.Exception_GameCannotBeWonAfterQuitting);
             playerQuit = true;
         }
 
         internal virtual void PlayerWon()
         {
+            if (playerQuit) throw new InvalidOperationException(Exceptions.Exception_GameCannotBeWonAfterQuitting);
             playerWon = true;
         }
     }

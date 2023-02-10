@@ -61,6 +61,24 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Player cannot quit the game after winning.
+        /// </summary>
+        internal static string Exception_CannotQuitGameAfterWinning {
+            get {
+                return ResourceManager.GetString("Exception_CannotQuitGameAfterWinning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player cannot win game after quitting!.
+        /// </summary>
+        internal static string Exception_GameCannotBeWonAfterQuitting {
+            get {
+                return ResourceManager.GetString("Exception_GameCannotBeWonAfterQuitting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enemy Index must be a number between 1 and the number of enemies in the party.
         /// </summary>
         internal static string Exception_InvalidEnemyIndex {
