@@ -44,7 +44,7 @@ namespace GenericRPG.Core
             if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
             Command? command = null;
 
-            while ((PlayerStatus.GameOver & GameState.Status) == 0)
+            while ((GameplayStatus.GameOver & GameState.Status) == 0)
             {
                 try
                 {
@@ -97,14 +97,14 @@ namespace GenericRPG.Core
         {
             //This is a tad convoluted, but I just wanted to build a switch for a Flags Enum
             //WARNING: the order of the States might matter when we add more features
-            foreach (PlayerStatus possibleState in Enum.GetValues(typeof(PlayerStatus))) 
+            foreach (GameplayStatus possibleState in Enum.GetValues(typeof(GameplayStatus))) 
                 if (GameState.Status.HasFlag(possibleState))
                     switch (possibleState)
                     {
-                        case PlayerStatus.InCombat:
+                        case GameplayStatus.InCombat:
                             PreCommand_InCombat();
                             break;
-                        case PlayerStatus.Idle:
+                        case GameplayStatus.Idle:
                             PreCommand_Idle();
                             break;
                         //ADD MORE STATES HERE, IF NEEDED AS NEW FEATURES/BEHAVIOURS ARE ADDED
@@ -125,14 +125,14 @@ namespace GenericRPG.Core
                 SendUserMessage(FormattingService.CommandResultMessage(commandResult));
 
             //if in combat, mobs attack Player after each action
-            foreach (PlayerStatus possibleState in Enum.GetValues(typeof(PlayerStatus)))
+            foreach (GameplayStatus possibleState in Enum.GetValues(typeof(GameplayStatus)))
                 if (GameState.Status.HasFlag(possibleState))
                     switch (possibleState)
                     {
-                        case PlayerStatus.InCombat:
+                        case GameplayStatus.InCombat:
                             PostCommand_InCombat(commandResult);
                             break;
-                        case PlayerStatus.Idle:
+                        case GameplayStatus.Idle:
                             PreCommand_Idle();
                             break;
                         //ADD MORE STATES HERE, AS NEW FEATURES/BEHAVIOURS ARE ADDED
@@ -159,11 +159,11 @@ namespace GenericRPG.Core
         private protected virtual void DisplayEndGameResults()
         {
             //(PlayerStatus.InCombat & GameState.Status) == 0
-            if ((GameState.Status & PlayerStatus.Defeat) != 0) 
+            if (GameState.Status.HasFlag(GameplayStatus.Defeat)) 
                 SendUserMessage(Messages.Menu_PlayerLost);
-            else if ((GameState.Status & PlayerStatus.GameWon) != 0)
+            else if (GameState.Status.HasFlag(GameplayStatus.GameWon))
                 SendUserMessage(Messages.Menu_PlayerWon);
-            else if ((GameState.Status & PlayerStatus.Quit) != 0)
+            else if (GameState.Status.HasFlag(GameplayStatus.Quit))
                 SendUserMessage(Messages.Menu_PlayerQuit);
         }
 

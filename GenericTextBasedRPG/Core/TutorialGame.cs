@@ -1,8 +1,8 @@
 ﻿using GenericRPG.Commands;
 using GenericRPG.Core;
 using GenericRPG.Creatures;
-using GenericRPG.Equipment.Armor;
-using GenericRPG.Equipment.Weapons;
+using GenericRPG.Items.Armor;
+using GenericRPG.Items.Weapons;
 using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
@@ -37,13 +37,13 @@ namespace GenericRPG
         }
         
         //if the first level is beat, the Tutorial Game is Won!
-        private protected override bool GameWon => GameState.Status == PlayerStatus.LevelWon;
+        private protected override bool GameWon => GameState.Status.HasFlag(GameplayStatus.LevelWon);
 
         internal override void StartNextLevel()
         {
             if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
 
-            if ((GameState.Status & PlayerStatus.GameOver) != 0) 
+            if ((GameState.Status & GameplayStatus.GameOver) != 0) 
                 throw new InvalidOperationException(Exceptions.Exception_LevelAlreadyInProgress);
 
             GameState.CurrentLevel = TutorialLevelFactory.Instance.GetLevel(this);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GenericRPG.Core
 {
     [Flags]
-    public enum PlayerStatus
+    public enum GameplayStatus
     {
         Idle = 1,
         InCombat = 2,
@@ -19,12 +19,3 @@ namespace GenericRPG.Core
         LevelInProgress = Idle | InCombat, 
     }
 }
-
-/*
-
-        public bool PlayerWon => WinCondition;
-        public bool PlayerLost => !(Player?.Hero?.IsAlive ?? true);
-        public bool IsOver => PlayerQuit || PlayerLost || PlayerWon;
-        public bool InCombat => CurrentLevel is { CurrentEncounter: { Count: > 0 } }; 
- 
-*/
