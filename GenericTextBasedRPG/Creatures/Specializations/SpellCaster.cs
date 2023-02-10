@@ -36,7 +36,7 @@ namespace GenericRPG.Creatures
 
         //choose a spell to attack with, instead of using a basic attack
         private protected OffensiveSpell? ChooseOffensiveSpell() 
-            => SpellBook.GetOffensiveSpells().Where(x => x.CanBeCastedBy(this)).FirstOrDefault();
+            => SpellBook.OfType<OffensiveSpell>().Where(x => x.CanBeCastedBy(this)).FirstOrDefault();
 
         //basic inflict damage - either cast spell or do base humanoid attack if not possible
         //basic implementation, only good for very basic NPCs

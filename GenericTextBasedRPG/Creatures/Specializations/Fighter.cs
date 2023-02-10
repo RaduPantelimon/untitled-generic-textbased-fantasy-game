@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GenericRPG.Equipment.Weapons;
+using GenericRPG.Items.Weapons;
 using GenericRPG.Properties;
 
 namespace GenericRPG.Creatures
@@ -25,7 +25,6 @@ namespace GenericRPG.Creatures
         public Fighter(double hitpoints, uint strength) : base(hitpoints)
         {
             Strength = strength;
-            NaturalWeapon = new Fist((int)Strength);
         }
         public Fighter(double hitpoints) : this(hitpoints, Convert.ToUInt32(Mechanics.Fighter_DefaultStrength))
         { }

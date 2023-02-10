@@ -1,6 +1,7 @@
 ﻿using GenericRPG;
 using GenericRPG.Combat;
-using GenericRPG.Equipment.Weapons;
+using GenericRPG.Items;
+using GenericRPG.Items.Weapons;
 using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace GenericRPG.Creatures
     public abstract class Creature: IAttackable, IAttacker
     {
         public string? Name { get; init; }
+
+        //let's consider that all creatures can have fists/horns/claws or other natural weapons that can be "wielded"
+        public IWieldable NaturalWeapon { get; private protected set; }
 
         private double hitpoints = 0;
         public double HitPoints 
@@ -41,10 +45,12 @@ namespace GenericRPG.Creatures
         //generate attack
         public abstract Attack GenerateAttack(IAttackable target);
 
-        public Creature(double hitpoints)
+        public Creature(double hitpoints, IWieldable naturalWeapon)
         {
             if(hitpoints < 0 ) throw new ArgumentOutOfRangeException(nameof(hitpoints));
-            MaxHitPoints = HitPoints = hitpoints; 
+            MaxHitPoints = HitPoints = hitpoints;
+
+            NaturalWeapon = naturalWeapon;
         }
 
         //template method

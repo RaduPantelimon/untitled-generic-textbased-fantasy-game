@@ -1,6 +1,6 @@
 ﻿using GenericRPG.Creatures;
-using GenericRPG.Equipment.Armor;
-using GenericRPG.Equipment.Weapons;
+using GenericRPG.Items.Armor;
+using GenericRPG.Items.Weapons;
 using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;

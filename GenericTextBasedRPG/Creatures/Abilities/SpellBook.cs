@@ -12,31 +12,19 @@ namespace GenericRPG.Creatures
     {
         //other spells - Further breakdown into other types of spells required
         List<Spell> Spells { get; }
-        //offensive spells
-        List<OffensiveSpell> OffensiveSpells { get; }
+
+        //This is sort of like a currency that will be used to learn new spells
+        public int TalentPoints { get; internal set; }
 
         public SpellBook(IEnumerable<Spell> startingSpells)
         {
-            Spells = new List<Spell>();
-            OffensiveSpells = new List<OffensiveSpell>();
-            //SPLIT SPELLS INTO CATEGORIES
-            foreach (var spell in startingSpells)
-                switch (spell)
-                {
-                    case OffensiveSpell x:
-                        OffensiveSpells.Add(x);
-                        break;
-                    default:
-                        Spells.Add(spell);
-                        break;
-                }
+            Spells = new List<Spell>(startingSpells);
         }
 
-        public IEnumerable<OffensiveSpell> GetOffensiveSpells() => OffensiveSpells.AsEnumerable();
+        public void LearnNewSpell(Spell spell) => throw new NotImplementedException();
 
         //lets consider that our spellbook can work as an enumeration of spells
-        public IEnumerator<Spell> GetEnumerator() => Spells.Concat(OffensiveSpells).GetEnumerator();
-
+        public IEnumerator<Spell> GetEnumerator() => Spells.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
