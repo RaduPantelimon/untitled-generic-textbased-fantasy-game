@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Helpers.Interfaces
+namespace GenericRPG
 {
     public interface IEntity: INameable
     {
