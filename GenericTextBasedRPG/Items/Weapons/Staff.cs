@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Equipment.Weapons
+namespace GenericRPG.Items.Weapons
 {
     public class Staff: Weapon
     {

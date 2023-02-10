@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Equipment.Armor
+namespace GenericRPG.Items.Armor
 {
     public abstract class Armor: IWearable
     {

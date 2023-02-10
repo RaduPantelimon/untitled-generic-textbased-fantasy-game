@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRPG.Equipment.Weapons
+namespace GenericRPG.Items.Weapons
 {
     public abstract class Weapon: Item, IWieldable
     {
