@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GenericRPG
 {
-    public interface IHealable
+    public interface IHealable:IEntity
     {
         public void RestoreHealth(double health);
     }
