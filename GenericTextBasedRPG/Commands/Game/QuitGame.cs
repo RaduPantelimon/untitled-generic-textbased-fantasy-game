@@ -17,7 +17,7 @@ namespace GenericRPG.Commands
             game.Quit();
             return CommandResult.Success(this, Messages.Command_SuccessResult_Quit);
         }
-        public override bool IsValid(Game game) => !game.GameState.Status.HasFlag(GameplayStatus.Quit);
+        public override bool IsValid(Game game) => game.GameState.Status!= GameplayStatus.Quit;
 
         public override Command Clone() => new QuitGame();
 

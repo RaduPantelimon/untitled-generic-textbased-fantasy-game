@@ -40,14 +40,13 @@ namespace GenericRPG.Core
         public void Play()
         {
             if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
-            Command? command = null;
 
             while ((GameplayStatus.GameOver & GameState.Status) == 0)
             {
                 try
                 {
                     PreCommandLogic(); //redefine logic depending on specific of the subclass
-                    command = GetCommand();
+                    Command command = GetCommand();
                     CommandResult result = command.Execute(this);
                     PostCommandLogic(result); //redefine logic depending on specific of the subclass
                 }
@@ -60,7 +59,6 @@ namespace GenericRPG.Core
                     SendUserMessage(string.Empty);
                 }
             }
-
             DisplayEndGameResults();
         }
 
@@ -93,20 +91,16 @@ namespace GenericRPG.Core
         //more logic can be added here, depending on the
         private void PreCommandLogic()
         {
-            //This is a tad convoluted, but I just wanted to build a switch for a Flags Enum
-            //WARNING: the order of the States might matter when we add more features
-            foreach (GameplayStatus possibleState in Enum.GetValues(typeof(GameplayStatus))) 
-                if (GameState.Status.HasFlag(possibleState))
-                    switch (possibleState)
-                    {
-                        case GameplayStatus.InCombat:
-                            PreCommand_InCombat();
-                            break;
-                        case GameplayStatus.Idle:
-                            PreCommand_Idle();
-                            break;
-                        //ADD MORE STATES HERE, IF NEEDED AS NEW FEATURES/BEHAVIOURS ARE ADDED
-                    }
+            switch (GameState.Status)
+            {
+                case GameplayStatus.InCombat:
+                    PreCommand_InCombat();
+                    break;
+                case GameplayStatus.Idle:
+                    PreCommand_Idle();
+                    break;
+                //ADD MORE STATES HERE, IF NEEDED AS NEW FEATURES/BEHAVIOURS ARE ADDED
+            }
         }
 
         private protected virtual void PreCommand_Idle() { }
@@ -122,23 +116,18 @@ namespace GenericRPG.Core
             if (commandResult.Status == CommandStatus.Failed)
                 SendUserMessage(FormattingService.CommandResultMessage(commandResult));
 
-            
+            switch (GameState.Status)
+            {
+                case GameplayStatus.InCombat:
+                    PostCommand_InCombat(commandResult);
+                    break;
+                case GameplayStatus.Idle:
+                    PostCommand_Idle(commandResult);
+                    break;
+                //ADD MORE STATES HERE, AS NEW FEATURES/BEHAVIOURS ARE ADDED
+            }
 
-            //if in combat, mobs attack Player after each action
-            foreach (GameplayStatus possibleState in Enum.GetValues(typeof(GameplayStatus)))
-                if (GameState.Status.HasFlag(possibleState))
-                    switch (possibleState)
-                    {
-                        case GameplayStatus.InCombat:
-                            PostCommand_InCombat(commandResult);
-                            break;
-                        case GameplayStatus.Idle:
-                            PostCommand_Idle(commandResult);
-                            break;
-                        //ADD MORE STATES HERE, AS NEW FEATURES/BEHAVIOURS ARE ADDED
-                    }
-
-            if (WinCondition) GameState.PlayerWon(); //after each command, we check the win condition
+            if (WinCondition) GameState.PlayerWon(); //after each command, at the end, we check the win condition
         }
 
         private protected virtual void PostCommand_Idle(CommandResult commandResult) { }
@@ -161,11 +150,11 @@ namespace GenericRPG.Core
         private protected virtual void DisplayEndGameResults()
         {
             //(PlayerStatus.InCombat & GameState.Status) == 0
-            if (GameState.Status.HasFlag(GameplayStatus.Defeat)) 
+            if (GameState.Status == GameplayStatus.Defeat) 
                 SendUserMessage(Messages.Menu_PlayerLost);
-            else if (GameState.Status.HasFlag(GameplayStatus.GameWon))
+            else if (GameState.Status == GameplayStatus.GameWon)
                 SendUserMessage(Messages.Menu_PlayerWon);
-            else if (GameState.Status.HasFlag(GameplayStatus.Quit))
+            else if (GameState.Status == GameplayStatus.Quit)
                 SendUserMessage(Messages.Menu_PlayerQuit);
         }
 

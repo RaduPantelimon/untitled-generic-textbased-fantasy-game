@@ -9,13 +9,15 @@ namespace GenericRPG.Core
     [Flags]
     public enum GameplayStatus
     {
-        Idle = 1,
-        InCombat = 2,
-        LevelWon = 4,
-        Defeat = 8,
-        Quit = 16,
-        GameWon = 32,
+        LevelNotStarted = 1,
+        Idle = 2,
+        InCombat = 4,
+        LevelWon = 8,
+        Defeat = 16,
+        Quit = 32,
+        GameWon = 64,
         GameOver = GameWon | Defeat | Quit,
         LevelInProgress = Idle | InCombat, 
+        ReadyForNextLevel = LevelNotStarted | LevelWon
     }
 }

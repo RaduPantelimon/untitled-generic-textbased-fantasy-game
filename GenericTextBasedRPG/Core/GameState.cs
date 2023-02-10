@@ -21,21 +21,19 @@ namespace GenericRPG.Core
         {
             get
             {
-                GameplayStatus status = 0;
-
-                if (playerWon) status|= GameplayStatus.GameWon;
-                if (playerQuit) status |= GameplayStatus.Quit;
-                if (Player.Hero != null && !Player.Hero.IsAlive) status |= GameplayStatus.Defeat;
-                if (CurrentLevel != null && CurrentLevel.LevelFinished) status |= GameplayStatus.LevelWon;
+                if (playerWon) return GameplayStatus.GameWon;
+                if (playerQuit) return GameplayStatus.Quit;
+                if (Player.Hero != null && !Player.Hero.IsAlive) return GameplayStatus.Defeat;
+                
+                if(CurrentLevel == null) return GameplayStatus.LevelNotStarted;
+                if (CurrentLevel.LevelFinished) return GameplayStatus.LevelWon;
 
                 //we consider that the player is in combat if the current encounter still has alive mobs
                 if (CurrentLevel?.CurrentEncounter != null
-                    && CurrentLevel.CurrentEncounter.GetAlive().Count() > 0) status |= GameplayStatus.InCombat;
-                //if player is on a level, but not in combat, they are idle
-                else if (CurrentLevel != null)
-                    status |= GameplayStatus.Idle;
-
-                return status;
+                    && CurrentLevel.CurrentEncounter.GetAlive().Count() > 0) return GameplayStatus.InCombat;
+                
+                //otherwise, player is idle
+                return GameplayStatus.Idle;
             }
         }
 

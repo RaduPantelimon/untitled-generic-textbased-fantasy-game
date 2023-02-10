@@ -18,8 +18,7 @@ namespace GenericRPG.Commands
             return CommandResult.Success(this, Messages.Command_SuccessResult_StartLevel);
         }
         public override bool IsValid(Game game)
-            => ((game.GameState.Status & (GameplayStatus.GameOver | GameplayStatus.LevelInProgress)) == 0);
-        //&& game.GameState.CurrentLevel == null
+            => (game.GameState.Status & GameplayStatus.ReadyForNextLevel) != 0;
 
         public override Command Clone() => new StartLevel();
     }
