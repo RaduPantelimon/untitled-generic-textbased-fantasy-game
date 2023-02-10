@@ -28,12 +28,14 @@ namespace GenericRPG
             Writer = new StreamWriter(output);
 
             //In the tutorial, the player can only fight using a generic, hardcoded character
-            GameState.Player.Hero = new Fighter(Randomizer.Instance.Next(250, 300), 20)
+            var hero = new Fighter(Randomizer.Instance.Next(250, 300), 20)
             {
                 Name = Mechanics.Tutorial_HeroName,
-                Weapon = new Sword(15, 20), 
-                Armor = new Chainmail(0.3)
             };
+            hero.Equipment.Weapon = new Sword(15, 20); 
+            hero.Equipment.Armor = new Chainmail(0.3);
+
+            GameState.Player.Hero = hero;
         }
         
         //if the first level is beat, the Tutorial Game is Won!

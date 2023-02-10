@@ -18,31 +18,39 @@ namespace GenericRPG.Core
             new Fighter(Randomizer.Instance.Next(HealthLowerLimit, HealthUpperLimit), FigtherStrength) 
                 { Name =  Mechanics.Tutorial_BasicEnemyName };
 
-
-        internal virtual Creature GenerateMeleeEnemy() =>
-            new Fighter( Randomizer.Instance.Next(HealthLowerLimit, HealthUpperLimit), FigtherStrength)
-            { 
-                Name = Mechanics.Tutorial_MeleeEnemyName, 
-                Weapon = new Dagger(DaggerLowerAttack, DaggerUpperAttack)
+        internal virtual Creature GenerateMeleeEnemy()
+        {
+            Humanoid mob = new Fighter(Randomizer.Instance.Next(HealthLowerLimit, HealthUpperLimit), FigtherStrength)
+            {
+                Name = Mechanics.Tutorial_MeleeEnemyName
             };
-
-        internal virtual Creature GenerateCasterEnemy() =>
-            new SpellCaster(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit),
-                CasterMana, new Spell[] { new Fireball(FireballLowerAttack, FireballUpperAttack, FireballManaCost)})
-            { 
-                Name = Mechanics.Tutorial_CasterEnemyName,
-                Weapon = new Staff(StaffLowerAttack, StaffUpperAttack)
+            mob.Equipment.Weapon = new Dagger(DaggerLowerAttack, DaggerUpperAttack);
+            return mob;
+        }
+           
+        internal virtual Creature GenerateCasterEnemy()
+        {
+            Humanoid mob = new SpellCaster(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit),
+                CasterMana, new Spell[] { new Fireball(FireballLowerAttack, FireballUpperAttack, FireballManaCost) })
+            {
+                Name = Mechanics.Tutorial_CasterEnemyName
             };
+            mob.Equipment.Weapon = new Staff(StaffLowerAttack, StaffUpperAttack);
+            return mob;
+        }
 
-        internal virtual Creature GenerateBoss() =>
-            new Fighter((int)(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit) * BossMultiplier), 
+        internal virtual Creature GenerateBoss()
+        {
+            Humanoid mob = new Fighter((int)(Randomizer.Instance.Random.Next(HealthLowerLimit, HealthUpperLimit) * BossMultiplier),
                 (uint)(FigtherStrength * BossMultiplier))
             {
                 Name = Mechanics.Tutorial_BossName,
-                Weapon = new Sword((int)(SwordLowerAttack * BossMultiplier), (int)(SwordUpperAttack * BossMultiplier) ),
-                Armor = new Chainmail(MailArmorReduction * BossMultiplier)
             };
-
+            mob.Equipment.Weapon = new Sword((int)(SwordLowerAttack * BossMultiplier), (int)(SwordUpperAttack * BossMultiplier));
+            mob.Equipment.Armor = new Chainmail(MailArmorReduction * BossMultiplier);
+            return mob;
+        }
+       
         //very basic default implementation
         internal virtual HostileParty<Creature> GetEnemiesGroup(PartySize size) => size switch
         {
