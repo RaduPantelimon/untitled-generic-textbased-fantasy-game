@@ -21,7 +21,7 @@ namespace GenericRPG.Commands
         }
 
         public override bool IsValid(Game game) 
-            => (game.GameState.Status & PlayerStatus.InCombat) == 0 
+            => !game.GameState.Status.HasFlag(GameplayStatus.InCombat) 
             && game.GameState is { CurrentLevel: { EnemyEncounters: { Count: > 0 } } };
 
         public override StartFight Clone() => new StartFight();
