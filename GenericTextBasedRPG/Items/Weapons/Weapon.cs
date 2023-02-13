@@ -13,6 +13,9 @@ namespace GenericRPG.Items.Weapons
         public int MinDamage { get; }
         public int MaxDamage { get; }
 
+        //some of the weapons we will use might chip or suffer changes that will update the Modifier
+        public int Modifier { get; private protected set; } = 0;
+
         public DamageTypes DamageType { get; }
 
         public Weapon(int minDamage, int maxDamage, DamageTypes damageType) 
@@ -28,7 +31,12 @@ namespace GenericRPG.Items.Weapons
         //basic weapon damage calculation
         public virtual Attack GetAttack(IAttacker attacker)
         {
-            return  new Attack(attacker, Randomizer.Instance.Random.Next(MinDamage, MaxDamage)) {  DamageType = DamageType };
+            //the modifiers should be represented by a Class Hierarchy
+            //to simplify things, I'll just use the following very basic implementation, even if its a bit ugly
+            return  new Attack(attacker, 
+                Randomizer.Instance.Random.Next(
+                    Math.Max(0,MinDamage + Modifier), 
+                    Math.Max(0, MaxDamage + Modifier))) {  DamageType = DamageType };
         }
     }
 }

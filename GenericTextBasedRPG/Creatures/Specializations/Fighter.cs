@@ -16,9 +16,9 @@ namespace GenericRPG.Creatures
           internal set
             {
                 //I don't want to create new fist whenever I do an attack,
-                //let's assume we want to optimize this and we only want to recreate the fist whenever the strength changes
+                //we use the strength as a modifier for the fighters unarmed attack
                 _strength = value;
-                NaturalWeapon = new Fist((int)_strength);
+                NaturalWeapon.UpdateAttackModifier((int)_strength);
             }
         }
 

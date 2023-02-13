@@ -1,4 +1,5 @@
-﻿using GenericRPG.Creatures;
+﻿using GenericRPG.Commands;
+using GenericRPG.Creatures;
 using GenericRPG.Properties;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace GenericRPG.Creatures
 
         public DamageTypes DamageType { get; }
 
+        //spells might suffer some changes to their base damage, depending on certain conditions
+        public int Modifier { get; private protected set; } = 0;
+
         public OffensiveSpell(int minDamage, int maxDamage, int manaCost, DamageTypes damageType): base(manaCost)
         {
             if (minDamage < 0) throw new ArgumentException(nameof(MinDamage));
@@ -30,7 +34,11 @@ namespace GenericRPG.Creatures
         public virtual Attack Cast(SpellCaster caster, IAttackable target)
         {
             caster.CastSpell(this);
-            return new Attack(caster, Randomizer.Instance.Random.Next(MinDamage, MaxDamage)) { DamageType = DamageType };
+            return new Attack(caster,
+                                Randomizer.Instance.Random.Next(
+                                    Math.Max(0, MinDamage + Modifier),
+                                    Math.Max(0, MaxDamage + Modifier)))
+                                { DamageType = DamageType };
         }
     }
 }

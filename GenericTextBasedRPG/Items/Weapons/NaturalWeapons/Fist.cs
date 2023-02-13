@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GenericRPG.Items.Weapons
 {
-    public class Fist:Weapon
+    public class Fist:NaturalWeapon
     {
-        public Fist() : this(DefaultFistDamage) { }
+        public Fist() : this(DefaultFistDamage, 0) { }
 
-        public Fist(int damange): base(damange, damange, DamageTypes.Blunt)
+        public Fist(int damage, int modifier) : base(damage, damage, DamageTypes.Blunt)
         {
 
         }

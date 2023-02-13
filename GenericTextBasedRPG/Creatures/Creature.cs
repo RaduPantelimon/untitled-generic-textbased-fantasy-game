@@ -19,7 +19,7 @@ namespace GenericRPG.Creatures
         public string? Name { get; init; }
 
         //let's consider that all creatures can have fists/horns/claws or other natural weapons that can be "wielded"
-        public IWieldable NaturalWeapon { get; private protected set; }
+        public NaturalWeapon NaturalWeapon { get; private protected set; }
 
         private double hitpoints = 0;
         public double HitPoints 
@@ -45,7 +45,7 @@ namespace GenericRPG.Creatures
         //generate attack
         public abstract Attack GenerateAttack(IAttackable target);
 
-        public Creature(double hitpoints, IWieldable naturalWeapon)
+        public Creature(double hitpoints, NaturalWeapon naturalWeapon)
         {
             if(hitpoints < 0 ) throw new ArgumentOutOfRangeException(nameof(hitpoints));
             MaxHitPoints = HitPoints = hitpoints;

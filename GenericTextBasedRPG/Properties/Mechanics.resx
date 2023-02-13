@@ -139,7 +139,7 @@
     <value>6</value>
   </data>
   <data name="DefaultEnemies_Fighter_Strength" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="DefaultEnemies_Fireball_LowerAttack" xml:space="preserve">
     <value>10</value>
@@ -175,7 +175,7 @@
     <value>7</value>
   </data>
   <data name="Default_Humanoid_FistDamage" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="Fighter_DefaultStrength" xml:space="preserve">
     <value>5</value>

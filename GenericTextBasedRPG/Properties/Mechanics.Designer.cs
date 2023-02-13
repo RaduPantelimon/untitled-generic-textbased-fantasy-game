@@ -97,7 +97,7 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3.
+        ///   Looks up a localized string similar to 1.
         /// </summary>
         internal static string Default_Humanoid_FistDamage {
             get {
@@ -133,7 +133,7 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3.
+        ///   Looks up a localized string similar to 2.
         /// </summary>
         internal static string DefaultEnemies_Fighter_Strength {
             get {
