@@ -12,7 +12,9 @@ namespace GenericRPG.Core
         //a normal game would have a lot more stuff here
         public Humanoid? Hero { get; internal set; }
         public double Gold { get; internal set; }
-        
+
+        public bool IsCurrentHeroAlive => Hero?.IsAlive ?? false;
+
         internal Player()
         {
 

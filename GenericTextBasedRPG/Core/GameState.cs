@@ -26,7 +26,7 @@ namespace GenericRPG.Core
 
                 //in the future we will add a command to Create/Buy Hero -
                 //so we will not consider the game to be lost until the hero actually is created and dies
-                if (Player.Hero != null && !Player.Hero.IsAlive) return GameplayStatus.Defeat;
+                if (Player.Hero != null && !Player.IsCurrentHeroAlive) return GameplayStatus.Defeat;
                 
                 if(CurrentLevel == null) return GameplayStatus.LevelNotStarted;
                 if (CurrentLevel.LevelFinished) return GameplayStatus.LevelWon;
