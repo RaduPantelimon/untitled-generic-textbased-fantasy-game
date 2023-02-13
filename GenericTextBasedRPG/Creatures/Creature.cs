@@ -43,7 +43,7 @@ namespace GenericRPG.Creatures
         public abstract Attack MitigateAttack(Attack attack);
 
         //generate attack
-        public abstract Attack GenerateAttack(IAttackable target);
+        public virtual Attack GenerateAttack(IAttackable target) => NaturalWeapon.GetAttack(this);
 
         public Creature(double hitpoints, NaturalWeapon naturalWeapon)
         {

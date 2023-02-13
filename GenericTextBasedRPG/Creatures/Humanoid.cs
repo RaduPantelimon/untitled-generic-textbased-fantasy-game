@@ -21,7 +21,7 @@ namespace GenericRPG.Creatures
 
         //basic inflict damage - either weapon attack or unnarmed if weapon missing
         public override Attack GenerateAttack(IAttackable target)
-                => Equipment.Weapon?.GetAttack(this) ?? NaturalWeapon.GetAttack(this);
+                => Equipment.Weapon?.GetAttack(this) ?? base.GenerateAttack(target);
 
         //humanoids use armor to mitigate attack
         public override Attack MitigateAttack(Attack attack)=> Equipment.Armor?.MitigateAttack(attack) ?? attack;
