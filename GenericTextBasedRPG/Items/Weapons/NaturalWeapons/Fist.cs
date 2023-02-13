@@ -9,11 +9,10 @@ namespace GenericRPG.Items.Weapons
 {
     public class Fist:NaturalWeapon
     {
-        public Fist() : this(DefaultFistDamage, 0) { }
+        public Fist() : this(DefaultFistDamage) { }
 
-        public Fist(int damage, int modifier) : base(damage, damage, DamageTypes.Blunt)
+        public Fist(int damage) : base(damage, damage, DamageTypes.Blunt)
         {
-
         }
 
         protected static int DefaultFistDamage { get; } = int.Parse(Mechanics.Default_Humanoid_FistDamage);
