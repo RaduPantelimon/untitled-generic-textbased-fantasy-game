@@ -259,6 +259,15 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        internal static string Menu_CommandsOnTheSameLine {
+            get {
+                return ResourceManager.GetString("Menu_CommandsOnTheSameLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please Select One of the following commands by replying with the corresponding number:.
         /// </summary>
         internal static string Menu_EligibleCommands {

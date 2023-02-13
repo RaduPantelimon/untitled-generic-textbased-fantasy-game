@@ -14,8 +14,7 @@ namespace GenericRPG.Core
 {
     public abstract partial class Game: IDisposable
     {
-        //maybe move this to the resx
-        static readonly int CommandsOnTheSameLine = 3;
+        static readonly int CommandsOnTheSameLine = int.Parse(Messages.Menu_CommandsOnTheSameLine);
 
         private protected IReadOnlyList<Command> Commands { get; }
         internal GameState GameState { get; }  
@@ -41,7 +40,7 @@ namespace GenericRPG.Core
         {
             if (IsDisposed) throw new ObjectDisposedException(this.GetType().Name);
 
-            while ((GameplayStatus.GameOver & GameState.Status) == 0)
+            while ((GameplayStatus.GameOver & GameState.Status) == 0) //While game not finished
             {
                 try
                 {
