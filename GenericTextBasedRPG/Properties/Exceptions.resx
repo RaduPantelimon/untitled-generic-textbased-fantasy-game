@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Exception_CannotQuitGameAfterWinning" xml:space="preserve">
-    <value>Player cannot quit the game after winning</value>
+  <data name="Exception_CannotQuitGameInCurrentState" xml:space="preserve">
+    <value>Cannot quit the game in the current state. Game is already over.</value>
   </data>
-  <data name="Exception_GameCannotBeWonAfterQuitting" xml:space="preserve">
-    <value>Player cannot win game after quitting!</value>
+  <data name="Exception_CannotWinGameInCurrentState" xml:space="preserve">
+    <value>Cannot win the game in the current state. Game is already over.</value>
   </data>
   <data name="Exception_InvalidEnemyIndex" xml:space="preserve">
     <value>Enemy Index must be a number between 1 and the number of enemies in the party</value>

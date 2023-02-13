@@ -61,20 +61,20 @@ namespace GenericRPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Player cannot quit the game after winning.
+        ///   Looks up a localized string similar to Cannot quit the game in the current state. Game is already over..
         /// </summary>
-        internal static string Exception_CannotQuitGameAfterWinning {
+        internal static string Exception_CannotQuitGameInCurrentState {
             get {
-                return ResourceManager.GetString("Exception_CannotQuitGameAfterWinning", resourceCulture);
+                return ResourceManager.GetString("Exception_CannotQuitGameInCurrentState", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Player cannot win game after quitting!.
+        ///   Looks up a localized string similar to Cannot win the game in the current state. Game is already over..
         /// </summary>
-        internal static string Exception_GameCannotBeWonAfterQuitting {
+        internal static string Exception_CannotWinGameInCurrentState {
             get {
-                return ResourceManager.GetString("Exception_GameCannotBeWonAfterQuitting", resourceCulture);
+                return ResourceManager.GetString("Exception_CannotWinGameInCurrentState", resourceCulture);
             }
         }
         

@@ -23,6 +23,9 @@ namespace GenericRPG.Core
             {
                 if (playerWon) return GameplayStatus.GameWon;
                 if (playerQuit) return GameplayStatus.Quit;
+
+                //in the future we will add a command to Create/Buy Hero -
+                //so we will not consider the game to be lost until the hero actually is created and dies
                 if (Player.Hero != null && !Player.Hero.IsAlive) return GameplayStatus.Defeat;
                 
                 if(CurrentLevel == null) return GameplayStatus.LevelNotStarted;
@@ -44,13 +47,15 @@ namespace GenericRPG.Core
 
         internal virtual void Quit()
         {
-            if (playerWon) throw new InvalidOperationException(Exceptions.Exception_GameCannotBeWonAfterQuitting);
+            if (playerWon || playerQuit) throw new InvalidOperationException(Exceptions.Exception_CannotQuitGameInCurrentState);
             playerQuit = true;
         }
 
+        //we will simplify the implementation a bit and consider that the game will automatically end when player wins
+        //(so no quitting will be necessary/should happen after winning)
         internal virtual void PlayerWon()
         {
-            if (playerQuit) throw new InvalidOperationException(Exceptions.Exception_GameCannotBeWonAfterQuitting);
+            if (playerQuit || playerQuit) throw new InvalidOperationException(Exceptions.Exception_CannotWinGameInCurrentState);
             playerWon = true;
         }
     }
