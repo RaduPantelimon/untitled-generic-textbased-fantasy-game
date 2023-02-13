@@ -13,7 +13,11 @@ namespace GenericRPG.Items.Armor
 
         public override Attack MitigateAttack(Attack attack)
         {
-            if(attack.DamageType == DamageTypes.Slashing) attack.DamageType = DamageTypes.Blunt;
+            if (attack.DamageType.HasFlag(DamageTypes.Slashing))
+            {
+                attack.DamageType ^= DamageTypes.Slashing;
+                attack.DamageType |= DamageTypes.Blunt;
+            }
             return base.MitigateAttack(attack);
         }
     }
